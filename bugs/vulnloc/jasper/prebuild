@@ -1,0 +1,39 @@
+#!/bin/bash
+set -eu
+
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+SOURCE_DIR="${HERE_DIR}/source"
+
+export CFLAGS="${CFLAGS:-}"
+export CXXFLAGS="${CXXFLAGS:-}"
+CONFIG_OPTIONS=""
+
+pushd "${SOURCE_DIR}"
+
+if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
+  COMPILE_TYPE="$1"
+
+  # TODO KLEE stuff [this seems to basically be a temporary build directory]
+  rm -rf klee
+  mkdir klee
+  pushd klee
+
+  export CFLAGS="-g -D__NO_STRING_INLINES  -D_FORTIFY_SOURCE=0 -U__OPTIMIZE__ -lkleeRuntest -lkleeBasic -Wno-everything ${CFLAGS}"
+  CONFIG_OPTIONS="--disable-debug --disable-dmalloc --disable-libjpeg --disable-opengl --enable-static --disable-shared"
+
+  if [[ "${COMPILE_TYPE}" == "to_bc" ]]; then
+    export LLVM_COMPILER=clang
+    export CC=wllvm
+  elif [[ "${COMPILE_TYPE}" == "lowfat" ]]; then
+    export CC="${LOWFAT_CLANG}"
+    export CFLAGS="${CFLAGS} -fsanitize=integer-divide-by-zero -fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-symbolize -lstlimpl"
+  fi
+
+fi
+
+../configure ${CONFIG_OPTIONS}
+
+if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
+  sed -i 's/inline//g' ../src/libjasper/base/jas_malloc.c
+  cp ./src/libjasper/include/jasper/jas_config.h ../src/libjasper/include/jasper/
+fi

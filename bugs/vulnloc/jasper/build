@@ -1,0 +1,31 @@
+#!/bin/bash
+set -eu
+
+SUBJECT=imginfo
+SUBJECT_PATH=src/appl/imginfo
+
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+SOURCE_DIR="${HERE_DIR}/source"
+
+pushd "${SOURCE_DIR}"
+
+if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
+  export LLVM_COMPILER=clang
+  pushd klee
+fi
+
+make
+
+if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
+  COMPILE_TYPE="$1"
+  PROJECT_DIR=".."  # NOTE this is the same as HERE_DIR
+
+  # copy target to root dir
+  cp "${SUBJECT_PATH}" "${PROJECT_DIR}"
+
+  # copy target bitcode to root dir
+  if [[ "${COMPILE_TYPE}" == "to_bc" ]]; then
+    extract-bc -l llvm-link "${SUBJECT_PATH}"
+    cp "${SUBJECT_PATH}.bc" "${PROJECT_DIR}"
+  fi
+fi

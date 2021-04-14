@@ -1,0 +1,16 @@
+#!/bin/bash
+set -eu
+
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+PATH_EXPLOIT="${HERE_DIR}/exploit"
+PATH_BIN="${HERE_DIR}/source/src/appl/imginfo"
+
+if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
+  # TODO is this always located at "project/${binary}"?
+  PATH_BIN="$1"
+  # TODO this ignores klee for now
+fi
+
+  # Unlike most other repair tools, assumes that all test executions, both
+  # passing and failing, produce the same exit code of zero
+"${PATH_BIN}" -f "${PATH_EXPLOIT}" || [ "${REPAIR_TOOL}" = "extractfix" ]

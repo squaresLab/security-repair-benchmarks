@@ -1,0 +1,9 @@
+#!/bin/bash
+set -eu
+
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+SOURCE_DIR="${HERE_DIR}/source"
+
+pushd "${SOURCE_DIR}"
+
+./autogen.sh
