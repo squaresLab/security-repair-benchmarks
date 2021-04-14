@@ -1,3 +1,6 @@
 [submodule "zlib"]
 	path = zlib
 	url = https://github.com/ChrisTimperley/zlib
+[submodule "tools/ExtractFix"]
+	path = tools/ExtractFix
+	url = git@github.com:jpksh90/ExtractFix
