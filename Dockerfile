@@ -29,8 +29,9 @@ RUN apt-get update \
 RUN pip install setuptools==42.0.2 \
  && pip install wllvm==1.2.8
 
-COPY --from=jasper-cve_2016_8691 /workspace /benchmarks/jasper/cve_2016_8691
+ENV EXTRACTFIX_BINARY /opt/extractfix/bin/extractfix
 
+COPY --from=jasper-cve_2016_8691 /workspace /benchmarks/jasper/cve_2016_8691
 
 #FROM ubuntu:xenial-20210114 AS xenial-builder
 # FROM ubuntu:focal-20210217
@@ -84,3 +85,8 @@ COPY --from=jasper-cve_2016_8691 /workspace /benchmarks/jasper/cve_2016_8691
 # ENV LLVM_CXX_NAME clang++-12
 # ENV CC wllvm
 # ENV CXX wllvm++
+
+
+# TODO this should be included in the ExtractFix image in the /opt/extractfix/lib/python2.7/site-packages
+# directory [and added to the PYTHONPATH by the extractfix wrapper]
+RUN pip install coloredlogs enum
