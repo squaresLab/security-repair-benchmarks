@@ -1,0 +1,10 @@
+{
+  "subject": "jasper",
+  "name": "cve_2016_8691",
+  "options": {
+    "extractfix": {
+      "bug-type": "divide_by_0",
+      "binary": "imginfo"
+    }
+  }
+}
