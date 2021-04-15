@@ -1,7 +1,22 @@
 # security-repair-benchmarks
 
+## Installation
 
-* project name
-* OSS bug id
-* repo URL
-* repo commit hash
+To build a single Docker image, `secbugs`, containing all bug scenarios, repair tools, and experimental
+infrastructure, execute the following:
+
+```
+$ git submodule update --init --recursive
+$ make
+```
+
+
+## Usage
+
+To attempt to repair the `jasper/cve_2016_9557` scenario within the `vulnloc`
+dataset using ExtractFix, perform the following:
+
+```
+$ cd /benchmarks/jasper/cve_2016_9557
+$ ./repair extractfix
+```
