@@ -17,6 +17,7 @@ To attempt to repair the `jasper/cve_2016_9557` scenario within the `vulnloc`
 dataset using ExtractFix, perform the following:
 
 ```
-$ cd /benchmarks/jasper/cve_2016_9557
-$ ./repair extractfix
+$ docker run --rm -it secbugs
+# cd /benchmarks/jasper/cve_2016_9557
+# ./repair extractfix
 ```
