@@ -40,6 +40,7 @@ RUN pip install \
       enum==0.4.7 \
  && pip3 install \
       pyparsing==2.4.7 \
+      setuptools==56.0.0 \
       z3-solver==4.8.10.0
 
 ENV EXTRACTFIX_BINARY /opt/extractfix/bin/extractfix
