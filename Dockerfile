@@ -19,6 +19,8 @@ RUN apt-get update \
       libtool \
       python-dev \
       python-pip \
+      python3-dev \
+      python3-pip \
       rsync \
       texinfo \
       unzip \
@@ -26,8 +28,19 @@ RUN apt-get update \
       zip \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
+
 RUN pip install setuptools==42.0.2 \
  && pip install wllvm==1.2.8
+
+# more run-time dependencies for extractfix
+# TODO this should be included in the ExtractFix image in the /opt/extractfix/lib/python2.7/site-packages
+# directory [and added to the PYTHONPATH by the extractfix wrapper]
+RUN pip install \
+      coloredlogs==15.0 \
+      enum==0.4.7 \
+ && pip3 install \
+      pyparsing==2.4.7 \
+      z3-solver==4.8.10.0
 
 ENV EXTRACTFIX_BINARY /opt/extractfix/bin/extractfix
 
@@ -87,6 +100,4 @@ COPY --from=jasper-cve_2016_8691 /workspace /benchmarks/jasper/cve_2016_8691
 # ENV CXX wllvm++
 
 
-# TODO this should be included in the ExtractFix image in the /opt/extractfix/lib/python2.7/site-packages
-# directory [and added to the PYTHONPATH by the extractfix wrapper]
-RUN pip install coloredlogs enum
+
