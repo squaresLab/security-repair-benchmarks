@@ -1,0 +1,10 @@
+{
+  "subject": "libtiff",
+  "name": "cve_2016_9273",
+  "options": {
+    "extractfix": {
+      "bug-type": "buffer_overflow",
+      "binary": "tiffsplit"
+    }
+  }
+}

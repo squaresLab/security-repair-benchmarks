@@ -1,0 +1,10 @@
+{
+  "subject": "libtiff",
+  "name": "cve_2016_10094",
+  "options": {
+    "extractfix": {
+      "bug-type": "buffer_overflow",
+      "binary": "tiff2pdf"
+    }
+  }
+}

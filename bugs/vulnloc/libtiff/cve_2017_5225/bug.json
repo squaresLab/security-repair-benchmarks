@@ -1,0 +1,10 @@
+{
+  "subject": "libtiff",
+  "name": "cve_2017_5225",
+  "options": {
+    "extractfix": {
+      "bug-type": "buffer_overflow",
+      "binary": "tiffcp"
+    }
+  }
+}

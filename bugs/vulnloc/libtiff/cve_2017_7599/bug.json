@@ -1,0 +1,10 @@
+{
+  "subject": "libtiff",
+  "name": "cve_2017_7599",
+  "options": {
+    "extractfix": {
+      "bug-type": "floating_point_overflow",
+      "binary": "tiffcp"
+    }
+  }
+}

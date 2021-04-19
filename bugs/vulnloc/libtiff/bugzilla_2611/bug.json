@@ -1,0 +1,10 @@
+{
+  "subject": "libtiff",
+  "name": "bugzilla_2611",
+  "options": {
+    "extractfix": {
+      "bug-type": "divide_by_0",
+      "binary": "tiffmedian"
+    }
+  }
+}

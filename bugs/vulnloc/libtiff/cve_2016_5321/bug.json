@@ -1,0 +1,10 @@
+{
+  "subject": "libtiff",
+  "name": "cve_2016_5321",
+  "options": {
+    "extractfix": {
+      "bug-type": "FIXME: UNKNOWN",
+      "binary": "tiffcrop"
+    }
+  }
+}
