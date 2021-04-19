@@ -1,0 +1,10 @@
+{
+  "subject": "ffmpeg",
+  "name": "bugchrom_1404",
+  "options": {
+    "extractfix": {
+      "bug-type": "integer_overflow",
+      "binary": "target_dec_cavs_fuzzer"
+    }
+  }
+}

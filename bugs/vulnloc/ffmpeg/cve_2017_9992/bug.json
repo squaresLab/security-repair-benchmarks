@@ -1,0 +1,10 @@
+{
+  "subject": "ffmpeg",
+  "name": "cve_2017_9992",
+  "options": {
+    "extractfix": {
+      "bug-type": "buffer_overflow",
+      "binary": "target_dec_cavs_fuzzer"
+    }
+  }
+}
