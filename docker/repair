@@ -1,0 +1,116 @@
+#!/usr/bin/env python3
+import argparse
+import functools
+import json
+import os
+import typing as t
+
+REPAIR_TOOLS = (
+    'extractfix',
+    'fix2fit',
+    'hifix',
+)
+
+_KLEE_DRIVER_TEXT = """
+#!/bin/bash
+message="error arg num in klee-driver"
+
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+PATH_DRIVER="${HERE_DIR}/driver"
+
+# binary name
+if [[ $# > 0 ]]; then
+    binary="$1"
+    shift
+else
+    echo "$message"
+    exit 1
+fi
+
+# test input
+if [[ $# > 0 ]]; then
+    test="$1"
+    shift
+else
+    echo "$message"
+    exit 1
+fi
+
+# crash line
+if [[ $# > 0 ]]; then
+    crash_line="$1"
+    shift
+else
+    echo "$message"
+    exit 1
+fi
+
+
+# fix line option
+if [[ $# > 0 ]]; then
+    fix_line_op="--fix-line=$1"
+    shift
+fi
+
+export TEST_EXECUTION_PREFIX="klee --libc=uclibc --posix-runtime --crash-line=${crash_line} ${fix_line_op}"
+"${PATH_DRIVER}" "${binary}"
+""".strip()
+
+
+def prepare_for_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
+    path_in_bug_dir = functools.partial(os.path.join, bug_dir)
+
+    os.symlink(path_in_bug_dir("prebuild"), path_in_bug_dir("project_config.sh"))
+    os.symlink(path_in_bug_dir("build"), path_in_bug_dir("project_build.sh"))
+    os.symlink(path_in_bug_dir("recompile"), path_in_bug_dir("project_compile.sh"))
+
+    path_driver = path_in_bug_dir("driver")
+    with open(path_driver, "w") as f:
+        f.write("#!/bin/bash\n")
+        f.write('HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )\n')
+        f.write('PATH_TEST="${HERE_DIR}/test"\n')
+        f.write('PATH_BINARY="$1"\n')
+        f.write('${PATH_TEST} "${PATH_BINARY}" || exit 0\n')
+    os.chmod(path_driver, 0o775)
+
+    path_klee_driver = path_in_bug_dir("klee-driver")
+    with open(path_klee_driver, "w") as f:
+        f.write(_KLEE_DRIVER_TEXT)
+    os.chmod(path_klee_driver, 0o775)
+
+
+def repair_with_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
+    prepare_for_extractfix(bug_dir, bug_json)
+
+
+def load_bug_info(bug_dir: str) -> t.Dict[str, t.Any]:
+    bug_info_filename = os.path.join(bug_dir, "bug.json")
+    try:
+        with open(bug_info_filename, "r") as f:
+            json.load(f.read())
+    except FileNotFoundError as err:
+        raise ValueError("bug directory does not contain bug.json")
+
+
+def repair(bug_dir: str, tool: str) -> None:
+    if tool == "extractfix":
+        return repair_with_extractfix(bug_dir)
+    else:
+        raise ValueError("unrecognized repair tool")
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        "Obtains a list of ROS projects from GitHub, GitLab and BitBucket.",
+    )
+    parser.add_argument(
+        "bug-dir",
+        help="the directory of the bug scenario",
+    )
+    parser.add_argument(
+        "tool",
+        help="the name of the repair tool that should be used",
+    )
+    args = parser.parse_args()
+
+    repair(args.bug_dir, args.tool)

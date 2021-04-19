@@ -47,6 +47,9 @@ ENV EXTRACTFIX_BINARY /opt/extractfix/bin/extractfix
 
 COPY --from=jasper-cve_2016_8691 /workspace /benchmarks/jasper/cve_2016_8691
 
+COPY docker/repair /opt/secbugs/bin
+ENV PATH "/opt/secbugs/bin:${PATH}"
+
 #FROM ubuntu:xenial-20210114 AS xenial-builder
 # FROM ubuntu:focal-20210217
 # ENV DEBIAN_FRONTEND noninteractive
