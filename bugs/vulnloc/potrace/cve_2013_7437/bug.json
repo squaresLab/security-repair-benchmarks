@@ -1,0 +1,10 @@
+{
+  "subject": "potrace",
+  "name": "cve_2013_7437",
+  "options": {
+    "extractfix": {
+      "bug-type": "buffer_overflow",
+      "binary": "potrace"
+    }
+  }
+}
