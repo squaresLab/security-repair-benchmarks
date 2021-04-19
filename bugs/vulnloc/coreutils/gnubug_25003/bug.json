@@ -1,0 +1,10 @@
+{
+  "subject": "coreutils",
+  "name": "gnubug_25003",
+  "options": {
+    "extractfix": {
+      "bug-type": "buffer_overflow",
+      "binary": "split"
+    }
+  }
+}

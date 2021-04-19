@@ -1,0 +1,10 @@
+{
+  "subject": "coreutils",
+  "name": "gnubug_19784",
+  "options": {
+    "extractfix": {
+      "bug-type": "buffer_overflow",
+      "binary": "make-prime-list"
+    }
+  }
+}

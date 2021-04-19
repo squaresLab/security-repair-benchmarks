@@ -1,0 +1,11 @@
+{
+  "subject": "coreutils",
+  "name": "gnubug_26545",
+  "options": {
+    "extractfix": {
+      "supported": false,
+      "bug-type": "unsupported",
+      "binary": "shred"
+    }
+  }
+}

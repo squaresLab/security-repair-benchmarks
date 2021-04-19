@@ -39,5 +39,6 @@ RUN cd "${SUT_SOURCE_PATH}" \
  && ./bootstrap
 
 ARG BUG_DIR
+COPY "${BUG_DIR}/bug.json" bug.json
 # COPY "${BUG_DIR}/exploit" exploit
 # COPY "${BUG_DIR}/test" test
