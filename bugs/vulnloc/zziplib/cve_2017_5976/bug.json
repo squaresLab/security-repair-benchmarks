@@ -1,0 +1,10 @@
+{
+  "subject": "zziplib",
+  "name": "cve_2017_5976",
+  "options": {
+    "extractfix": {
+      "bug-type": "buffer_overflow",
+      "binary": "unzzipcat-mem"
+    }
+  }
+}
