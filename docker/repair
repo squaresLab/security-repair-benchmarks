@@ -87,14 +87,16 @@ def load_bug_info(bug_dir: str) -> t.Dict[str, t.Any]:
     bug_info_filename = os.path.join(bug_dir, "bug.json")
     try:
         with open(bug_info_filename, "r") as f:
-            json.load(f.read())
+            json.load(f)
     except FileNotFoundError as err:
         raise ValueError("bug directory does not contain bug.json")
 
 
 def repair(bug_dir: str, tool: str) -> None:
+    bug_info = load_bug_info(bug_dir)
+
     if tool == "extractfix":
-        return repair_with_extractfix(bug_dir)
+        return repair_with_extractfix(bug_dir, bug_info)
     else:
         raise ValueError("unrecognized repair tool")
 
@@ -104,7 +106,7 @@ if __name__ == "__main__":
         "Obtains a list of ROS projects from GitHub, GitLab and BitBucket.",
     )
     parser.add_argument(
-        "bug-dir",
+        "bug",
         help="the directory of the bug scenario",
     )
     parser.add_argument(
@@ -113,4 +115,4 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    repair(args.bug_dir, args.tool)
+    repair(args.bug, args.tool)
