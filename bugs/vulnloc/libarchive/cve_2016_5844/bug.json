@@ -1,0 +1,10 @@
+{
+  "subject": "libarchive",
+  "name": "cve_2016_5844",
+  "options": {
+    "extractfix": {
+      "bug-type": "integer_overflow",
+      "binary": "bsdtar"
+    }
+  }
+}

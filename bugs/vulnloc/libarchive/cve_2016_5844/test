@@ -3,6 +3,6 @@ set -eu
 
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 PATH_EXPLOIT="${HERE_DIR}/exploit/libarchive-signed-int-overflow.iso"
-PATH_BIN="${HERE_DIR}/source/bsdtar"
+PATH_BIN="$1:-${HERE_DIR}/source/bsdtar"
 
 "${PATH_BIN}" -tf "${PATH_EXPLOIT}"
