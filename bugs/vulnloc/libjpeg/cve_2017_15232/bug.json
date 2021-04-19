@@ -1,0 +1,10 @@
+{
+  "subject": "libjpeg",
+  "name": "cve_2017_15232",
+  "options": {
+    "extractfix": {
+      "bug-type": "null_pointer",
+      "binary": "djpeg"
+    }
+  }
+}
