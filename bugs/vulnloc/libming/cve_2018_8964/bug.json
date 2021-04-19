@@ -1,0 +1,10 @@
+{
+  "subject": "libming",
+  "name": "cve_2018_8964",
+  "options": {
+    "extractfix": {
+      "bug-type": "buffer_overflow",
+      "binary": "swftophp"
+    }
+  }
+}

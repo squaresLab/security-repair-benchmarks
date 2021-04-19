@@ -1,0 +1,10 @@
+{
+  "subject": "libming",
+  "name": "cve_2016_9264",
+  "options": {
+    "extractfix": {
+      "bug-type": "buffer_overflow",
+      "binary": "listmp3"
+    }
+  }
+}
