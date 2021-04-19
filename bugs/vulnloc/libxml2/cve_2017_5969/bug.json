@@ -1,0 +1,10 @@
+{
+  "subject": "libxml2",
+  "name": "cve_2017_5969",
+  "options": {
+    "extractfix": {
+      "bug-type": "null_pointer",
+      "binary": "xmllint"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "subject": "libxml2",
+  "name": "cve_2012_5134",
+  "options": {
+    "extractfix": {
+      "bug-type": "buffer_overflow",
+      "binary": "xmllint"
+    }
+  }
+}
