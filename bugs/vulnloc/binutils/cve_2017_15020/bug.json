@@ -1,0 +1,10 @@
+{
+  "subject": "binutils",
+  "name": "cve_2017_15020",
+  "options": {
+    "extractfix": {
+      "bug-type": "buffer_overflow",
+      "binary": "nm-new"
+    }
+  }
+}

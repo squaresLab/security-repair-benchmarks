@@ -1,0 +1,10 @@
+{
+  "subject": "binutils",
+  "name": "cve_2017_15025",
+  "options": {
+    "extractfix": {
+      "bug-type": "divide_by_0",
+      "binary": "nm-new"
+    }
+  }
+}
