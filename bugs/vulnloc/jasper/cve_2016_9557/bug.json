@@ -1,0 +1,10 @@
+{
+  "subject": "jasper",
+  "name": "cve_2016_9557",
+  "options": {
+    "extractfix": {
+      "bug-type": "integer_overflow",
+      "binary": "imginfo"
+    }
+  }
+}
