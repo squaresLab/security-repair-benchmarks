@@ -34,6 +34,8 @@ ARG SUT_VERSION
 
 COPY build build
 COPY prebuild prebuild
+COPY recompile recompile
+COPY extractfix/project_specific_lib project_specific_lib
 
 ARG BUG_DIR
 COPY "${BUG_DIR}/" .

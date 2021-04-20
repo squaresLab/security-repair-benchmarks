@@ -3,6 +3,6 @@ set -eu
 
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 PATH_EXPLOIT="${HERE_DIR}/exploit"
-PATH_BIN="${HERE_DIR}/source/djpeg"
+PATH_BIN="$1:-${HERE_DIR}/source/djpeg"
 
-"${PATH_BIN}" -crop "1x1+16+16" -onepass -dither ordered -dct float -colors 8 -targa -grayscale -outfile o "${PATH_EXPLOIT}"
+${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" -crop "1x1+16+16" -onepass -dither ordered -dct float -colors 8 -targa -grayscale -outfile o "${PATH_EXPLOIT}"
