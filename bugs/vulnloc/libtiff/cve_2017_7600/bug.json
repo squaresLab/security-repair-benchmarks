@@ -3,7 +3,7 @@
   "name": "cve_2017_7600",
   "options": {
     "extractfix": {
-      "bug-type": "TODO: determine",
+      "bug-type": "integer_overflow",
       "binary": "tiffcp"
     }
   }
