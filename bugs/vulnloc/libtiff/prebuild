@@ -4,6 +4,33 @@ set -eu
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SOURCE_DIR="${HERE_DIR}/source"
 
+CONFIG_OPTIONS="--disable-nls"
+
 pushd "${SOURCE_DIR}"
 
-./configure
+if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
+  COMPILE_TYPE="$1"
+  KLEE_LIB_DIR="${SOURCE_DIR}/../project_specific_lib/"
+
+  sed -i '2901s/_TIFFmemcpy(buffer, jpt, count - 2)/\/\/_TIFFmemcpy(buffer, jpt, count - 2);/' tools/tiff2pdf.c
+  sed -i '2904s/table_end\[0\] = buffer\[bufferoffset-2\]/table_end[1]=buffer[bufferoffset-1]/' tools/tiff2pdf.c
+  sed -i '2905s/table_end\[1\] = buffer\[bufferoffset-1\];/table_end[0]=buffer[bufferoffset-2];/' tools/tiff2pdf.c
+
+  rm -rf klee
+  mkdir klee
+  pushd klee
+
+  export CFLAGS="-g -D__NO_STRING_INLINES  -D_FORTIFY_SOURCE=0 -U__OPTIMIZE__ -lkleeRuntest -lkleeBasic -I "${KLEE_LIB_DIR}" -lhook -Wno-everything ${CFLAGS}"
+  CONFIG_OPTIONS="--disable-debug --disable-dmalloc --disable-libjpeg --disable-opengl --enable-static --disable-shared ${CONFIG_OPTIONS}"
+
+  if [[ "${COMPILE_TYPE}" == "to_bc" ]]; then
+    export LLVM_COMPILER=clang
+    export CC=wllvm
+  elif [[ "${COMPILE_TYPE}" == "lowfat" ]]; then
+    export CC="${LOWFAT_CLANG}"
+    export CFLAGS="${CFLAGS} -fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-symbolize -lstlimpl"
+  fi
+
+fi
+
+./configure "${CONFIG_OPTIONS}"
