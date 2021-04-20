@@ -3,7 +3,7 @@
   "name": "cve_2016_5321",
   "options": {
     "extractfix": {
-      "bug-type": "FIXME: UNKNOWN",
+      "bug-type": "buffer_overflow",
       "binary": "tiffcrop"
     }
   }
