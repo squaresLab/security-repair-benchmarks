@@ -3,6 +3,7 @@ import argparse
 import functools
 import json
 import os
+import subprocess
 import typing as t
 
 REPAIR_TOOLS = (
@@ -60,9 +61,14 @@ export TEST_EXECUTION_PREFIX="klee --libc=uclibc --posix-runtime --crash-line=${
 def prepare_for_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
     path_in_bug_dir = functools.partial(os.path.join, bug_dir)
 
-    os.symlink(path_in_bug_dir("prebuild"), path_in_bug_dir("project_config.sh"))
-    os.symlink(path_in_bug_dir("build"), path_in_bug_dir("project_build.sh"))
-    os.symlink(path_in_bug_dir("recompile"), path_in_bug_dir("project_compile.sh"))
+    if not os.path.exists(path_in_bug_dir("project_config.sh")):
+        os.symlink(path_in_bug_dir("prebuild"), path_in_bug_dir("project_config.sh"))
+
+    if not os.path.exists(path_in_bug_dir("project_build.sh")):
+        os.symlink(path_in_bug_dir("build"), path_in_bug_dir("project_build.sh"))
+
+    if not os.path.exists(path_in_bug_dir("project_compile.sh")):
+        os.symlink(path_in_bug_dir("recompile"), path_in_bug_dir("project_compile.sh"))
 
     path_driver = path_in_bug_dir("driver")
     with open(path_driver, "w") as f:
@@ -82,12 +88,30 @@ def prepare_for_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
 def repair_with_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
     prepare_for_extractfix(bug_dir, bug_json)
 
+    # TODO prepare results directory
+
+    command = " ".join([
+        "/opt/extractfix/bin/extractfix",
+        "-v",
+        "-s",
+        bug_dir,
+        "-t",
+        "exploit",
+        "-c",
+        "driver",
+        "-b",
+        bug_json["options"]["extractfix"]["bug-type"],
+        "-n",
+        bug_json["options"]["extractfix"]["binary"],
+    ])
+    subprocess.check_call(command, shell=True)
+
 
 def load_bug_info(bug_dir: str) -> t.Dict[str, t.Any]:
     bug_info_filename = os.path.join(bug_dir, "bug.json")
     try:
         with open(bug_info_filename, "r") as f:
-            json.load(f)
+            return json.load(f)
     except FileNotFoundError as err:
         raise ValueError("bug directory does not contain bug.json")
 
@@ -103,7 +127,7 @@ def repair(bug_dir: str, tool: str) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        "Obtains a list of ROS projects from GitHub, GitLab and BitBucket.",
+        "Evaluates a given repair tool on a bug scenario.",
     )
     parser.add_argument(
         "bug",
