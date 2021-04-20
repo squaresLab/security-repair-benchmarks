@@ -3,6 +3,6 @@ set -eu
 
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 PATH_EXPLOIT="${HERE_DIR}/exploit"
-PATH_BIN="$1:-${HERE_DIR}/source/src/potrace"
+PATH_BIN="${1:-${HERE_DIR}/source/src/potrace}"
 
 ${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" "${PATH_EXPLOIT}"
