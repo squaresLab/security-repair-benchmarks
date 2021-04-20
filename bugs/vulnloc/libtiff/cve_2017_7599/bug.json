@@ -3,7 +3,7 @@
   "name": "cve_2017_7599",
   "options": {
     "extractfix": {
-      "bug-type": "floating_point_overflow",
+      "bug-type": "integer_overflow",
       "binary": "tiffcp"
     }
   }
