@@ -46,4 +46,5 @@ RUN [ "${SUT_GET_CODE_FROM_ARCHIVE}" = no ] \
 RUN [ "${SUT_GET_CODE_FROM_ARCHIVE}" = yes ] \
  && cd /workspace \
  && unzip source.zip \
+ && rm source.zip \
  || exit 0
