@@ -20,7 +20,7 @@ if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   mkdir klee
   pushd klee
 
-  export CFLAGS="-g -D__NO_STRING_INLINES  -D_FORTIFY_SOURCE=0 -U__OPTIMIZE__ -lkleeRuntest -lkleeBasic -I "${KLEE_LIB_DIR}" -lhook -Wno-everything ${CFLAGS}"
+  export CFLAGS="-g -D__NO_STRING_INLINES  -D_FORTIFY_SOURCE=0 -U__OPTIMIZE__ -lkleeRuntest -lkleeBasic -I "${KLEE_LIB_DIR}" -lhook -Wno-everything ${CFLAGS:-}"
   CONFIG_OPTIONS="--disable-debug --disable-dmalloc --disable-libjpeg --disable-opengl --enable-static --disable-shared ${CONFIG_OPTIONS}"
 
   if [[ "${COMPILE_TYPE}" == "to_bc" ]]; then
