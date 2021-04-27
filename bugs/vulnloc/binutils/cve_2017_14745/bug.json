@@ -4,7 +4,10 @@
   "options": {
     "extractfix": {
       "bug-type": "integer_overflow",
-      "binary": "objdump"
+      "binary": {
+        "name": "objdump",
+        "path": "binutils/objdump"
+      }
     }
   }
 }

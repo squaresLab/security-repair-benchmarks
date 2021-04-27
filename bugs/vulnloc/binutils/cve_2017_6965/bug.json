@@ -4,7 +4,10 @@
   "options": {
     "extractfix": {
       "bug-type": "buffer_overflow",
-      "binary": "readelf"
+      "binary": {
+        "name": "readelf",
+        "path": "binutils/readelf"
+      }
     }
   }
 }
