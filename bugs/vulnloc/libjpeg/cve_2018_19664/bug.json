@@ -4,7 +4,10 @@
   "options": {
     "extractfix": {
       "bug-type": "buffer_overflow",
-      "binary": "djpeg"
+      "binary": {
+        "name": "djpeg",
+        "path": "djpeg"
+      }
     }
   }
 }

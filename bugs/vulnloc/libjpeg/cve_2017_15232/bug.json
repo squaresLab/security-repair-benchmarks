@@ -4,7 +4,10 @@
   "options": {
     "extractfix": {
       "bug-type": "null_pointer",
-      "binary": "djpeg"
+      "binary": {
+        "name": "djpeg",
+        "path": "djpeg"
+      }
     }
   }
 }
