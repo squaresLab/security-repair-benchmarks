@@ -37,7 +37,7 @@ COPY prebuild prebuild
 COPY extractfix/project_specific_lib project_specific_lib
 RUN cd project_specific_lib \
  && gcc -c -o hook.o hook.c \
- && ar rcs libhooka hook.o \
+ && ar rcs libhook.a hook.o \
  && rm hook.o
 
 ARG SUT_VERSION

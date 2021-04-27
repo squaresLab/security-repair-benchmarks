@@ -34,6 +34,13 @@ RUN apt-get update \
 
 WORKDIR /workspace
 
+# build the project-specific lib
+COPY extractfix/project_specific_lib project_specific_lib
+RUN cd project_specific_lib \
+ && gcc -c -o hook.o hook.c \
+ && ar rcs libhook.a hook.o \
+ && rm hook.o
+
 ARG SUT_REPO_URL=https://github.com/FFmpeg/FFmpeg.git
 ARG SUT_SOURCE_PATH=/workspace/source
 RUN git clone "${SUT_REPO_URL}" "${SUT_SOURCE_PATH}"
