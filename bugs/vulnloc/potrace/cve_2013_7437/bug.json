@@ -4,7 +4,10 @@
   "options": {
     "extractfix": {
       "bug-type": "buffer_overflow",
-      "binary": "potrace"
+      "binary": {
+        "name": "potrace",
+        "path": "src/potrace"
+      }
     }
   }
 }
