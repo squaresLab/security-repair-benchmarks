@@ -4,7 +4,10 @@
   "options": {
     "extractfix": {
       "bug-type": "integer_overflow",
-      "binary": "imginfo"
+      "binary": {
+        "name": "imginfo",
+        "path": "src/appl/imginfo"
+      }
     }
   }
 }
