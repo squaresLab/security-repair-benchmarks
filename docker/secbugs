@@ -61,6 +61,9 @@ export TEST_EXECUTION_PREFIX="klee --libc=uclibc --posix-runtime --crash-line=${
 def prepare_for_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
     path_in_bug_dir = functools.partial(os.path.join, bug_dir)
 
+    if not os.path.exists(path_in_bug_dir("project")):
+        os.symlink(path_in_bug_dir("source"), path_in_bug_dir("project"))
+
     if not os.path.exists(path_in_bug_dir("project_config.sh")):
         os.symlink(path_in_bug_dir("prebuild"), path_in_bug_dir("project_config.sh"))
 
@@ -102,7 +105,7 @@ def repair_with_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
         "-b",
         bug_json["options"]["extractfix"]["bug-type"],
         "-n",
-        bug_json["options"]["extractfix"]["binary"],
+        bug_json["options"]["extractfix"]["binary"]["name"],
     ])
     subprocess.check_call(command, shell=True)
 
@@ -125,18 +128,30 @@ def repair(bug_dir: str, tool: str) -> None:
         raise ValueError("unrecognized repair tool")
 
 
+def repair_command(args: argparse.Namespace) -> None:
+    repair(args.bug, args.tool)
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
-        "Evaluates a given repair tool on a bug scenario.",
+        "Provides helpful utilities for performing APR experiments.",
     )
-    parser.add_argument(
-        "bug",
-        help="the directory of the bug scenario",
+    subparsers = parser.add_subparsers()
+
+    parser_repair = subparsers.add_parser(
+        "repair",
+        help="Evaluates a given repair tool on a bug scenario.",
     )
-    parser.add_argument(
+    parser_repair.add_argument(
         "tool",
         help="the name of the repair tool that should be used",
     )
-    args = parser.parse_args()
+    parser_repair.add_argument(
+        "bug",
+        help="the directory of the bug scenario",
+    )
+    parser_repair.set_defaults(func=repair_command)
 
-    repair(args.bug, args.tool)
+    args = parser.parse_args()
+    if "func" in args:
+        args.func(args)
