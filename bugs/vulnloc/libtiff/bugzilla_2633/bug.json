@@ -4,7 +4,10 @@
   "options": {
     "extractfix": {
       "bug-type": "buffer_overflow",
-      "binary": "tiff2ps"
+      "binary": {
+        "name": "tiff2ps",
+        "path": "tools/tiff2ps"
+      }
     }
   }
 }

@@ -4,7 +4,10 @@
   "options": {
     "extractfix": {
       "bug-type": "buffer_overflow",
-      "binary": "tiff2pdf"
+      "binary": {
+        "name": "tiff2pdf",
+        "path": "tools/tiff2pdf"
+      }
     }
   }
 }

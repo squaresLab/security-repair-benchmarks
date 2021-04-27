@@ -4,7 +4,10 @@
   "options": {
     "extractfix": {
       "bug-type": "buffer_overflow",
-      "binary": "tiffcrop"
+      "binary": {
+        "name": "tiffcrop",
+        "path": "tools/tiffcrop"
+      }
     }
   }
 }

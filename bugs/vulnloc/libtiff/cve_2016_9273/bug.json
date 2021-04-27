@@ -4,7 +4,10 @@
   "options": {
     "extractfix": {
       "bug-type": "buffer_overflow",
-      "binary": "tiffsplit"
+      "binary": {
+        "name": "tiffsplit",
+        "path": "tools/tiffsplit"
+      }
     }
   }
 }

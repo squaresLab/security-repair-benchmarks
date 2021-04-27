@@ -4,7 +4,10 @@
   "options": {
     "extractfix": {
       "bug-type": "buffer_overflow",
-      "binary": "rgb2ycbcr"
+      "binary": {
+        "name": "rgb2ycbcr",
+        "path": "tools/rgb2ycbcr"
+      }
     }
   }
 }

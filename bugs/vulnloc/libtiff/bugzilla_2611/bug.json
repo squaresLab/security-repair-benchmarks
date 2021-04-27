@@ -4,7 +4,10 @@
   "options": {
     "extractfix": {
       "bug-type": "divide_by_0",
-      "binary": "tiffmedian"
+      "binary": {
+        "name": "tiffmedian",
+        "path": "tools/tiffmedian"
+      }
     }
   }
 }
