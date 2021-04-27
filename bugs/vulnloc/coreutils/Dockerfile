@@ -33,6 +33,13 @@ RUN git clone "${SUT_REPO_URL}" "${SUT_SOURCE_PATH}"
 COPY build build
 COPY prebuild prebuild
 
+# build the project-specific lib
+COPY extractfix/project_specific_lib project_specific_lib
+RUN cd project_specific_lib \
+ && gcc -c -o hook.o hook.c \
+ && ar rcs libhooka hook.o \
+ && rm hook.o
+
 ARG SUT_VERSION
 RUN cd "${SUT_SOURCE_PATH}" \
  && git checkout "${SUT_VERSION}" \
