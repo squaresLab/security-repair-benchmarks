@@ -4,7 +4,10 @@
   "options": {
     "extractfix": {
       "bug-type": "buffer_overflow",
-      "binary": "split"
+      "binary": {
+        "name": "split",
+        "path": "src/split"
+      }
     }
   }
 }

@@ -5,7 +5,10 @@
     "extractfix": {
       "supported": false,
       "bug-type": "unsupported",
-      "binary": "shred"
+      "binary": {
+        "name": "shred",
+        "path": "src/shred"
+      }
     }
   }
 }

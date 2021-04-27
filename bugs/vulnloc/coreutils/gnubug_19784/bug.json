@@ -4,7 +4,9 @@
   "options": {
     "extractfix": {
       "bug-type": "buffer_overflow",
-      "binary": "make-prime-list"
+      "binary": {
+        "name": "make-prime-list",
+        "path": "src/make-prime-list"
     }
   }
 }

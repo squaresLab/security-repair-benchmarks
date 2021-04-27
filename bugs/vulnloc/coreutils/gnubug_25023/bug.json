@@ -4,7 +4,10 @@
   "options": {
     "extractfix": {
       "bug-type": "buffer_overflow",
-      "binary": "pr"
+      "binary": {
+        "name": "pr",
+        "path": "src/pr"
+      }
     }
   }
 }
