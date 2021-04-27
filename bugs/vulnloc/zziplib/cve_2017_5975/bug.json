@@ -4,7 +4,10 @@
   "options": {
     "extractfix": {
       "bug-type": "buffer_overflow",
-      "binary": "unzzipcat-mem"
+      "binary": {
+        "name": "unzzipcat-mem",
+        "path": "Linux_5.0.0-37-generic_x86_64.d/bins/unzzipcat-mem"
+      }
     }
   }
 }
