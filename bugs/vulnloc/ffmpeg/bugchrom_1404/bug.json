@@ -4,7 +4,10 @@
   "options": {
     "extractfix": {
       "bug-type": "integer_overflow",
-      "binary": "target_dec_cavs_fuzzer"
+      "binary": {
+        "name": "target_dec_cavs_fuzzer",
+        "path": "ffmpeg/project/tools/target_dec_cavs_fuzzer"
+      }
     }
   }
 }
