@@ -15,8 +15,10 @@ RUN apt-get update \
       git \
       gperf \
       ipython \
+      jq \
       libjpeg-dev \
       libtool \
+      pkg-config \
       python-dev \
       python-pip \
       python3-dev \
@@ -46,8 +48,13 @@ RUN pip install \
 ENV EXTRACTFIX_BINARY /opt/extractfix/bin/extractfix
 
 COPY --from=jasper-cve_2016_8691 /workspace /benchmarks/jasper/cve_2016_8691
+COPY --from=libtiff-cve_2016_10094 /workspace /benchmarks/libtiff/cve_2016_10094
+COPY --from=binutils-cve_2017_14745 /workspace /benchmarks/binutils/cve_2017_14745
+COPY --from=binutils-cve_2017_14745 /workspace /benchmarks/binutils/cve_2017_14745
+COPY --from=binutils-cve_2017_15025 /workspace /benchmarks/binutils/cve_2017_15025
+COPY --from=libxml2-cve_2017_5969 /workspace /benchmarks/libxml2/cve_2017_5969
 
-COPY docker/repair /opt/secbugs/bin
+COPY docker/secbugs /opt/secbugs/bin/
 ENV PATH "/opt/secbugs/bin:${PATH}"
 
 #FROM ubuntu:xenial-20210114 AS xenial-builder
