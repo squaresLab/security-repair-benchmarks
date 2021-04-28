@@ -5,27 +5,27 @@ HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SOURCE_DIR="${HERE_DIR}/source"
 
 CONFIG_PATH="./configure"
-CONFIG_OPTIONS="--disable-shared --disable-gdb --disable-libdecnumber --disable-readline --disable-sim LIBS='-ldl -lutil'"
+CONFIG_OPTIONS="--disable-nls"
+# CONFIG_OPTIONS="--disable-shared --disable-gdb --disable-libdecnumber --disable-readline --disable-sim LIBS='-ldl -lutil'"
 
 pushd "${SOURCE_DIR}"
 
 export CFLAGS="-DFORTIFY_SOURCE=2 -ggdb -Wno-error ${CFLAGS:-}"
 export CXXFLAGS="$CFLAGS  ${CXXFLAGS:-}"
 
+if [ -z "$C_INCLUDE_PATH" ]; then
+  export C_INCLUDE_PATH=/include/path
+else
+  export C_INCLUDE_PATH="/include/path:${C_INCLUDE_PATH}"
+fi
 
 if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   COMPILE_TYPE="$1"
   CONFIG_PATH="../configure"
+  PREPARE_CODE_PATH="${HERE_DIR}/prepare-source-for-extractfix"
 
-  if ! grep -qF "size_t LOWFAT_GLOBAL_MS__readelf_get_data_423;" ./binutils/readelf.c; then
-    echo "PREPROCESS"
-    sed -i '423s/malloc ((size_t) amt + 1)/malloc (({LOWFAT_GLOBAL_MS__readelf_get_data_423 = (size_t) amt + 1; LOWFAT_GLOBAL_MS__readelf_get_data_423;}))/' ./binutils/readelf.c
-    sed -i '360isize_t LOWFAT_GLOBAL_MS__readelf_get_data_423;' ./binutils/readelf.c
-  fi
-
-  if ! grep -qF "extern size_t LOWFAT_GLOBAL_MS__readelf_get_data_423" ./binutils/dwarf.c; then
-    echo "PREPROCESS"
-    sed -i '126iextern size_t LOWFAT_GLOBAL_MS__readelf_get_data_423;' ./binutils/dwarf.c
+  if [ -f "${PREPARE_CODE_PATH}" ]; then
+    ${PREPARE_CODE_PATH}
   fi
 
   rm -rf klee
@@ -39,9 +39,10 @@ if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   if [[ "${COMPILE_TYPE}" == "to_bc" ]]; then
     export LLVM_COMPILER=clang
     export CC=wllvm
+  # FIXME these sanitizer flags may differ between individual bugs
   elif [[ "${COMPILE_TYPE}" == "lowfat" ]]; then
     export CC="${LOWFAT_CLANG}"
-    export CFLAGS="${CFLAGS} -fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-symbolize -lstlimpl"
+    export CFLAGS="${CFLAGS} -fsanitize=integer-divide-by-zero -fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-reads -mllvm -lowfat-no-check-writes -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-check-whole-access -mllvm -lowfat-no-replace-globals -mllvm -lowfat-no-replace-alloca -mllvm -lowfat-no-replace-malloc -mllvm -lowfat-symbolize -lstlimpl"
   fi
 fi
 
