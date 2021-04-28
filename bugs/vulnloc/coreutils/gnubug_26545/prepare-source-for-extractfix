@@ -1,0 +1,5 @@
+#!/bin/bash
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+SOURCE_DIR="${HERE_DIR}/source"
+
+sed -i 's/  for (i = 3;/i=3;\nfor(;/' "${SOURCE_DIR}/src/shred.c"
