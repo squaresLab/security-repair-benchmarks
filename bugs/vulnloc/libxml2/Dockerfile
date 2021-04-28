@@ -45,6 +45,4 @@ ARG SUT_VERSION
 RUN git -C "${SUT_SOURCE_PATH}" checkout "${SUT_VERSION}"
 
 ARG BUG_DIR
-COPY "${BUG_DIR}/exploit" exploit
-COPY "${BUG_DIR}/test" test
-COPY "${BUG_DIR}/bug.json" bug.json
+COPY "${BUG_DIR}/" ./

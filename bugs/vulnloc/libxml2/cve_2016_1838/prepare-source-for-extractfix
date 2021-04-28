@@ -1,0 +1,6 @@
+#!/bin/bash
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+SOURCE_DIR="${HERE_DIR}/source"
+
+sed -i 's/#define FQUOTIENT(a,b)                  (floor(((double)a\/(double)b)))/double FQUOTIENT(double a, double b){return floor(((double)a\/(double)b));}/' "${SOURCE_DIR}/xmlschemastypes.c"
+sed -i 's/xmlRealloc/realloc/g' "${SOURCE_DIR}/buf.c"

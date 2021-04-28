@@ -1,0 +1,8 @@
+#!/bin/bash
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+SOURCE_DIR="${HERE_DIR}/source"
+
+sed -i 's/xmlMallocAtomic/malloc/g' "${SOURCE_DIR}/parser.c"
+sed -i 's/xmlRealloc/realloc/g' "${SOURCE_DIR}/parser.c"
+sed -i '4079s/while (buf\[len - 1\] == 0x20) len--;/while (normalize) {\n\t\t\tif(buf[len-1] == 0x20) len--;\n\t\t\telse break; \n\t\t}\n/' "${SOURCE_DIR}/parser.c"
+sed -i 's/#define FQUOTIENT(a,b)                  (floor(((double)a\/(double)b)))/double FQUOTIENT(double a, double b){return floor(((double)a\/(double)b));}/' "${SOURCE_DIR}/xmlschemastypes.c"
