@@ -1,9 +1,35 @@
 #!/bin/bash
 set -eu
 
+# TODO could be automated
+SUBJECT=tiff2pdf
+SUBJECT_PATH=tools/tiff2pdf
+
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SOURCE_DIR="${HERE_DIR}/source"
 
+# this will sadly need to be an optional argument
 pushd "${SOURCE_DIR}"
 
+# this can go into the generated script
+if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
+  export LLVM_COMPILER=clang
+  pushd klee
+fi
+
 make
+
+# this can go into the generated script
+if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
+  COMPILE_TYPE="$1"
+  PROJECT_DIR=".."  # NOTE this is the same as HERE_DIR
+
+  # copy target to root dir
+  cp "${SUBJECT_PATH}" "${PROJECT_DIR}"
+
+  # copy target bitcode to root dir
+  if [[ "${COMPILE_TYPE}" == "to_bc" ]]; then
+    extract-bc -l llvm-link "${SUBJECT_PATH}"
+    cp "${SUBJECT_PATH}.bc" "${PROJECT_DIR}"
+  fi
+fi

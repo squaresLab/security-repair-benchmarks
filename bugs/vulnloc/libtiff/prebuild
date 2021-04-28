@@ -3,22 +3,24 @@ set -eu
 
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SOURCE_DIR="${HERE_DIR}/source"
-
+BUG_FILE="${HERE_DIR}/bug.json"
+CONFIG_PATH="./configure"
 # NOTE ./configure complains that the following option doesn't exist
 # CONFIG_OPTIONS="--disable-nls"
 CONFIG_OPTIONS=""
-CONFIG_PATH="./configure"
+CONFIG_OPTIONS=""
 
 pushd "${SOURCE_DIR}"
 
 if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   COMPILE_TYPE="$1"
   CONFIG_PATH="../configure"
+  PREPARE_CODE_PATH="${HERE_DIR}/prepare-source-for-extractfix"
   KLEE_LIB_DIR="${SOURCE_DIR}/../project_specific_lib/"
 
-  sed -i '2901s/_TIFFmemcpy(buffer, jpt, count - 2)/\/\/_TIFFmemcpy(buffer, jpt, count - 2);/' tools/tiff2pdf.c
-  sed -i '2904s/table_end\[0\] = buffer\[bufferoffset-2\]/table_end[1]=buffer[bufferoffset-1]/' tools/tiff2pdf.c
-  sed -i '2905s/table_end\[1\] = buffer\[bufferoffset-1\];/table_end[0]=buffer[bufferoffset-2];/' tools/tiff2pdf.c
+  if [ -f "${PREPARE_CODE_PATH}" ]; then
+    ${PREPARE_CODE_PATH}
+  fi
 
   rm -rf klee
   mkdir klee
@@ -30,8 +32,9 @@ if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
     export LLVM_COMPILER=clang
     export CC=wllvm
   elif [[ "${COMPILE_TYPE}" == "lowfat" ]]; then
+    LOWFAT_CFLAGS="$(jq -r ".options.extractfix.lowfat.CFLAGS" "${BUG_FILE}")"
     export CC="${LOWFAT_CLANG}"
-    export CFLAGS="${CFLAGS} -fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-symbolize -lstlimpl"
+    export CFLAGS="${CFLAGS} ${LOWFAT_CFLAGS}"
   fi
 fi
 
