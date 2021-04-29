@@ -3,7 +3,7 @@ set -eu
 
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SOURCE_DIR="${HERE_DIR}/source"
-
+BUG_FILE="${HERE_DIR}/bug.json"
 CONFIG_PATH="./configure"
 CONFIG_OPTIONS="--without-openssl"
 
@@ -26,8 +26,9 @@ if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
     export LLVM_COMPILER=clang
     export CC=wllvm
   elif [[ "${COMPILE_TYPE}" == "lowfat" ]]; then
+    LOWFAT_CFLAGS="$(jq -r ".options.extractfix.lowfat.CFLAGS" "${BUG_FILE}")"
     export CC="${LOWFAT_CLANG}"
-    export CFLAGS="${CFLAGS} -fsanitize=unsigned-integer-overflow,signed-integer-overflow,integer-divide-by-zero -fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-symbolize -lstlimpl"
+    export CFLAGS="${CFLAGS} ${LOWFAT_CFLAGS}"
   fi
 fi
 

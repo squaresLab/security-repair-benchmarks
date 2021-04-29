@@ -43,8 +43,19 @@ RUN wget -nv -O source.zip "${SUT_DOWNLOAD_URL}" \
  && rm source.zip \
  && mv libarchive-* source
 
+# fixes libtool compatibility issue
+#
+# > make[1]: Entering directory '/tmp/proj_work_dir_._1619722450/source/klee'
+# >   CC       libarchive/archive_acl.lo
+# > libtool: Version mismatch error.  This is libtool 2.4.2 Debian-2.4.2-1.11, but the
+# > libtool: definition of this LT_INIT comes from libtool 2.4.6.
+# > libtool: You should recreate aclocal.m4 with macros from libtool 2.4.2 Debian-2.4.2-1.11
+# > libtool: and run autoconf again.
+# > Makefile:5460: recipe for target 'libarchive/archive_acl.lo' failed
+RUN cd source \
+ && autoreconf -fi
+
 ARG BUG_DIR
-COPY "${BUG_DIR}/exploit.zip" exploit.zip
-COPY "${BUG_DIR}/test" test
+COPY "${BUG_DIR}/" ./
 RUN unzip exploit.zip -d exploit \
  && rm exploit.zip
