@@ -29,6 +29,7 @@ RUN apt-get update \
 WORKDIR /workspace
 COPY build build
 COPY prebuild prebuild
+COPY recompile recompile
 
 # build the project-specific lib
 COPY extractfix/project_specific_lib project_specific_lib
