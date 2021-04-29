@@ -1,0 +1,5 @@
+#!/bin/bash
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+SOURCE_DIR="${HERE_DIR}/source"
+
+sed -i '38a #define DEBUGDIR \"/usr/local/lib/debug\"\n' "${SOURCE_DIR}/bfd/dwarf2.c"
