@@ -1,12 +1,12 @@
 #!/bin/bash
 set -eu
 
-# TODO could be automated
-SUBJECT=tiff2pdf
-SUBJECT_PATH=tools/tiff2pdf
-
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SOURCE_DIR="${HERE_DIR}/source"
+BUG_FILE="${HERE_DIR}/bug.json"
+
+SUBJECT="$(jq -r ".options.extractfix.binary.name" "${BUG_FILE}")"
+SUBJECT_PATH="$(jq -r ".options.extractfix.binary.path" "${BUG_FILE}")"
 
 # this will sadly need to be an optional argument
 pushd "${SOURCE_DIR}"
