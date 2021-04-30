@@ -11,5 +11,5 @@ target=$2
 
 pushd project
 KLEE_CFLAGS="-L${HERE_DIR}/project_specific_lib/"
-PROJECT_CFLAGS="-lm -lhook"
+PROJECT_CFLAGS="-llzma -lz -lm -ljpeg -ljbig -lhook"
 clang ${source} $PROJECT_CFLAGS $KLEE_CFLAGS -o ${target}
