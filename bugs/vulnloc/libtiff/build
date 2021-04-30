@@ -22,14 +22,18 @@ make
 # this can go into the generated script
 if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   COMPILE_TYPE="$1"
-  PROJECT_DIR=".."  # NOTE this is the same as HERE_DIR
 
   # copy target to root dir
-  cp "${SUBJECT_PATH}" "${PROJECT_DIR}"
+  cp "${SUBJECT_PATH}" "${SOURCE_DIR}"
 
   # copy target bitcode to root dir
   if [[ "${COMPILE_TYPE}" == "to_bc" ]]; then
-    extract-bc -l llvm-link "${SUBJECT_PATH}"
-    cp "${SUBJECT_PATH}.bc" "${PROJECT_DIR}"
+    pushd tools
+    KLEE_CFLAGS="-lkleeRuntest -lkleeBasic -lhook -L${HERE_DIR}/project_specific_lib/"
+    PROJECT_CFLAGS="../libtiff/.libs/libtiff.a ../port/.libs/libport.a -llzma -lz -lm -ljpeg -ljbig"
+    wllvm -ggdb3 -Wall -W -o ${SUBJECT} ${SUBJECT}.o ${PROJECT_CFLAGS} ${KLEE_CFLAGS} -Wl,-rpath
+    extract-bc -l llvm-link "${SUBJECT}"
+    cp "${SUBJECT}.bc" "${SOURCE_DIR}"
+    popd
   fi
 fi
