@@ -80,6 +80,16 @@ COPY --from=libxml2-cve_2017_5969 /workspace /benchmarks/libxml2/cve_2017_5969
 
 
 
+COPY --from=libxml2-cve_2012_5134 /workspace /benchmarks/libxml2/cve_2012_5134
+COPY --from=libxml2-cve_2016_1838 /workspace /benchmarks/libxml2/cve_2016_1838
+COPY --from=libxml2-cve_2016_1839 /workspace /benchmarks/libxml2/cve_2016_1839
+COPY --from=libxml2-cve_2017_5969 /workspace /benchmarks/libxml2/cve_2017_5969
+
+COPY --from=binutils-cve_2017_14745 /workspace /benchmarks/binutils/cve_2017_14745
+COPY --from=binutils-cve_2017_15020 /workspace /benchmarks/binutils/cve_2017_15020
+COPY --from=binutils-cve_2017_15025 /workspace /benchmarks/binutils/cve_2017_15025
+COPY --from=binutils-cve_2017_6965 /workspace /benchmarks/binutils/cve_2017_6965
+
 COPY docker/secbugs /opt/secbugs/bin/
 ENV PATH "/opt/secbugs/bin:${PATH}"
 
