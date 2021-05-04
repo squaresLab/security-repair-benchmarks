@@ -110,6 +110,11 @@ def repair_with_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
     subprocess.check_call(command, shell=True)
 
 
+def repair_with_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
+    command = f"/opt/hifix/bin/hifix {bug_dir}"
+    subprocess.check_call(command, shell=True)
+
+
 def load_bug_info(bug_dir: str) -> t.Dict[str, t.Any]:
     bug_info_filename = os.path.join(bug_dir, "bug.json")
     try:
@@ -124,6 +129,8 @@ def repair(bug_dir: str, tool: str) -> None:
 
     if tool == "extractfix":
         return repair_with_extractfix(bug_dir, bug_info)
+    elif tool == "hifix":
+        return repair_with_hifix(bug_dir, bug_info)
     else:
         raise ValueError("unrecognized repair tool")
 
