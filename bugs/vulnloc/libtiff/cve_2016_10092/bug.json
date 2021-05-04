@@ -1,6 +1,7 @@
 {
   "subject": "libtiff",
   "name": "cve_2016_10092",
+  "binary": "tools/tiffcrop",
   "options": {
     "extractfix": {
       "bug-type": "buffer_overflow",
