@@ -110,8 +110,8 @@ def repair_with_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
     subprocess.check_call(command, shell=True)
 
 
-def repair_with_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
-    command = f"/opt/hifix/bin/hifix {bug_dir}"
+def repair_with_hifix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
+    command = "/opt/hifix/bin/hifix {}".format(bug_dir)
     subprocess.check_call(command, shell=True)
 
 
