@@ -146,5 +146,7 @@ ENV PATH "/opt/secbugs/bin:${PATH}"
 # ENV CC wllvm
 # ENV CXX wllvm++
 
+# TODO use self-contained python package dir for /opt/hifix
+RUN pip3 install attrs
 COPY --from=hifix /opt/hifix/ /opt/hifix/
 ENV PATH "/opt/hifix/bin:${PATH}"
