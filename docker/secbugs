@@ -132,10 +132,6 @@ def repair_command(args: argparse.Namespace) -> None:
     repair(args.bug, args.tool)
 
 
-def repair_command(args: argparse.Namespace) -> None:
-    repair(args.bug, args.tool)
-
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         "Provides helpful utilities for performing APR experiments.",
