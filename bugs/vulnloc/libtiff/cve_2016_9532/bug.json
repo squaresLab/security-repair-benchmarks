@@ -1,13 +1,1 @@
-{
-  "subject": "libtiff",
-  "name": "cve_2016_9532",
-  "options": {
-    "extractfix": {
-      "bug-type": "buffer_overflow",
-      "binary": {
-        "name": "tiffcrop",
-        "path": "tools/tiffcrop"
-      }
-    }
-  }
-}
+{"subject": "libtiff", "name": "cve_2016_9532", "options": {"extractfix": {"bug-type": "buffer_overflow", "binary": {"name": "tiffcrop", "path": "tools/tiffcrop"}}}, "binary": "tools/tiffcrop"}

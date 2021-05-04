@@ -1,13 +1,1 @@
-{
-  "subject": "ffmpeg",
-  "name": "cve_2017_9992",
-  "options": {
-    "extractfix": {
-      "bug-type": "buffer_overflow",
-      "binary": {
-        "name": "target_dec_cavs_fuzzer",
-        "path": "ffmpeg/project/tools/target_dec_cavs_fuzzer"
-      }
-    }
-  }
-}
+{"subject": "ffmpeg", "name": "cve_2017_9992", "options": {"extractfix": {"bug-type": "buffer_overflow", "binary": {"name": "target_dec_cavs_fuzzer", "path": "ffmpeg/project/tools/target_dec_cavs_fuzzer"}}}, "binary": "ffmpeg/project/tools/target_dec_cavs_fuzzer"}

@@ -1,13 +1,1 @@
-{
-  "subject": "libtiff",
-  "name": "cve_2017_7599",
-  "options": {
-    "extractfix": {
-      "bug-type": "integer_overflow",
-      "binary": {
-        "name": "tiffcp",
-        "path": "tools/tiffcp"
-      }
-    }
-  }
-}
+{"subject": "libtiff", "name": "cve_2017_7599", "options": {"extractfix": {"bug-type": "integer_overflow", "binary": {"name": "tiffcp", "path": "tools/tiffcp"}}}, "binary": "tools/tiffcp"}

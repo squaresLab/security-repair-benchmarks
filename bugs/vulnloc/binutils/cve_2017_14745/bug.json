@@ -1,16 +1,1 @@
-{
-  "subject": "binutils",
-  "name": "cve_2017_14745",
-  "options": {
-    "extractfix": {
-      "bug-type": "integer_overflow",
-      "binary": {
-        "name": "objdump",
-        "path": "binutils/objdump"
-      },
-      "lowfat": {
-        "CFLAGS": ""
-      }
-    }
-  }
-}
+{"subject": "binutils", "name": "cve_2017_14745", "options": {"extractfix": {"bug-type": "integer_overflow", "binary": {"name": "objdump", "path": "binutils/objdump"}, "lowfat": {"CFLAGS": ""}}}, "binary": "binutils/objdump"}

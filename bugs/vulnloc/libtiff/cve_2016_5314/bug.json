@@ -1,16 +1,1 @@
-{
-  "subject": "libtiff",
-  "name": "cve_2016_5314",
-  "options": {
-    "extractfix": {
-      "bug-type": "buffer_overflow",
-      "binary": {
-        "name": "rgb2ycbcr",
-        "path": "tools/rgb2ycbcr"
-      },
-      "lowfat": {
-        "CFLAGS": "-fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-symbolize -lstlimpl"
-      }
-    }
-  }
-}
+{"subject": "libtiff", "name": "cve_2016_5314", "options": {"extractfix": {"bug-type": "buffer_overflow", "binary": {"name": "rgb2ycbcr", "path": "tools/rgb2ycbcr"}, "lowfat": {"CFLAGS": "-fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-symbolize -lstlimpl"}}}, "binary": "tools/rgb2ycbcr"}

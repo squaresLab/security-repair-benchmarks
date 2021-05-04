@@ -1,16 +1,1 @@
-{
-  "subject": "libtiff",
-  "name": "cve_2017_7601",
-  "options": {
-    "extractfix": {
-      "bug-type": "integer_overflow",
-      "binary": {
-        "name": "tiffcp",
-        "path": "tools/tiffcp"
-      },
-      "lowfat": {
-        "CFLAGS": "-fsanitize=shift -fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-reads -mllvm -lowfat-no-check-writes -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-check-whole-access -mllvm -lowfat-no-replace-globals -mllvm -lowfat-no-replace-alloca -mllvm -lowfat-no-replace-malloc -mllvm -lowfat-symbolize -lstlimpl"
-      }
-    }
-  }
-}
+{"subject": "libtiff", "name": "cve_2017_7601", "options": {"extractfix": {"bug-type": "integer_overflow", "binary": {"name": "tiffcp", "path": "tools/tiffcp"}, "lowfat": {"CFLAGS": "-fsanitize=shift -fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-reads -mllvm -lowfat-no-check-writes -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-check-whole-access -mllvm -lowfat-no-replace-globals -mllvm -lowfat-no-replace-alloca -mllvm -lowfat-no-replace-malloc -mllvm -lowfat-symbolize -lstlimpl"}}}, "binary": "tools/tiffcp"}

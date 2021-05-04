@@ -1,16 +1,1 @@
-{
-  "subject": "libtiff",
-  "name": "cve_2016_5321",
-  "options": {
-    "extractfix": {
-      "bug-type": "buffer_overflow",
-      "binary": {
-        "name": "tiffcrop",
-        "path": "tools/tiffcrop"
-      },
-      "lowfat": {
-        "CFLAGS": "-fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-symbolize -lstlimpl"
-      }
-    }
-  }
-}
+{"subject": "libtiff", "name": "cve_2016_5321", "options": {"extractfix": {"bug-type": "buffer_overflow", "binary": {"name": "tiffcrop", "path": "tools/tiffcrop"}, "lowfat": {"CFLAGS": "-fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-symbolize -lstlimpl"}}}, "binary": "tools/tiffcrop"}

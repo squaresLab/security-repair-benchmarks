@@ -1,13 +1,1 @@
-{
-  "subject": "binutils",
-  "name": "cve_2017_6965",
-  "options": {
-    "extractfix": {
-      "bug-type": "buffer_overflow",
-      "binary": {
-        "name": "readelf",
-        "path": "binutils/readelf"
-      }
-    }
-  }
-}
+{"subject": "binutils", "name": "cve_2017_6965", "options": {"extractfix": {"bug-type": "buffer_overflow", "binary": {"name": "readelf", "path": "binutils/readelf"}}}, "binary": "binutils/readelf"}

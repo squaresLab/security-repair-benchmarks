@@ -1,14 +1,1 @@
-{
-  "subject": "libtiff",
-  "name": "cve_2016_10092",
-  "binary": "tools/.libs/tiffcrop",
-  "options": {
-    "extractfix": {
-      "bug-type": "buffer_overflow",
-      "binary": {
-        "name": "tiffcrop",
-        "path": "tools/tiffcrop"
-      }
-    }
-  }
-}
+{"subject": "libtiff", "name": "cve_2016_10092", "binary": "tools/tiffcrop", "options": {"extractfix": {"bug-type": "buffer_overflow", "binary": {"name": "tiffcrop", "path": "tools/tiffcrop"}}}}
