@@ -57,8 +57,28 @@ COPY --from=binutils-cve_2017_14745 /workspace /benchmarks/binutils/cve_2017_147
 COPY --from=binutils-cve_2017_15025 /workspace /benchmarks/binutils/cve_2017_15025
 COPY --from=libxml2-cve_2017_5969 /workspace /benchmarks/libxml2/cve_2017_5969
 COPY --from=libarchive-cve_2016_5844 /workspace /benchmarks/libarchive/cve_2016_5844
+
 COPY --from=libtiff-cve_2016_5314 /workspace /benchmarks/libtiff/cve_2016_5314
 COPY --from=libtiff-cve_2016_9273 /workspace /benchmarks/libtiff/cve_2016_9273
+COPY --from=libtiff-bugzilla_2611 /workspace /benchmarks/libtiff/bugzilla_2611
+COPY --from=libtiff-bugzilla_2633 /workspace /benchmarks/libtiff/bugzilla_2633
+COPY --from=libtiff-cve_2016_10092 /workspace /benchmarks/libtiff/cve_2016_10092
+COPY --from=libtiff-cve_2016_10272 /workspace /benchmarks/libtiff/cve_2016_10272
+COPY --from=libtiff-cve_2016_3186 /workspace /benchmarks/libtiff/cve_2016_3186
+COPY --from=libtiff-cve_2016_5321 /workspace /benchmarks/libtiff/cve_2016_5321
+COPY --from=libtiff-cve_2016_9532 /workspace /benchmarks/libtiff/cve_2016_9532
+COPY --from=libtiff-cve_2017_5225 /workspace /benchmarks/libtiff/cve_2017_5225
+COPY --from=libtiff-cve_2017_7595 /workspace /benchmarks/libtiff/cve_2017_7595
+COPY --from=libtiff-cve_2017_7599 /workspace /benchmarks/libtiff/cve_2017_7599
+COPY --from=libtiff-cve_2017_7600 /workspace /benchmarks/libtiff/cve_2017_7600
+COPY --from=libtiff-cve_2017_7601 /workspace /benchmarks/libtiff/cve_2017_7601
+
+COPY --from=libxml2-cve_2012_5134 /workspace /benchmarks/libxml2/cve_2012_5134
+COPY --from=libxml2-cve_2016_1838 /workspace /benchmarks/libxml2/cve_2016_1838
+COPY --from=libxml2-cve_2016_1839 /workspace /benchmarks/libxml2/cve_2016_1839
+COPY --from=libxml2-cve_2017_5969 /workspace /benchmarks/libxml2/cve_2017_5969
+
+
 
 COPY docker/secbugs /opt/secbugs/bin/
 ENV PATH "/opt/secbugs/bin:${PATH}"
@@ -116,5 +136,5 @@ ENV PATH "/opt/secbugs/bin:${PATH}"
 # ENV CC wllvm
 # ENV CXX wllvm++
 
-
-
+COPY --from=hifix /opt/hifix/ /opt/hifix/
+ENV PATH "/opt/hifix/bin:${PATH}"
