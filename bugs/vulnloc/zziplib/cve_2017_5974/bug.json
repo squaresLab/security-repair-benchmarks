@@ -1,1 +1,14 @@
-{"subject": "zziplib", "name": "cve_2017_5974", "options": {"extractfix": {"bug-type": "buffer_overflow", "binary": {"name": "unzzipcat-mem", "path": "Linux_5.0.0-37-generic_x86_64.d/bins/unzzipcat-mem"}}}, "binary": "Linux_5.0.0-37-generic_x86_64.d/bins/unzzipcat-mem"}
+{
+  "subject": "zziplib",
+  "name": "cve_2017_5974",
+  "options": {
+    "extractfix": {
+      "bug-type": "buffer_overflow",
+      "binary": {
+        "name": "unzzipcat-mem",
+        "path": "Linux_5.0.0-37-generic_x86_64.d/bins/unzzipcat-mem"
+      }
+    }
+  },
+  "binary": "Linux_5.0.0-37-generic_x86_64.d/bins/unzzipcat-mem"
+}

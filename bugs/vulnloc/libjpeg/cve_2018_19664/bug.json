@@ -1,1 +1,14 @@
-{"subject": "libjpeg", "name": "cve_2018_19664", "options": {"extractfix": {"bug-type": "buffer_overflow", "binary": {"name": "djpeg", "path": "djpeg"}}}, "binary": "djpeg"}
+{
+  "subject": "libjpeg",
+  "name": "cve_2018_19664",
+  "options": {
+    "extractfix": {
+      "bug-type": "buffer_overflow",
+      "binary": {
+        "name": "djpeg",
+        "path": "djpeg"
+      }
+    }
+  },
+  "binary": "djpeg"
+}

@@ -1,1 +1,14 @@
-{"subject": "binutils", "name": "cve_2017_15020", "options": {"extractfix": {"bug-type": "buffer_overflow", "binary": {"name": "nm-new", "path": "binutils/nm-new"}}}, "binary": "binutils/nm-new"}
+{
+  "subject": "binutils",
+  "name": "cve_2017_15020",
+  "options": {
+    "extractfix": {
+      "bug-type": "buffer_overflow",
+      "binary": {
+        "name": "nm-new",
+        "path": "binutils/nm-new"
+      }
+    }
+  },
+  "binary": "binutils/nm-new"
+}

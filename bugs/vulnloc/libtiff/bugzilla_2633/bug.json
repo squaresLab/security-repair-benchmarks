@@ -1,1 +1,17 @@
-{"subject": "libtiff", "name": "bugzilla_2633", "options": {"extractfix": {"bug-type": "buffer_overflow", "binary": {"name": "tiff2ps", "path": "tools/tiff2ps"}, "lowfat": {"CFLAGS": "-fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-no-replace-globals -mllvm -lowfat-symbolize -lstlimpl"}}}, "binary": "tools/tiff2ps"}
+{
+  "subject": "libtiff",
+  "name": "bugzilla_2633",
+  "options": {
+    "extractfix": {
+      "bug-type": "buffer_overflow",
+      "binary": {
+        "name": "tiff2ps",
+        "path": "tools/tiff2ps"
+      },
+      "lowfat": {
+        "CFLAGS": "-fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-no-replace-globals -mllvm -lowfat-symbolize -lstlimpl"
+      }
+    }
+  },
+  "binary": "tools/tiff2ps"
+}

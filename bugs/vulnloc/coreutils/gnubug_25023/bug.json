@@ -1,1 +1,14 @@
-{"subject": "coreutils", "name": "gnubug_25023", "options": {"extractfix": {"bug-type": "buffer_overflow", "binary": {"name": "pr", "path": "src/pr"}}}, "binary": "src/pr"}
+{
+  "subject": "coreutils",
+  "name": "gnubug_25023",
+  "options": {
+    "extractfix": {
+      "bug-type": "buffer_overflow",
+      "binary": {
+        "name": "pr",
+        "path": "src/pr"
+      }
+    }
+  },
+  "binary": "src/pr"
+}
