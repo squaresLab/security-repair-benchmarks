@@ -149,4 +149,5 @@ ENV PATH "/opt/secbugs/bin:${PATH}"
 # TODO use self-contained python package dir for /opt/hifix
 RUN pip3 install attrs
 COPY --from=hifix /opt/hifix/ /opt/hifix/
+COPY --from=hifix /opt/llvm11/ /opt/llvm11/
 ENV PATH "/opt/hifix/bin:${PATH}"
