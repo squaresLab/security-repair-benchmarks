@@ -13,5 +13,5 @@
       }
     }
   },
-  "binary": "tools/tiffsplit"
+  "binary": "tools/.libs/tiffsplit"
 }

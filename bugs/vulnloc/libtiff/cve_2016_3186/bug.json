@@ -1,7 +1,7 @@
 {
   "subject": "libtiff",
   "name": "cve_2016_3186",
-  "binary": "tools/gif2tiff",
+  "binary": "tools/.libs/gif2tiff",
   "options": {
     "extractfix": {
       "bug-type": "buffer_overflow",

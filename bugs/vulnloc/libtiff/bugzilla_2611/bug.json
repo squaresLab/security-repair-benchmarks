@@ -13,5 +13,5 @@
       }
     }
   },
-  "binary": "tools/tiffmedian"
+  "binary": "tools/.libs/tiffmedian"
 }

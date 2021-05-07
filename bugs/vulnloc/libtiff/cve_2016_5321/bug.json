@@ -13,5 +13,5 @@
       }
     }
   },
-  "binary": "tools/tiffcrop"
+  "binary": "tools/.libs/tiffcrop"
 }

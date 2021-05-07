@@ -13,5 +13,5 @@
       }
     }
   },
-  "binary": "tools/rgb2ycbcr"
+  "binary": "tools/.libs/rgb2ycbcr"
 }

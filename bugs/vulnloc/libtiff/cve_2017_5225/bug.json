@@ -10,5 +10,5 @@
       }
     }
   },
-  "binary": "tools/tiffcp"
+  "binary": "tools/.libs/tiffcp"
 }

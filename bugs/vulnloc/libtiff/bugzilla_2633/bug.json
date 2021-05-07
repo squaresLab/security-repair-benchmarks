@@ -13,5 +13,5 @@
       }
     }
   },
-  "binary": "tools/tiff2ps"
+  "binary": "tools/.libs/tiff2ps"
 }
