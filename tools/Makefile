@@ -4,6 +4,6 @@ extractfix:
 	docker build -t extractfix ExtractFix
 
 hifix:
-	docker build -t hifix HiFix
+	make -C HiFix/docker
 
 .PHONY: extractfix hifix
