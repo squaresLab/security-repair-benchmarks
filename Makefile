@@ -1,12 +1,15 @@
 all: benchmark
 
-bugs:
+init:
+	git submodule update --init --recursive
+
+bugs: init
 	make -C bugs
 
-tools:
+tools: init
 	make -C tools
 
 benchmark: bugs tools
 	docker build -t secbugs .
 
-.PHONY: bugs tools benchmark
+.PHONY: bugs init tools benchmark
