@@ -9,6 +9,9 @@
         "name": "tiffcrop",
         "path": "tools/tiffcrop"
       }
+    },
+    "hifix": {
+      "linker-options": "./libtiff/.libs/libtiff.a -ljpeg -llzma -lm -ljbig -lz"
     }
   }
 }
