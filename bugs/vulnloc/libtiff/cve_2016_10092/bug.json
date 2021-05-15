@@ -11,7 +11,7 @@
       }
     },
     "hifix": {
-      "linker-options": "./libtiff/.libs/libtiff.a -ljpeg -llzma -lm -ljbig -lz"
+      "linker-options": "/benchmarks/libtiff/cve_2016_10092/source/libtiff/.libs/libtiff.a -ljpeg -llzma -lm -ljbig -lz"
     }
   }
 }
