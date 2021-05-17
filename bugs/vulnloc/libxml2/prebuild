@@ -3,7 +3,6 @@ set -eu
 
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SOURCE_DIR="${HERE_DIR}/source"
-BUG_FILE="${HERE_DIR}/bug.json"
 CONFIG_PATH="./autogen.sh"
 CONFIG_OPTIONS=""
 
@@ -13,22 +12,10 @@ if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   COMPILE_TYPE="$1"
   CONFIG_PATH="../autogen.sh"
   CONFIG_OPTIONS="--enable-static"
-  KLEE_LIB_DIR="${SOURCE_DIR}/../project_specific_lib/"
 
   rm -rf klee
   mkdir klee
   pushd klee
-
-  export CFLAGS="-g -D__NO_STRING_INLINES  -D_FORTIFY_SOURCE=0 -U__OPTIMIZE__ -lkleeRuntest -lkleeBasic -I"${KLEE_LIB_DIR}" -L"${KLEE_LIB_DIR}" -lhook -Wno-everything ${CFLAGS:-}"
-
-  if [[ "${COMPILE_TYPE}" == "to_bc" ]]; then
-    export LLVM_COMPILER=clang
-    export CC=wllvm
-  elif [[ "${COMPILE_TYPE}" == "lowfat" ]]; then
-    LOWFAT_CFLAGS="$(jq -r ".options.extractfix.lowfat.CFLAGS" "${BUG_FILE}")"
-    export CC="${LOWFAT_CLANG}"
-    export CFLAGS="${CFLAGS} ${LOWFAT_CFLAGS}"
-  fi
 fi
 
 "${CONFIG_PATH}" ${CONFIG_OPTIONS}
