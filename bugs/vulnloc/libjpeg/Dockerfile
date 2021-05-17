@@ -45,7 +45,6 @@ RUN cd project_specific_lib \
 
 ARG SUT_VERSION
 ARG SUT_USES_CMAKE=yes
-ENV SUT_USES_CMAKE "${SUT_USES_CMAKE}"
 RUN git -C "${SUT_SOURCE_PATH}" checkout "${SUT_VERSION}" \
  && cd "${SUT_SOURCE_PATH}" \
  && [ "${SUT_USES_CMAKE}" = no ] && autoreconf -fiv || exit 0
