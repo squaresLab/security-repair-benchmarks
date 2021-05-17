@@ -22,11 +22,6 @@ fi
 if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   COMPILE_TYPE="$1"
   CONFIG_PATH="../configure"
-  PREPARE_CODE_PATH="${HERE_DIR}/prepare-source-for-extractfix"
-
-  if [ -f "${PREPARE_CODE_PATH}" ]; then
-    ${PREPARE_CODE_PATH}
-  fi
 
   rm -rf klee
   mkdir klee

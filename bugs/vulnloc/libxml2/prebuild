@@ -13,12 +13,7 @@ if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   COMPILE_TYPE="$1"
   CONFIG_PATH="../autogen.sh"
   CONFIG_OPTIONS="--enable-static"
-  PREPARE_CODE_PATH="${HERE_DIR}/prepare-source-for-extractfix"
   KLEE_LIB_DIR="${SOURCE_DIR}/../project_specific_lib/"
-
-  if [ -f "${PREPARE_CODE_PATH}" ]; then
-    ${PREPARE_CODE_PATH}
-  fi
 
   rm -rf klee
   mkdir klee

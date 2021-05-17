@@ -57,6 +57,19 @@ export TEST_EXECUTION_PREFIX="klee --libc=uclibc --posix-runtime --crash-line=${
 "${PATH_DRIVER}" "${binary}"
 """.strip()
 
+_EXTRACTFIX_CONFIG_TEXT = """
+#!/bin/bash
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+PATH_PREBUILD="${HERE_DIR}/prebuild"
+PREPARE_CODE_PATH="${HERE_DIR}/prepare-source-for-extractfix"
+
+if [ -f "${PREPARE_CODE_PATH}" ]; then
+  ${PREPARE_CODE_PATH}
+fi
+
+"${PATH_PREBUILD}" $@
+""".strip()
+
 
 def prepare_for_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
     path_in_bug_dir = functools.partial(os.path.join, bug_dir)
@@ -64,8 +77,10 @@ def prepare_for_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
     if not os.path.exists(path_in_bug_dir("project")):
         os.symlink(path_in_bug_dir("source"), path_in_bug_dir("project"))
 
-    if not os.path.exists(path_in_bug_dir("project_config.sh")):
-        os.symlink(path_in_bug_dir("prebuild"), path_in_bug_dir("project_config.sh"))
+    path_config = path_in_bug_dir("project_config.sh")
+    with open(path_config, "w") as f:
+        f.write(_EXTRACTFIX_CONFIG_TEXT)
+    os.chmod(path_config, 0o775)
 
     if not os.path.exists(path_in_bug_dir("project_build.sh")):
         os.symlink(path_in_bug_dir("build"), path_in_bug_dir("project_build.sh"))
