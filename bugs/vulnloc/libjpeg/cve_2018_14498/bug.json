@@ -1,6 +1,7 @@
 {
   "subject": "libjpeg",
   "name": "cve_2018_14498",
+  "binary": "cjpeg",
   "options": {
     "extractfix": {
       "bug-type": "buffer_overflow",
@@ -9,6 +10,5 @@
         "path": "cjpeg"
       }
     }
-  },
-  "binary": "cjpeg"
+  }
 }

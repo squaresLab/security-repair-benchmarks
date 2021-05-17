@@ -1,6 +1,7 @@
 {
   "subject": "libjpeg",
   "name": "cve_2012_2806",
+  "binary": "djpeg",
   "options": {
     "extractfix": {
       "bug-type": "buffer_overflow",
@@ -9,6 +10,5 @@
         "path": "djpeg"
       }
     }
-  },
-  "binary": "djpeg"
+  }
 }

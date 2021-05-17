@@ -50,5 +50,6 @@ RUN git -C "${SUT_SOURCE_PATH}" checkout "${SUT_VERSION}" \
  && [ "${SUT_USES_CMAKE}" = no ] && autoreconf -fiv || exit 0
 
 ARG BUG_DIR
+COPY "${BUG_DIR}/bug.json" bug.json
 COPY "${BUG_DIR}/exploit" exploit
 COPY "${BUG_DIR}/test" test
