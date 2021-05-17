@@ -8,6 +8,10 @@
       "binary": {
         "name": "djpeg",
         "path": "djpeg"
+      },
+      "lowfat": {
+        "note": "CFLAGS below likely need to be adjusted",
+        "CFLAGS": "-fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-symbolize -lstlimpl"
       }
     }
   }
