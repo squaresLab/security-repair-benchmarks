@@ -59,15 +59,35 @@ export TEST_EXECUTION_PREFIX="klee --libc=uclibc --posix-runtime --crash-line=${
 
 _EXTRACTFIX_CONFIG_TEXT = """
 #!/bin/bash
+set -eu
+
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 PATH_PREBUILD="${HERE_DIR}/prebuild"
+BUG_FILE="${HERE_DIR}/bug.json"
 PREPARE_CODE_PATH="${HERE_DIR}/prepare-source-for-extractfix"
+KLEE_LIB_DIR="${HERE_DIR}/project_specific_lib/"
+COMPILE_TYPE="$1"
 
 if [ -f "${PREPARE_CODE_PATH}" ]; then
   ${PREPARE_CODE_PATH}
 fi
 
-"${PATH_PREBUILD}" $@
+export CFLAGS="-g -D__NO_STRING_INLINES  -D_FORTIFY_SOURCE=0 -U__OPTIMIZE__ -lkleeRuntest -lkleeBasic -Wno-everything ${CFLAGS:-}"
+
+if [ -d "${KLEE_LIB_DIR}" ]; then
+    export CFLAGS="-I"${KLEE_LIB_DIR}" -L"${KLEE_LIB_DIR}" -lhook ${CFLAGS}"
+fi
+
+if [[ "${COMPILE_TYPE}" == "to_bc" ]]; then
+    export LLVM_COMPILER=clang
+    export CC=wllvm
+elif [[ "${COMPILE_TYPE}" == "lowfat" ]]; then
+    LOWFAT_CFLAGS="$(jq -r ".options.extractfix.lowfat.CFLAGS" "${BUG_FILE}")"
+    export CC="${LOWFAT_CLANG}"
+    export CFLAGS="${CFLAGS} ${LOWFAT_CFLAGS}"
+fi
+
+"${PATH_PREBUILD}" "${COMPILE_TYPE}"
 """.strip()
 
 
