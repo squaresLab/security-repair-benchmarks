@@ -13,7 +13,7 @@ pushd "${SOURCE_DIR}"
 export CFLAGS="-DFORTIFY_SOURCE=2 -ggdb -Wno-error ${CFLAGS:-}"
 export CXXFLAGS="$CFLAGS  ${CXXFLAGS:-}"
 
-if [ -z "$C_INCLUDE_PATH" ]; then
+if [ -z "${C_INCLUDE_PATH:-}" ]; then
   export C_INCLUDE_PATH=/include/path
 else
   export C_INCLUDE_PATH="/include/path:${C_INCLUDE_PATH}"
