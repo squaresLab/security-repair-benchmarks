@@ -52,7 +52,6 @@ RUN pip install \
 
 ENV EXTRACTFIX_BINARY /opt/extractfix/bin/extractfix
 
-COPY --from=jasper-cve_2016_8691 /workspace /benchmarks/jasper/cve_2016_8691
 COPY --from=libtiff-cve_2016_10094 /workspace /benchmarks/libtiff/cve_2016_10094
 COPY --from=binutils-cve_2017_14745 /workspace /benchmarks/binutils/cve_2017_14745
 COPY --from=binutils-cve_2017_14745 /workspace /benchmarks/binutils/cve_2017_14745
@@ -98,6 +97,9 @@ COPY --from=libjpeg-cve_2012_2806 /workspace /benchmarks/libjpeg/cve_2012_2806
 COPY --from=libjpeg-cve_2017_15232 /workspace /benchmarks/libjpeg/cve_2017_15232
 COPY --from=libjpeg-cve_2018_14498 /workspace /benchmarks/libjpeg/cve_2018_14498
 COPY --from=libjpeg-cve_2018_19664 /workspace /benchmarks/libjpeg/cve_2018_19664
+
+COPY --from=jasper-cve_2016_8691 /workspace /benchmarks/jasper/cve_2016_8691
+COPY --from=jasper-cve_2016_9557 /workspace /benchmarks/jasper/cve_2016_9557
 
 COPY docker/secbugs /opt/secbugs/bin/
 ENV PATH "/opt/secbugs/bin:${PATH}"
