@@ -10,6 +10,7 @@ RUN apt-get update \
       bison \
       build-essential \
       clang \
+      cmake \
       flex \
       gettext \
       git \
@@ -20,6 +21,7 @@ RUN apt-get update \
       libjpeg-dev \
       liblzma-dev \
       libtool \
+      nasm \
       pkg-config \
       python-dev \
       python-pip \
@@ -91,6 +93,11 @@ COPY --from=binutils-cve_2017_6965 /workspace /benchmarks/binutils/cve_2017_6965
 COPY --from=zziplib-cve_2017_5974 /workspace /benchmarks/zziplib/cve_2017_5974
 COPY --from=zziplib-cve_2017_5975 /workspace /benchmarks/zziplib/cve_2017_5975
 COPY --from=zziplib-cve_2017_5976 /workspace /benchmarks/zziplib/cve_2017_5976
+
+COPY --from=libjpeg-cve_2012_2806 /workspace /benchmarks/libjpeg/cve_2012_2806 
+COPY --from=libjpeg-cve_2017_15232 /workspace /benchmarks/libjpeg/cve_2017_15232
+COPY --from=libjpeg-cve_2018_14498 /workspace /benchmarks/libjpeg/cve_2018_14498
+COPY --from=libjpeg-cve_2018_19664 /workspace /benchmarks/libjpeg/cve_2018_19664
 
 COPY docker/secbugs /opt/secbugs/bin/
 ENV PATH "/opt/secbugs/bin:${PATH}"
