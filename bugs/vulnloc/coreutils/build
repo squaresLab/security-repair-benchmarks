@@ -25,9 +25,8 @@ if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   # copy target to root dir
   cp "${SUBJECT_PATH}" "${SOURCE_DIR}"
 
-  # copy target bitcode to root dir
+  # generate target bitcode
   if [[ "${COMPILE_TYPE}" == "to_bc" ]]; then
-    extract-bc -l llvm-link "${SUBJECT}"
-    cp "${SUBJECT}.bc" "${SOURCE_DIR}"
+    extract-bc -l llvm-link "${SOURCE_DIR}/${SUBJECT}"
   fi
 fi
