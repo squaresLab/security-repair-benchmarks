@@ -1,0 +1,9 @@
+#!/bin/bash
+set -eu
+
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+BUG_FILE="${HERE_DIR}/bug.json"
+SUBJECT_PATH="$(jq -r ".options.extractfix.binary.path" "${BUG_FILE}")"
+PATH_BIN="${1:-${HERE_DIR}/source/${SUBJECT_PATH}}"
+
+${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" 5000
