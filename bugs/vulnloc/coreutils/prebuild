@@ -1,9 +1,8 @@
 #!/bin/bash
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SOURCE_DIR="${HERE_DIR}/source"
-BUG_FILE="${HERE_DIR}/bug.json"
 CONFIG_PATH="./configure"
-CONFIG_OPTIONS="--disable-shared --disable-gdb --disable-libdecnumber --disable-readline --disable-sim LIBS='-ldl -lutil'"
+CONFIG_OPTIONS="--disable-nls"
 
 export CFLAGS="-DFORTIFY_SOURCE=2 -ggdb -Wno-error ${CFLAGS:-}"
 export CXXFLAGS="$CFLAGS  ${CXXFLAGS:-}"
