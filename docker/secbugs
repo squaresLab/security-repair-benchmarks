@@ -122,6 +122,32 @@ def generic_sanity_check(bug_dir: str) -> None:
             raise ValueError(message)
 
 
+def extractfix_sanity_check(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
+    generic_sanity_check(bug_dir)
+
+    if "options" not in bug_json:
+        raise ValueError('missing "options" section in bug.json')
+    if "extractfix" not in bug_json["options"]:
+        raise ValueError('missing "options.extractfix" section in bug.json')
+
+    options = bug_json["options"]["extractfix"]
+
+    if "bug-type" not in options:
+        raise ValueError('missing "options.extractfix.bug-type" field in bug.json')
+
+    if "binary" not in options:
+        raise ValueError('missing "options.extractfix.binary" section in bug.json')
+    if "name" not in options["binary"]:
+        raise ValueError('missing "options.extractfix.binary.name" field in bug.json')
+    if "path" not in options["binary"]:
+        raise ValueError('missing "options.extractfix.binary.path" field in bug.json')
+
+    if "lowfat" not in options:
+        raise ValueError('missing "options.extractfix.lowfat" section in bug.json')
+    if "CFLAGS" not in options["lowfat"]:
+        raise ValueError('missing "options.extractfix.lowfat.CFLAGS" field in bug.json')
+
+
 def prepare_for_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
     path_in_bug_dir = functools.partial(os.path.join, bug_dir)
 
@@ -155,6 +181,7 @@ def prepare_for_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
 
 
 def repair_with_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
+    extractfix_sanity_check(bug_dir, bug_json)
     prepare_for_extractfix(bug_dir, bug_json)
 
     # TODO prepare results directory
@@ -191,7 +218,6 @@ def load_bug_info(bug_dir: str) -> t.Dict[str, t.Any]:
 
 
 def repair(bug_dir: str, tool: str) -> None:
-    generic_sanity_check(bug_dir)
     bug_info = load_bug_info(bug_dir)
 
     if tool == "extractfix":
