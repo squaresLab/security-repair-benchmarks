@@ -8,6 +8,9 @@
       "binary": {
         "name": "tiffcrop",
         "path": "tools/tiffcrop"
+      },
+      "lowfat": {
+        "CFLAGS": "-fsanitize=lowfat -mllvm -lowfat-symbolize -lstlimpl"
       }
     },
     "hifix": {
