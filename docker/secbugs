@@ -91,6 +91,37 @@ fi
 """.strip()
 
 
+def generic_sanity_check(bug_dir: str) -> None:
+    """
+    Performs general sanity checking of a scenario contained within a given
+    bug directory.
+
+    Raises
+    ------
+    ValueError
+        If the given scenario fails the sanity check.
+    """
+    if not os.path.isdir(bug_dir):
+        message = "bug scenario directory not found: {}".format(bug_dir)
+        raise ValueError(message)
+
+    path_in_bug_dir = functools.partial(os.path.join, bug_dir)
+    expected_files = (
+        "bug.json",
+        "build",
+        "prebuild",
+        "recompile",
+        "source",
+        "test",
+    )
+
+    for filename in expected_files:
+        if not os.path.exists(path_in_bug_dir(filename)):
+            message = "bug scenario [{}] missing required file: {}"
+            message = message.format(os.path.abspath(bug_dir), filename)
+            raise ValueError(message)
+
+
 def prepare_for_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
     path_in_bug_dir = functools.partial(os.path.join, bug_dir)
 
@@ -160,6 +191,7 @@ def load_bug_info(bug_dir: str) -> t.Dict[str, t.Any]:
 
 
 def repair(bug_dir: str, tool: str) -> None:
+    generic_sanity_check(bug_dir)
     bug_info = load_bug_info(bug_dir)
 
     if tool == "extractfix":
