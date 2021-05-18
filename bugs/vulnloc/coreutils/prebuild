@@ -9,6 +9,8 @@ export CXXFLAGS="$CFLAGS  ${CXXFLAGS:-}"
 
 pushd "${SOURCE_DIR}"
 
+./bootstrap
+
 if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   COMPILE_TYPE="$1"
   CONFIG_PATH="../configure"
