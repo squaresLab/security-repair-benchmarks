@@ -33,6 +33,7 @@ RUN git clone "${SUT_REPO_URL}" "${SUT_SOURCE_PATH}"
 
 COPY build build
 COPY prebuild prebuild
+COPY recompile recompile
 
 # build the project-specific lib
 COPY extractfix/project_specific_lib project_specific_lib

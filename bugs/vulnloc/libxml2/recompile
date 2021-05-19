@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# This is hardcoded for ExtractFix for now
+#
+set -eu
+
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+SOURCE_DIR="${HERE_DIR}/source"
+
+source=$1
+target=$2
+
+pushd "${SOURCE_DIR}"
+KLEE_CFLAGS="-L${HERE_DIR}/project_specific_lib/"
+PROJECT_CFLAGS="-I${SOURCE_DIR}/project/include -L${SOURCE_DIR}/project/.lib/ -lz -llzma -lm -ldl"
+clang ${source} $PROJECT_CFLAGS $KLEE_CFLAGS -o ${target}
