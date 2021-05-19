@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+# This is hardcoded for ExtractFix for now
+#
+set -eu
+
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+SOURCE_DIR="${HERE_DIR}/source"
+
+source=$1
+target=$2
+
+pushd "${SOURCE_DIR}"
+
+PROJECT_CFLAGS="-lm"
+clang ${source} $PROJECT_CFLAGS -o ${target}
