@@ -7,6 +7,9 @@
       "binary": {
         "name": "tiffcp",
         "path": "tools/tiffcp"
+      },
+      "lowfat": {
+        "CFLAGS": "-fsanitize=unsigned-integer-overflow,signed-integer-overflow -fsanitize=lowfat -mllvm -lowfat-symbolize -lstlimpl -mllvm -lowfat-debug -mllvm -lowfat-no-check-memset"
       }
     }
   },
