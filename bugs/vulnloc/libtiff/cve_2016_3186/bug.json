@@ -12,6 +12,9 @@
       "lowfat": {
         "CFLAGS": "-fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-symbolize -lstlimpl"
       }
+    },
+    "hifix": {
+      "linker-options": "/benchmarks/libtiff/cve_2016_3186/source/libtiff/.libs/libtiff.a -ljpeg -llzma -lm -ljbig -lz"
     }
   }
 }

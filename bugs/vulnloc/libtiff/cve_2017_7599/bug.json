@@ -11,6 +11,9 @@
       "lowfat": {
         "CFLAGS": "-fsanitize=unsigned-integer-overflow,signed-integer-overflow -fsanitize=lowfat -mllvm -lowfat-symbolize -lstlimpl -mllvm -lowfat-debug -mllvm -lowfat-no-check-memset"
       }
+    },
+    "hifix": {
+      "linker-options": "/benchmarks/libtiff/cve_2017_7599/source/libtiff/.libs/libtiff.a -ljpeg -llzma -lm -ljbig -lz"
     }
   },
   "binary": "tools/.libs/tiffcp"
