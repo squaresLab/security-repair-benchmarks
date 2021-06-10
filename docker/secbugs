@@ -90,6 +90,33 @@ fi
 "${PATH_PREBUILD}" "${COMPILE_TYPE}"
 """.strip()
 
+_EXTRACTFIX_COMPILE_TEXT = """
+#!/bin/bash
+set -eu
+
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+PATH_BUILD="${HERE_DIR}/build"
+PROJECT_DIR="${HERE_DIR}/project"
+BUILD_DIR="${PROJECT_DIR}/klee"
+COMPILE_TYPE="$1"
+
+BUG_FILE="${HERE_DIR}/bug.json"
+SUBJECT_PATH="$(jq -r ".options.extractfix.binary.path" "${BUG_FILE}")"
+
+export LLVM_COMPILER=clang
+
+"${PATH_BUILD}" "${COMPILE_TYPE}"
+
+# copy target binary to root directory
+cp "${BUILD_DIR}/${SUBJECT_PATH}" "${PROJECT_DIR}"
+
+# copy target bitcode to root directory if appropriate
+if [[ "${COMPILE_TYPE}" == "to_bc" ]]; then
+    pushd "${BUILD_DIR}"
+    extract-bc -l llvm-link "${SUBJECT}"
+fi
+""".strip()
+
 
 def generic_sanity_check(bug_dir: str) -> None:
     """
@@ -159,8 +186,10 @@ def prepare_for_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
         f.write(_EXTRACTFIX_CONFIG_TEXT)
     os.chmod(path_config, 0o775)
 
-    if not os.path.exists(path_in_bug_dir("project_build.sh")):
-        os.symlink(path_in_bug_dir("build"), path_in_bug_dir("project_build.sh"))
+    path_build = path_in_bug_dir("project_build.sh")
+    with open(path_build, "w") as f:
+        f.write(_EXTRACTFIX_COMPILE_TEXT)
+    os.chmod(path_build, 0o775)
 
     if not os.path.exists(path_in_bug_dir("project_compile.sh")):
         os.symlink(path_in_bug_dir("recompile"), path_in_bug_dir("project_compile.sh"))

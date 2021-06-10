@@ -4,29 +4,11 @@ set -eu
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SOURCE_DIR="${HERE_DIR}/source"
 BUILD_DIR="${SOURCE_DIR}"
-BUG_FILE="${HERE_DIR}/bug.json"
-
-SUBJECT="$(jq -r ".options.extractfix.binary.name" "${BUG_FILE}")"
-SUBJECT_PATH="$(jq -r ".options.extractfix.binary.path" "${BUG_FILE}")"
 
 # FIXME this can go into the generated script
 if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
-  export LLVM_COMPILER=clang
   BUILD_DIR="${SOURCE_DIR}/klee"
 fi
 
 pushd "${BUILD_DIR}"
 make
-
-# FIXME this can go into the generated script
-if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
-  COMPILE_TYPE="$1"
-
-  # copy target to root dir
-  cp "${SUBJECT_PATH}" "${SOURCE_DIR}"
-
-  # generate target bitcode
-  if [[ "${COMPILE_TYPE}" == "to_bc" ]]; then
-    extract-bc -l llvm-link "${SOURCE_DIR}/${SUBJECT}"
-  fi
-fi
