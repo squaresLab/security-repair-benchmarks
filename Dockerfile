@@ -56,7 +56,9 @@ COPY --from=libtiff-cve_2016_10094 /workspace /benchmarks/libtiff/cve_2016_10094
 COPY --from=binutils-cve_2017_14745 /workspace /benchmarks/binutils/cve_2017_14745
 COPY --from=binutils-cve_2017_14745 /workspace /benchmarks/binutils/cve_2017_14745
 COPY --from=binutils-cve_2017_15025 /workspace /benchmarks/binutils/cve_2017_15025
+
 COPY --from=libxml2-cve_2017_5969 /workspace /benchmarks/libxml2/cve_2017_5969
+
 COPY --from=libarchive-cve_2016_5844 /workspace /benchmarks/libarchive/cve_2016_5844
 
 COPY --from=libtiff-cve_2016_5314 /workspace /benchmarks/libtiff/cve_2016_5314

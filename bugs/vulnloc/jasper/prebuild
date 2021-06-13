@@ -21,7 +21,7 @@ if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   CONFIG_OPTIONS="--disable-debug --disable-dmalloc --disable-libjpeg --disable-opengl --enable-static --disable-shared"
 fi
 
-../configure ${CONFIG_OPTIONS}
+./configure ${CONFIG_OPTIONS}
 
 if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   sed -i 's/inline//g' ../src/libjasper/base/jas_malloc.c
