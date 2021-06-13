@@ -23,6 +23,7 @@ RUN apt-get update \
       texinfo \
       unzip \
       vim \
+      wget \
       zip \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
@@ -53,3 +54,7 @@ ARG BUG_DIR
 COPY "${BUG_DIR}/bug.json" bug.json
 COPY "${BUG_DIR}/exploit" exploit
 COPY "${BUG_DIR}/test" test
+
+RUN wget -nv https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 \
+     && chmod u+x jq-linux64 \
+     && mv jq-linux64 /bin/jq
