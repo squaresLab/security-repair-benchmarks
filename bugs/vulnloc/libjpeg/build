@@ -11,7 +11,6 @@ SUBJECT_PATH="$(jq -r ".options.extractfix.binary.path" "${BUG_FILE}")"
 
 # this can go into the generated script
 if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
-  export LLVM_COMPILER=clang
   BUILD_DIR="${SOURCE_DIR}/klee"
 fi
 
@@ -19,19 +18,10 @@ pushd "${BUILD_DIR}"
 
 make
 
-# this can go into the generated script
 if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
-  COMPILE_TYPE="$1"
-
-  # copy target to root dir
-  cp "${SUBJECT_PATH}" "${SOURCE_DIR}"
-
-  # copy target bitcode to root dir
   if [[ "${COMPILE_TYPE}" == "to_bc" ]]; then
     KLEE_CFLAGS="-lkleeRuntest -lkleeBasic -lhook -L${HERE_DIR}/project_specific_lib/"
     PROJECT_CFLAGS="-llzma -lz -lm -ljbig"
-    wllvm -ggdb3 -Wall -W -o ${SUBJECT} ${SUBJECT}.o ${PROJECT_CFLAGS} ${KLEE_CFLAGS} -Wl,-rpath
-    extract-bc -l llvm-link "${SUBJECT}"
-    cp "${SUBJECT}.bc" "${SOURCE_DIR}"
+    wllvm -ggdb3 -Wall -W -o ${SUBJECT_PATH} ${SUBJECT_PATH}.o ${PROJECT_CFLAGS} ${KLEE_CFLAGS} -Wl,-rpath
   fi
 fi
