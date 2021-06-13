@@ -41,6 +41,10 @@ RUN cd project_specific_lib \
  && ar rcs libhook.a hook.o \
  && rm hook.o
 
+WORKDIR /workspace
+COPY build build
+COPY prebuild prebuild
+
 ARG SUT_REPO_URL=https://github.com/FFmpeg/FFmpeg.git
 ARG SUT_SOURCE_PATH=/workspace/source
 RUN git clone "${SUT_REPO_URL}" "${SUT_SOURCE_PATH}"

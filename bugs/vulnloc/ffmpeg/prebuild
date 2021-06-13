@@ -1,0 +1,15 @@
+#!/bin/bash
+set -eu
+
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+SOURCE_DIR="${HERE_DIR}/source"
+BUG_FILE="${HERE_DIR}/bug.json"
+
+if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
+  COMPILE_TYPE="$1"
+  BUILD_DIR="${SOURCE_DIR}/klee"
+fi
+
+pushd "${SOURCE_DIR}"
+./configure
+
