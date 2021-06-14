@@ -13,6 +13,7 @@ RUN apt-get update \
       git \
       gperf \
       ipython \
+      liblzma-dev \
       libtool \
       pkg-config \
       python-dev \
@@ -23,6 +24,7 @@ RUN apt-get update \
       vim \
       wget \
       zip \
+      zlib1g-dev \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
 
