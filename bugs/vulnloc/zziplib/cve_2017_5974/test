@@ -5,11 +5,11 @@ HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 BUG_FILE="${HERE_DIR}/bug.json"
 PATH_EXPLOIT="${HERE_DIR}/exploit"
 SOURCE_DIR="${HERE_DIR}/source"
-SUBJECT="$(jq -r ".binary" "${BUG_FILE}")"
+SUBJECT="$(basename "$(jq -r ".binary" "${BUG_FILE}")")"
 
 # FIXME add extractfix support
 BUILD_DIR="${SOURCE_DIR}"
 
-PATH_BIN="${BUILD_DIR}/${SUBJECT}"
+PATH_BIN="${BUILD_DIR}/${SUBJECT}:$1"
 
 ${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" "${PATH_EXPLOIT}"

@@ -2,9 +2,14 @@
 set -eu
 
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+BUG_FILE="${HERE_DIR}/bug.json"
 PATH_EXPLOIT="${HERE_DIR}/exploit"
-PATH_LINUX_BUILD="$(find "${HERE_DIR}/source" -name "Linux*.d" -type d)"
-PATH_BINS="${PATH_LINUX_BUILD}/bins"
-PATH_BIN="${1:-${PATH_BINS}/unzzipcat-mem}"
+SOURCE_DIR="${HERE_DIR}/source"
+SUBJECT="$(basename "$(jq -r ".binary" "${BUG_FILE}")")"
+
+# FIXME add extractfix support
+BUILD_DIR="${SOURCE_DIR}"
+
+PATH_BIN="${BUILD_DIR}/${SUBJECT}:$1"
 
 ${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" "${PATH_EXPLOIT}"
