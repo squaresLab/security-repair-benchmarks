@@ -2,8 +2,21 @@
 set -eu
 
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+BUG_FILE="${HERE_DIR}/bug.json"
 SOURCE_DIR="${HERE_DIR}/source"
 
-pushd "${SOURCE_DIR}"
+SUBJECT="$(jq -r ".binary" "${BUG_FILE}")"
+
+# FIXME update to add support for extractfix
+BUILD_DIR="${SOURCE_DIR}"
+
+PATH_LINUX_BUILD="$(find "${BUILD_DIR}" -name "Linux*.d" -type d)"
+PATH_BINS="${PATH_LINUX_BUILD}/bins/.libs"
+PATH_IN_BINS_DIRECTORY="${PATH_BINS}/${SUBJECT}"
+
+pushd "${BUILD_DIR}"
 
 make
+
+# move the output binary to a fixed location
+mv "${PATH_IN_BINS_DIRECTORY}" "${BUILD_DIR}/${SUBJECT}"
