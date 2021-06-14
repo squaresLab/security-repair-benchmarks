@@ -10,6 +10,6 @@ SUBJECT="$(basename "$(jq -r ".binary" "${BUG_FILE}")")"
 # FIXME add extractfix support
 BUILD_DIR="${SOURCE_DIR}"
 
-PATH_BIN="${BUILD_DIR}/${SUBJECT}:$1"
+PATH_BIN="${1:-${BUILD_DIR}/${SUBJECT}}"
 
 ${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" "${PATH_EXPLOIT}"
