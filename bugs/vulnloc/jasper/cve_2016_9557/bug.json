@@ -12,7 +12,7 @@
         "CFLAGS": "-fsanitize=signed-integer-overflow,unsigned-integer-overflow,integer-divide-by-zero -fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-symbolize -lstlimpl"
       }
     },
-    "hifix" : {
+    "hifix": {
       "linker-options": "-ljpeg -lm"
     }
   },

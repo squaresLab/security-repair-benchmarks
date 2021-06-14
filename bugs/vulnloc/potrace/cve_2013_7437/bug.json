@@ -8,6 +8,9 @@
         "name": "potrace",
         "path": "src/potrace"
       }
+    },
+    "hifix": {
+      "linker-options": "-lm -lz"
     }
   },
   "binary": "src/potrace"
