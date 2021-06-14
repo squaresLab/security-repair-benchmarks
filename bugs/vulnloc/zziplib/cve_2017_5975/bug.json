@@ -6,9 +6,12 @@
       "bug-type": "buffer_overflow",
       "binary": {
         "name": "unzzipcat-mem",
-        "path": "Linux_5.0.0-37-generic_x86_64.d/bins/unzzipcat-mem"
+        "path": "unzzipcat-mem"
       }
+    },
+    "hifix": {
+      "linker-options": "/benchmarks/zziplib/cve_2017_5975/source/libzzipmmapped.a -lz"
     }
   },
-  "binary": "Linux_5.0.0-37-generic_x86_64.d/bins/unzzipcat-mem"
+  "binary": "unzzipcat-mem"
 }
