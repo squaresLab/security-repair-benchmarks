@@ -19,4 +19,4 @@ pushd "${BUILD_DIR}"
 make
 
 # move the output binary to a fixed location
-mv "${PATH_IN_BINS_DIRECTORY}" "${BUILD_DIR}/${SUBJECT}"
+cp "${PATH_IN_BINS_DIRECTORY}" "${BUILD_DIR}/${SUBJECT}"
