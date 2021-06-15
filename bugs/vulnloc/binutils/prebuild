@@ -5,7 +5,7 @@ HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SOURCE_DIR="${HERE_DIR}/source"
 
 CONFIG_PATH="./configure"
-CONFIG_OPTIONS="--disable-nls"
+CONFIG_OPTIONS="--disable-nls --disable-gdb --disable-readline"
 # CONFIG_OPTIONS="--disable-shared --disable-gdb --disable-libdecnumber --disable-readline --disable-sim LIBS='-ldl -lutil'"
 
 pushd "${SOURCE_DIR}"
@@ -21,9 +21,6 @@ fi
 
 if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   CONFIG_PATH="../configure"
-
-  rm -rf klee
-  mkdir klee
   pushd klee
 fi
 
