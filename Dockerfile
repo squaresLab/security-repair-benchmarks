@@ -103,6 +103,10 @@ COPY --from=libjpeg-cve_2018_19664 /workspace /benchmarks/libjpeg/cve_2018_19664
 COPY --from=jasper-cve_2016_8691 /workspace /benchmarks/jasper/cve_2016_8691
 COPY --from=jasper-cve_2016_9557 /workspace /benchmarks/jasper/cve_2016_9557
 
+COPY --from=libming-cve_2016_9264 /workspace /benchmarks/libming/cve_2016_9264
+COPY --from=libming-cve_2018_8806 /workspace /benchmarks/libming/cve_2018_8806
+COPY --from=libming-cve_2018_8964 /workspace /benchmarks/libming/cve_2018_8964
+
 COPY docker/secbugs /opt/secbugs/bin/
 ENV PATH "/opt/secbugs/bin:${PATH}"
 
