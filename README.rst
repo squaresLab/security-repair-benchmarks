@@ -51,4 +51,4 @@ Scenario Format
 Contributors
 ------------
 
-* `Jyoti Prakash <https://github.com/jpksh90>` (jyoti at u dot nus dot edu)
+* `Jyoti Prakash <https://github.com/jpksh90>`_ (jyoti at u dot nus dot edu)
