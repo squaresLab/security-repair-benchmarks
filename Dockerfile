@@ -18,6 +18,7 @@ RUN apt-get update \
       ipython \
       jq \
       libjbig-dev \
+      libfreetype6-dev \
       libjpeg-dev \
       liblzma-dev \
       libtool \
