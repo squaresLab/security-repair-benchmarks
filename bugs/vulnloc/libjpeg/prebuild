@@ -6,6 +6,8 @@ SOURCE_DIR="${HERE_DIR}/source"
 BUILD_DIR="${SOURCE_DIR}/build"
 BUG_FILE="${HERE_DIR}/bug.json"
 
+BUILD_SYSTEM="$(jq -r ".options.build-system" "${BUG_FILE}")"
+
 if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   COMPILE_TYPE="$1"
   BUILD_DIR="${SOURCE_DIR}/klee"
@@ -17,7 +19,8 @@ mkdir "${BUILD_DIR}"
 pushd "${BUILD_DIR}"
 
 # prefer cmake if it's supported
-if [[ -f "${SOURCE_DIR}/CMakeLists.txt" ]]; then
+
+if [[ "${BUILD_SYSTEM}" == "cmake" ]]; then
   cmake ..
 else
   ../configure

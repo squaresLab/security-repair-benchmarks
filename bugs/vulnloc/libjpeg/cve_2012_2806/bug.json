@@ -1,13 +1,14 @@
 {
   "subject": "libjpeg",
   "name": "cve_2012_2806",
-  "binary": "djpeg",
+  "binary": "build/.libs/djpeg",
   "options": {
+    "build-system": "autotools",
     "extractfix": {
       "bug-type": "buffer_overflow",
       "binary": {
         "name": "djpeg",
-        "path": "djpeg"
+        "path": ".libs/djpeg"
       },
       "lowfat": {
         "note": "CFLAGS below likely need to be adjusted",

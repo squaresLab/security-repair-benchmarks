@@ -1,8 +1,9 @@
 {
   "subject": "libjpeg",
   "name": "cve_2018_19664",
-  "binary": "djpeg",
+  "binary": "build/.libs/djpeg",
   "options": {
+    "build-system": "cmake",
     "extractfix": {
       "bug-type": "buffer_overflow",
       "binary": {

@@ -1,8 +1,9 @@
 {
   "subject": "libjpeg",
   "name": "cve_2018_14498",
-  "binary": "cjpeg",
+  "binary": "build/.libs/cjpeg",
   "options": {
+    "build-system": "cmake",
     "extractfix": {
       "bug-type": "buffer_overflow",
       "binary": {

@@ -1,8 +1,9 @@
 {
   "subject": "libjpeg",
   "name": "cve_2017_15232",
-  "binary": "djpeg",
+  "binary": "build/.libs/djpeg",
   "options": {
+    "build-system": "cmake",
     "extractfix": {
       "bug-type": "null_pointer",
       "binary": {
