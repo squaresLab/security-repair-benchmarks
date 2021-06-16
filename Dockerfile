@@ -17,10 +17,13 @@ RUN apt-get update \
       gperf \
       ipython \
       jq \
-      libjbig-dev \
+      libass-dev \
+      libfdk-aac-dev \
       libfreetype6-dev \
+      libjbig-dev \
       libjpeg-dev \
       liblzma-dev \
+      libmp3lame-dev \
       libtool \
       nasm \
       pkg-config \
@@ -107,6 +110,9 @@ COPY --from=jasper-cve_2016_9557 /workspace /benchmarks/jasper/cve_2016_9557
 COPY --from=libming-cve_2016_9264 /workspace /benchmarks/libming/cve_2016_9264
 COPY --from=libming-cve_2018_8806 /workspace /benchmarks/libming/cve_2018_8806
 COPY --from=libming-cve_2018_8964 /workspace /benchmarks/libming/cve_2018_8964
+
+COPY --from=ffmpeg-bugchrom_1404 /workspace /benchmarks/ffmpeg/bugchrom_1404
+COPY --from=ffmpeg-cve_2017_9992 /workspace /benchmarks/ffmpeg/cve_2017_9992
 
 COPY docker/secbugs /opt/secbugs/bin/
 ENV PATH "/opt/secbugs/bin:${PATH}"
