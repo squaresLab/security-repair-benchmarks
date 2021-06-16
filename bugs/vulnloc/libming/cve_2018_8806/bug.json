@@ -6,9 +6,9 @@
       "bug-type": "buffer_overflow",
       "binary": {
         "name": "swftophp",
-        "path": "util/swftophp"
+        "path": "util/.libs/swftophp"
       }
     }
   },
-  "binary": "util/swftophp"
+  "binary": "util/.libs/swftophp"
 }
