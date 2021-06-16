@@ -3,6 +3,20 @@ Security Repair Benchmark
 
 **Author:** `Chris Timperley <https://github.com/ChrisTimperley>`_ (ctimperley at cmu dot edu)
 
+This project provides a reusable and reproducible infrastructure for evaluating C/C++ security vulnerability
+repair techniques. The project consists of Dockerized repair tools and bug benchmarks, and can accessed either
+via one monolithic Docker image, containing all tools and bugs, or via separate Docker images for individual bug
+scenarios.
+
+Out of the box, we provide Dockerized versions of ExtractFix and HiFix, as well as a useful helper script
+for quickly running experiments using those tools. We also provide the VulnLoc benchmarks.
+
+
+Citation
+--------
+
+TODO: Add our paper; VulnLoc; ExtractFix; etc.
+
 
 Installation
 ------------
