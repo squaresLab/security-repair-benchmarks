@@ -7,3 +7,4 @@ BUG_FILE="${HERE_DIR}/bug.json"
 
 pushd "${SOURCE_DIR}"
 make
+make tools/target_dec_cavs_fuzzer
