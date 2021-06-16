@@ -120,6 +120,11 @@ COPY --from=ffmpeg-cve_2017_9992 /workspace /benchmarks/ffmpeg/cve_2017_9992
 
 COPY --from=potrace-cve_2013_7437 /workspace /benchmarks/potrace/cve_2013_7437
 
+COPY --from=coreutils-gnubug_19784 /workspace /benchmarks/coreutils/gnubug_19784
+COPY --from=coreutils-gnubug_25003 /workspace /benchmarks/coreutils/gnubug_25003
+COPY --from=coreutils-gnubug_25023 /workspace /benchmarks/coreutils/gnubug_25023
+COPY --from=coreutils-gnubug_26545 /workspace /benchmarks/coreutils/gnubug_26545
+
 COPY docker/secbugs /opt/secbugs/bin/
 ENV PATH "/opt/secbugs/bin:${PATH}"
 
