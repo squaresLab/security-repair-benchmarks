@@ -15,7 +15,12 @@ RUN apt-get update \
       gperf \
       ipython \
       libass-dev \
+      libfdk-aac-dev \
       libmp3lame-dev \
+      libopus-dev \
+      libtheora-dev \
+      libvorbis-dev \
+      libvpx-dev \
       libtool \
       pkg-config \
       python-dev \
@@ -50,6 +55,8 @@ ARG SUT_SOURCE_PATH=/workspace/source
 RUN git clone "${SUT_REPO_URL}" "${SUT_SOURCE_PATH}"
 ARG SUT_VERSION
 RUN git -C "${SUT_SOURCE_PATH}" checkout "${SUT_VERSION}"
+
+COPY common/* "${SUT_SOURCE_PATH}/"
 
 ARG BUG_DIR
 COPY "${BUG_DIR}/" ./

@@ -13,4 +13,22 @@ fi
 
 pushd "${BUILD_DIR}"
 
-"${SOURCE_DIR}/configure"
+export CFLAGS="-std=c++1 ${CFLAGS:-}"
+
+"${SOURCE_DIR}/configure" \
+  --pkg-config-flags="--static" \
+  --optflags="" \
+  --enable-gpl \
+  --enable-libass \
+  --enable-libfdk-aac \
+  --enable-libfreetype \
+  --enable-libmp3lame \
+  --enable-libopus \
+  --enable-libtheora \
+  --enable-libvorbis \
+  --enable-libvpx \
+  --enable-nonfree \
+  --disable-muxers \
+  --disable-protocols \
+  --disable-devices \
+  --disable-shared
