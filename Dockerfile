@@ -24,7 +24,11 @@ RUN apt-get update \
       libjpeg-dev \
       liblzma-dev \
       libmp3lame-dev \
+      libopus-dev \
+      libtheora-dev \
       libtool \
+      libvorbis-dev \
+      libvpx-dev \
       nasm \
       pkg-config \
       python-dev \
