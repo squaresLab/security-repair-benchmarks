@@ -13,7 +13,7 @@
       }
     },
     "hifix": {
-      "linker-options": "/benchmarks/libxml2/cve_2012_5134/source/.libs/libxml2.a -lz -lpthread -lm -llzma"
+      "linker-options": "/benchmarks/libxml2/cve_2016_1838/source/.libs/libxml2.a -lz -lpthread -lm -llzma"
      }
   },
   "binary": ".libs/xmllint"
