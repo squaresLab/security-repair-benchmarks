@@ -16,5 +16,5 @@
       "linker-options": "/benchmarks/libxml2/cve_2017_5969/source/.libs/libxml2.a -lz -lpthread -lm -llzma"
      }
   },
-  "binary": "xmllint"
+  "binary": "/benchmarks/libxml2/cve_2017_5969/source/.libs/xmllint"
 }
