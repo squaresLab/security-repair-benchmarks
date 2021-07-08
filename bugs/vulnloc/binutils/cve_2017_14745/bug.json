@@ -11,6 +11,9 @@
       "lowfat": {
         "CFLAGS": "-fsanitize=integer-divide-by-zero -fsanitize=lowfat -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-no-check-reads -mllvm -lowfat-no-check-writes -mllvm -lowfat-symbolize -lstlimpl"
       }
+    },
+    "hifix": {
+      "linker-options": "-ldl"
     }
   },
   "binary": "binutils/objdump"
