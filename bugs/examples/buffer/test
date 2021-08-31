@@ -2,6 +2,7 @@
 set -eu
 
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
-BIN_PATH="${HERE_DIR}/buffer"
+BIN_PATH="${1:-${HERE_DIR}/source/buffer}"
+PAYLOAD_PATH="${HERE_DIR}/payload"
 
-"${BIN_PATH}"
+"${BIN_PATH}" < "${PAYLOAD_PATH}"
