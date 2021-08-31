@@ -1,0 +1,11 @@
+{
+  "buffer.c": {
+    "main": {
+      "check": {
+        "value": "11",
+        "type": "int",
+        "src_line": 4
+      }
+    }
+  }
+}
