@@ -1,0 +1,7 @@
+#!/bin/bash
+set -eu
+
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+BIN_PATH="${HERE_DIR}/buffer"
+
+"${BIN_PATH}"
