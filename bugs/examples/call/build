@@ -4,4 +4,4 @@ set -eu
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SOURCE_DIR="${HERE_DIR}/source"
 pushd "${SOURCE_DIR}"
-${CC} -o call call-test.c
+${CC} ${CFLAGS:-} -o call call-test.c
