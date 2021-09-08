@@ -1,0 +1,205 @@
+[
+  {
+    "constraint": {
+      "kind": "binop",
+      "lhs": {
+        "kind": "binop",
+        "lhs": {
+          "kind": "var",
+          "type": "int",
+          "value-id": 24
+        },
+        "opcode": "==",
+        "rhs": {
+          "kind": "const",
+          "type": "int",
+          "value": 4
+        },
+        "type": "int"
+      },
+      "opcode": "and",
+      "rhs": {
+        "kind": "binop",
+        "lhs": {
+          "kind": "binop",
+          "lhs": {
+            "kind": "var",
+            "type": "int",
+            "value-id": 29
+          },
+          "opcode": "<=",
+          "rhs": {
+            "kind": "binop",
+            "lhs": {
+              "kind": "const",
+              "type": "int",
+              "value": 2147483647
+            },
+            "opcode": "-",
+            "rhs": {
+              "kind": "var",
+              "type": "int",
+              "value-id": 30
+            },
+            "type": "int"
+          },
+          "type": "int"
+        },
+        "opcode": "or",
+        "rhs": {
+          "kind": "binop",
+          "lhs": {
+            "kind": "var",
+            "type": "int",
+            "value-id": 30
+          },
+          "opcode": "<=",
+          "rhs": {
+            "kind": "binop",
+            "lhs": {
+              "kind": "const",
+              "type": "int",
+              "value": 2147483647
+            },
+            "opcode": "-",
+            "rhs": {
+              "kind": "var",
+              "type": "int",
+              "value-id": 29
+            },
+            "type": "int"
+          },
+          "type": "int"
+        },
+        "type": "int"
+      },
+      "type": "int"
+    },
+    "constraint-string": "(bin-op and (bin-op == (V24 int) (const int 4)) (bin-op or (bin-op <= (V29 int) (bin-op - (const int 2147483647) (V30 int))) (bin-op <= (V30 int) (bin-op - (const int 2147483647) (V29 int)))))",
+    "instruction": {
+      "column": 7,
+      "description": "  br i1 %cmp, label %if.then, label %if.end, !dbg !20",
+      "function-id": 0,
+      "id": 13,
+      "implicit": false,
+      "line": 7
+    },
+    "values": [
+      {
+        "state": [
+          [
+            4.0,
+            4.0
+          ]
+        ],
+        "value": {
+          "description": "  %0 = load i32, i32* %z, align 4, !dbg !17",
+          "id": 24
+        }
+      },
+      {
+        "state": [],
+        "value": {
+          "description": "  %cmp = icmp eq i32 %0, 4, !dbg !19",
+          "id": 25
+        }
+      },
+      {
+        "state": [
+          [
+            7.0,
+            7.0
+          ]
+        ],
+        "value": {
+          "description": "  store i32 7, i32* %y, align 4, !dbg !14",
+          "id": 17
+        }
+      },
+      {
+        "state": [
+          [
+            2147483647.0,
+            2147483647.0
+          ]
+        ],
+        "value": {
+          "description": "  store i32 2147483647, i32* %x, align 4, !dbg !12",
+          "id": 12
+        }
+      },
+      {
+        "state": [
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "value": {
+          "description": "  store i32 0, i32* %retval, align 4",
+          "id": 5
+        }
+      },
+      {
+        "state": [
+          [
+            0.0,
+            0.0
+          ]
+        ],
+        "value": {
+          "description": "  %retval = alloca i32, align 4",
+          "id": 0
+        }
+      },
+      {
+        "state": [
+          [
+            2147483647.0,
+            2147483647.0
+          ]
+        ],
+        "value": {
+          "description": "  %x = alloca i32, align 4",
+          "id": 2
+        }
+      },
+      {
+        "state": [
+          [
+            7.0,
+            7.0
+          ]
+        ],
+        "value": {
+          "description": "  %y = alloca i32, align 4",
+          "id": 3
+        }
+      },
+      {
+        "state": [
+          [
+            4.0,
+            4.0
+          ]
+        ],
+        "value": {
+          "description": "  store i32 4, i32* %z, align 4, !dbg !16",
+          "id": 22
+        }
+      },
+      {
+        "state": [
+          [
+            4.0,
+            4.0
+          ]
+        ],
+        "value": {
+          "description": "  %z = alloca i32, align 4",
+          "id": 4
+        }
+      }
+    ]
+  }
+]
