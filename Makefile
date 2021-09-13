@@ -9,7 +9,7 @@ bugs: init
 tools: init
 	make -C tools
 
-hifix-only: init
+hifix-only: bugs
 	docker build -t secbugs -f Dockerfile.hifix .
 
 benchmark: bugs tools
