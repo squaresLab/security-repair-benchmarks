@@ -1,0 +1,10 @@
+[
+	{
+		"module": "src/make-prime-list.c",
+		"function": "main",
+		"variable": "limit",
+		"value": "5",
+		"type": "int",
+		"src_line": 174
+	}
+]
