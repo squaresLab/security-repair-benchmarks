@@ -1,0 +1,12 @@
+#
+# This Dockerfile is used to build an all-in-one image that contains:
+#
+# * all of the images in the benchmark
+# * all of the tools
+#
+FROM secbugs
+ENV EXTRACTFIX_BINARY /opt/extractfix/bin/extractfix
+ENV PATH "/opt/hifix/bin:${PATH}"
+COPY --from=extractfix /opt/ /opt/
+COPY --from=hifix /opt/llvm11/ /opt/llvm11/
+COPY --from=hifix /opt/hifix/ /opt/hifix/
