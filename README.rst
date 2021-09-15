@@ -41,7 +41,7 @@ To attempt to repair a given bug scenario using a certain tool, run the followin
 
 .. code:: command
 
-  $ docker run --rm -it secbugs
+  $ scripts/run.sh
   # secbugs repair [name-of-tool] [benchmark-directory]
 
 
@@ -54,7 +54,7 @@ ExtractFix, execute the following:
 
 .. code:: command
 
-  $ docker run --rm -it secbugs
+  $ scripts/run.sh
   # cd /benchmarks/jasper/cve_2016_9557
   # secbugs repair extractfix .
 
