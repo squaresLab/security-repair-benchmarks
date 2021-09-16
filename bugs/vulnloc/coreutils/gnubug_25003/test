@@ -6,4 +6,6 @@ BUG_FILE="${HERE_DIR}/bug.json"
 SUBJECT_PATH="$(jq -r ".options.extractfix.binary.path" "${BUG_FILE}")"
 PATH_BIN="${1:-${HERE_DIR}/source/${SUBJECT_PATH}}"
 
-${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" -n2/3 /dev/null
+touch 7
+# https://bug-coreutils.gnu.narkive.com/eALwIjAV/bug-25003-bug-in-split-utility
+${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" -n7/75 7
