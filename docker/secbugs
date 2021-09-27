@@ -12,6 +12,8 @@ import typing as t
 logger = logging.getLogger("secbugs")
 logger.setLevel(logging.DEBUG)
 
+BENCHMARKS_DIRECTORY = "/benchmarks"
+
 RESULTS_DIRECTORY = "/results"
 HIFIX_RESULTS_DIRECTORY = os.path.join(RESULTS_DIRECTORY, "hifix")
 EXTRACTFIX_RESULTS_DIRECTORY = os.path.join(RESULTS_DIRECTORY, "extractfix")
@@ -338,8 +340,31 @@ def repair(bug_dir: str, tool: str) -> None:
         raise ValueError("unrecognized repair tool")
 
 
+def find_bug_files(directory: str = BENCHMARKS_DIRECTORY) -> t.Set[str]:
+    output = set()
+    for root, dirs, filenames in os.walk(directory):
+        for filename in filenames:
+            if filename == "bug.json":
+                filename = os.path.join(root, filename)
+                output.add(filename)
+    return output
+
+
 def repair_command(args: argparse.Namespace) -> None:
     repair(args.bug, args.tool)
+
+
+def collect_command(args: argparse.Namespace) -> None:
+    bug_files = find_bug_files()
+    logger.info("found %d bug files", len(bug_files))
+
+    # TODO parallelization!
+    for filename in bug_files:
+        bug_dir = os.path.dirname(filename)
+        logger.info("collecting results for bug file: %s", filename)
+        repair(bug_dir, "hifix")
+
+    logger.info("collected all results")
 
 
 if __name__ == "__main__":
@@ -352,6 +377,12 @@ if __name__ == "__main__":
         "Provides helpful utilities for performing APR experiments.",
     )
     subparsers = parser.add_subparsers()
+
+    parser_collect = subparsers.add_parser(
+        "collect",
+        help="Runs all of the experiments and collects the results.",
+    )
+    parser_collect.set_defaults(func=collect_command)
 
     parser_repair = subparsers.add_parser(
         "repair",
