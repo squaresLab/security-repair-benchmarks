@@ -3,9 +3,14 @@ import argparse
 import contextlib
 import functools
 import json
+import logging
 import os
+import shutil
 import subprocess
 import typing as t
+
+logger = logging.getLogger("secbugs")
+logger.setLevel(logging.DEBUG)
 
 RESULTS_DIRECTORY = "/results"
 HIFIX_RESULTS_DIRECTORY = os.path.join(RESULTS_DIRECTORY, "hifix")
@@ -280,13 +285,37 @@ def repair_with_hifix(
     bug_dir: str,
     bug_json: t.Dict[str, t.Any],
 ) -> None:
-    # determine the log filename
-    log_filename = "{}_{}.log.txt"
-    log_filename = log_filename.format(bug_json["subject"], bug_json["name"])
+    qualified_bug_name = "{}_{}".format(bug_json["subject"], bug_json["name"])
+
+    log_filename = "{}.log.txt".format(qualified_bug_name)
     log_filename = os.path.join(HIFIX_LOGS_DIRECTORY, log_filename)
+
+    results_dir = os.path.join(HIFIX_RESULTS_DIRECTORY, qualified_bug_name)
+    if os.path.exists(results_dir):
+        shutil.rmtree(results_dir, ignore_errors=True)
+    os.makedirs(results_dir, exist_ok=True)
 
     command = "/opt/hifix/bin/hifix repair {}".format(bug_dir)
     run_command(command, log_to_file=log_filename)
+
+    # copy across all of the relevant result artifacts
+    to_copy = (
+        "fix-locations.json",
+        "localization.json",
+        "mutations.json",
+        "patches",
+        "source-mapping.json",
+    )
+
+    for path in to_copy:
+        copy_from_path = os.path.join(bug_dir, path)
+        copy_to_path = os.path.join(results_dir, path)
+        if os.path.isdir(copy_from_path):
+            shutil.copytree(copy_from_path, copy_to_path)
+        elif os.path.isfile(copy_from_path):
+            shutil.copy(copy_from_path, copy_to_path)
+        else:
+            logger.debug("could not find results artifact [%s]", path)
 
 
 def load_bug_info(bug_dir: str) -> t.Dict[str, t.Any]:
@@ -314,6 +343,11 @@ def repair_command(args: argparse.Namespace) -> None:
 
 
 if __name__ == "__main__":
+    logging.basicConfig(
+        format="%(asctime)s: %(levelname)s: %(message)s",
+        datefmt="%I:%M:%S %p",
+    )
+
     parser = argparse.ArgumentParser(
         "Provides helpful utilities for performing APR experiments.",
     )
