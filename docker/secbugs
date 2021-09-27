@@ -1,10 +1,19 @@
 #!/usr/bin/env python3
 import argparse
+import contextlib
 import functools
 import json
 import os
 import subprocess
 import typing as t
+
+RESULTS_DIRECTORY = "/results"
+HIFIX_RESULTS_DIRECTORY = os.path.join(RESULTS_DIRECTORY, "hifix")
+EXTRACTFIX_RESULTS_DIRECTORY = os.path.join(RESULTS_DIRECTORY, "extractfix")
+
+LOGS_DIRECTORY = "/logs"
+HIFIX_LOGS_DIRECTORY = os.path.join(LOGS_DIRECTORY, "hifix")
+EXTRACTFIX_LOGS_DIRECTORY = os.path.join(LOGS_DIRECTORY, "extractfix")
 
 REPAIR_TOOLS = (
     'extractfix',
@@ -118,6 +127,33 @@ fi
 """.strip()
 
 
+def run_command(
+   command: str,
+   log_to_file: t.Optional[str] = None,
+) -> None:
+    with contextlib.ExitStack() as stack:
+        stdout = None
+        stderr = None
+
+        if log_to_file:
+            if os.path.exists(log_to_file):
+                os.remove(log_to_file)
+            else:
+                os.makedirs(os.path.dirname(log_to_file), exist_ok=True)
+            logger = open(log_to_file, "a")
+            stack.enter_context(logger)
+            stdout = logger
+            stderr = logger
+
+        subprocess.run(
+            args=command,
+            shell=True,
+            stdin=subprocess.DEVNULL,
+            stdout=stdout,
+            stderr=stderr,
+        )
+
+
 def generic_sanity_check(bug_dir: str) -> None:
     """
     Performs general sanity checking of a scenario contained within a given
@@ -209,9 +245,17 @@ def prepare_for_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
     os.chmod(path_klee_driver, 0o775)
 
 
-def repair_with_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
+def repair_with_extractfix(
+    bug_dir: str,
+    bug_json: t.Dict[str, t.Any],
+) -> None:
     extractfix_sanity_check(bug_dir, bug_json)
     prepare_for_extractfix(bug_dir, bug_json)
+
+    # determine the log filename
+    log_filename = "{}_{}.log.txt"
+    log_filename = log_filename.format(bug_json["subject"], bug_json["name"])
+    log_filename = os.path.join(EXTRACTFIX_LOGS_DIRECTORY, log_filename)
 
     # TODO prepare results directory
 
@@ -229,12 +273,20 @@ def repair_with_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
         "-n",
         bug_json["options"]["extractfix"]["binary"]["name"],
     ])
-    subprocess.check_call(command, shell=True)
+    run_command(command, log_to_file=log_filename)
 
 
-def repair_with_hifix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
+def repair_with_hifix(
+    bug_dir: str,
+    bug_json: t.Dict[str, t.Any],
+) -> None:
+    # determine the log filename
+    log_filename = "{}_{}.log.txt"
+    log_filename = log_filename.format(bug_json["subject"], bug_json["name"])
+    log_filename = os.path.join(HIFIX_LOGS_DIRECTORY, log_filename)
+
     command = "/opt/hifix/bin/hifix repair {}".format(bug_dir)
-    subprocess.check_call(command, shell=True)
+    run_command(command, log_to_file=log_filename)
 
 
 def load_bug_info(bug_dir: str) -> t.Dict[str, t.Any]:
