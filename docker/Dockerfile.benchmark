@@ -135,3 +135,7 @@ ENV PATH "/opt/secbugs/bin:${PATH}"
 # FIXME this should be included in the run script
 ENV PATH "/opt/extractfix/bin:${PATH}"
 ENV PATH "/opt/hifix/bin:${PATH}"
+
+COPY docker/entrypoint.sh /
+CMD ["/bin/bash"]
+ENTRYPOINT ["/entrypoint.sh"]
