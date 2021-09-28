@@ -4,6 +4,7 @@ import contextlib
 import functools
 import json
 import logging
+import multiprocessing
 import os
 import shutil
 import subprocess
@@ -354,15 +355,19 @@ def repair_command(args: argparse.Namespace) -> None:
     repair(args.bug, args.tool)
 
 
+def collect_bug(bug_filename: str) -> None:
+    bug_dir = os.path.dirname(bug_filename)
+    # logger.info("collecting results for bug file: %s", bug_filename)
+    repair(bug_dir, "hifix")
+
+
 def collect_command(args: argparse.Namespace) -> None:
+    num_jobs = args.jobs
     bug_files = find_bug_files()
     logger.info("found %d bug files", len(bug_files))
 
-    # TODO parallelization!
-    for filename in bug_files:
-        bug_dir = os.path.dirname(filename)
-        logger.info("collecting results for bug file: %s", filename)
-        repair(bug_dir, "hifix")
+    with multiprocessing.Pool(processes=num_jobs) as pool:
+        pool.map(collect_bug, bug_files)
 
     logger.info("collected all results")
 
@@ -381,6 +386,13 @@ if __name__ == "__main__":
     parser_collect = subparsers.add_parser(
         "collect",
         help="Runs all of the experiments and collects the results.",
+    )
+    parser_collect.add_argument(
+        "-j", "--jobs",
+        help="the number of experiments that may be run in parallel",
+        dest="jobs",
+        type=int,
+        default=1,
     )
     parser_collect.set_defaults(func=collect_command)
 
