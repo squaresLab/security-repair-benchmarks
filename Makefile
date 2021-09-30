@@ -12,7 +12,4 @@ tools: init
 benchmark: bugs
 	docker build -f docker/Dockerfile.benchmark -t secbugs .
 
-aio: benchmark tools
-	docker build -f docker/Dockerfile.aio -t secbugs:aio .
-
-.PHONY: aio bugs init tools benchmark
+.PHONY: bugs init tools benchmark
