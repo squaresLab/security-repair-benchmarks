@@ -8,7 +8,8 @@
  	- [X] provide wrapper for fuzz.py
  	- [ ] include fuzzer volume in secbugs container (not sure exactly, see below)
 - [ ] Integrate fuzzer in patch validation and ranking algorithm. Chris wanted to fill in the control code and the instrumentation of the patched program.
-- [ ] Provide configuration files (`config.ini`) for libtiff and binary compilation for all subjects (expected to need a recompilation for each fuzzing campaign because of different parameters), "x" added and tested, "-" just added, "?" problem detected
+- [ ] Provide configuration files (`config.ini`) and binary compilation for all subjects (expected to need a recompilation for each fuzzing campaign because of different parameters), "x" added and tested, "-" just added not completely tested, "?" problem detected
+- [-] libtiff
 	- [X] bugzilla_2611
 	- [-] bugzilla_2633
 	- [X] cve_2016_3186
@@ -24,41 +25,41 @@
 	- [-] cve_2017_7599
 	- [-] cve_2017_7600
 	- [-] cve_2017_7601
-- [ ] Provide configuration files (`config.ini`) for binutils
+- [ ] binutils
 	- [ ] cve_2017_6965
 	- [ ] cve_2017_14745
 	- [ ] cve_2017_15020
 	- [ ] cve_2017_15025
-- [ ] Provide configuration files (`config.ini`) for coreutils
+- [ ] coreutils
 	- [ ] gnubug_19784
 	- [ ] gnubug_25003
 	- [ ] gnubug_25023
 	- [ ] gnubug_26545
-- [ ] Provide configuration files (`config.ini`) for ffmpeg
+- [ ] ffmpeg
 	- [ ] bugchrom_1404
 	- [ ] cve_2017_9992
-- [ ] Provide configuration files (`config.ini`) for jasper
+- [ ] jasper
 	- [ ] cve_2016_8691
 	- [ ] cve_2016_9557
-- [ ] Provide configuration files (`config.ini`) for libarchive
+- [?] libarchive
 	- [?] cve_2016_5844, memory problem
-- [ ] Provide configuration files (`config.ini`) for libjpeg
-	- [ ] cve_2012_2806
-	- [ ] cve_2017_15232
-	- [ ] cve_2018_14498
-	- [ ] cve_2018_19664
-- [ ] Provide configuration files (`config.ini`) for libming
+- [X] libjpeg
+	- [X] cve_2012_2806
+	- [X] cve_2017_15232
+	- [X] cve_2018_14498
+	- [X] cve_2018_19664
+- [ ] libming
 	- [ ] cve_2016_9264
 	- [ ] cve_2018_8806
 	- [ ] cve_2018_8964
-- [ ] Provide configuration files (`config.ini`) for libxml2
-	- [x] cve_2012_5134
+- [-] libxml2
+	- [X] cve_2012_5134
 	- [-] cve_2016_1838
 	- [-] cve_2016_1839
 	- [-] cve_2017_5969
-- [ ] Provide configuration files (`config.ini`) for potrace
+- [?] potrace
 	- [?] cve_2013_7437, memory problem
-- [ ] Provide configuration files (`config.ini`) for zziplib
+- [ ] zziplib
 	- [ ] cve_2017_5974
 	- [ ] cve_2017_5975
 	- [ ] cve_2017_5976
