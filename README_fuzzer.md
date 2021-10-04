@@ -8,7 +8,7 @@
  	- [X] provide wrapper for fuzz.py
  	- [ ] include fuzzer volume in secbugs container (not sure exactly, see below)
 - [ ] Integrate fuzzer in patch validation and ranking algorithm. Chris wanted to fill in the control code and the instrumentation of the patched program.
-- [ ] Provide configuration files (`config.ini`) for libtiff and binary compilation for all subjects (expected to need a recompilation for each fuzzing campaign because of different parameters), "x" added and tested, "-" just added
+- [ ] Provide configuration files (`config.ini`) for libtiff and binary compilation for all subjects (expected to need a recompilation for each fuzzing campaign because of different parameters), "x" added and tested, "-" just added, "?" problem detected
 	- [X] bugzilla_2611
 	- [-] bugzilla_2633
 	- [X] cve_2016_3186
@@ -52,10 +52,10 @@
 	- [ ] cve_2018_8806
 	- [ ] cve_2018_8964
 - [ ] Provide configuration files (`config.ini`) for libxml2
-	- [ ] cve_2012_5134
-	- [ ] cve_2016_1838
-	- [ ] cve_2016_1839
-	- [ ] cve_2017_5969
+	- [?] cve_2012_5134, empty seed trace
+	- [?] cve_2016_1838
+	- [?] cve_2016_1839
+	- [?] cve_2017_5969
 - [ ] Provide configuration files (`config.ini`) for potrace
 	- [ ] cve_2013_7437
 - [ ] Provide configuration files (`config.ini`) for zziplib
