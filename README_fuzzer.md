@@ -57,7 +57,7 @@
 	- [?] cve_2016_1839
 	- [?] cve_2017_5969
 - [ ] Provide configuration files (`config.ini`) for potrace
-	- [ ] cve_2013_7437
+	- [?] cve_2013_7437, memory problem
 - [ ] Provide configuration files (`config.ini`) for zziplib
 	- [ ] cve_2017_5974
 	- [ ] cve_2017_5975
