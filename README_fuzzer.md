@@ -41,7 +41,7 @@
 	- [ ] cve_2016_8691
 	- [ ] cve_2016_9557
 - [ ] Provide configuration files (`config.ini`) for libarchive
-	- [ ] cve_2016_5844
+	- [?] cve_2016_5844, memory problem
 - [ ] Provide configuration files (`config.ini`) for libjpeg
 	- [ ] cve_2012_2806
 	- [ ] cve_2017_15232
