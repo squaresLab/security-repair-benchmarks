@@ -3,4 +3,4 @@
 	url = git@github.com:jpksh90/ExtractFix
 [submodule "tools/HiFix"]
 	path = tools/HiFix
-	url = git@github.com:jpksh90/HiFix
+	url = git@github.com:squaresLab/HiFix
