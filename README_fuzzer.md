@@ -52,10 +52,10 @@
 	- [ ] cve_2018_8806
 	- [ ] cve_2018_8964
 - [ ] Provide configuration files (`config.ini`) for libxml2
-	- [?] cve_2012_5134, empty seed trace
-	- [?] cve_2016_1838
-	- [?] cve_2016_1839
-	- [?] cve_2017_5969
+	- [x] cve_2012_5134
+	- [-] cve_2016_1838
+	- [-] cve_2016_1839
+	- [-] cve_2017_5969
 - [ ] Provide configuration files (`config.ini`) for potrace
 	- [?] cve_2013_7437, memory problem
 - [ ] Provide configuration files (`config.ini`) for zziplib
