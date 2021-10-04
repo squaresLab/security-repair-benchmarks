@@ -1,0 +1,6 @@
+#!/bin/bash
+set -eu
+
+cd source
+./configure
+make CFLAGS="-static -ggdb" CXXFLAGS="-static -ggdb"
