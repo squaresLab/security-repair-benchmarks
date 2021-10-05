@@ -28,8 +28,8 @@
 - [ ] binutils
 	- [X] cve_2017_6965
 	- [X] cve_2017_14745, memory problem?
-	- [X] cve_2017_15020, not tested
-	- [X] cve_2017_15025, not tested
+	- [X] cve_2017_15020, memory problem?
+	- [X] cve_2017_15025, memory problem?
 - [ ] coreutils
 	- [X] gnubug_19784, crashes in input writing (byte conversion)
 	- [X] gnubug_25003, crashes in input writing (byte conversion)
@@ -48,15 +48,15 @@
 	- [X] cve_2017_15232
 	- [X] cve_2018_14498, no inputs within 5min
 	- [X] cve_2018_19664, no inputs within 5min
-- [ ] libming
+- [X] libming
 	- [X] cve_2016_9264
-	- [X] cve_2018_8806, not tested
-	- [X] cve_2018_8964, not tested
+	- [X] cve_2018_8806
+	- [X] cve_2018_8964
 - [] libxml2
 	- [X] cve_2012_5134
-	- [X] cve_2016_1838, not tested
-	- [X] cve_2016_1839, not tested
-	- [X] cve_2017_5969, not tested
+	- [X] cve_2016_1838, memory problem?
+	- [X] cve_2016_1839, memory problem?
+	- [X] cve_2017_5969
 - [] potrace
 	- [X] cve_2013_7437, memory problem?
 - [X] zziplib
