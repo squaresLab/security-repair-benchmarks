@@ -10,25 +10,25 @@
 - [ ] Integrate fuzzer in patch validation and ranking algorithm. Chris wanted to fill in the control code and the instrumentation of the patched program.
 - [ ] Provide configuration files (`config.ini`) and binary compilation for all subjects (expected to need a recompilation for each fuzzing campaign because of different parameters)
 - [] libtiff
-	- [X] bugzilla_2611, ?
-	- [X] bugzilla_2633, not tested
-	- [X] cve_2016_3186, ?
+	- [X] bugzilla_2611, no inputs within 20 min (test on server)
+	- [X] bugzilla_2633
+	- [X] cve_2016_3186
 	- [X] cve_2016_5314
-	- [X] cve_2016_5321, ?
-	- [X] cve_2016_9273, ?
-	- [X] cve_2016_9532, ?
-	- [X] cve_2016_10092, ?
-	- [X] cve_2016_10094, ?
-	- [X] cve_2016_10272, ?
-	- [X] cve_2017_5225, ?
-	- [X] cve_2017_7595, not tested
-	- [X] cve_2017_7599, not tested
+	- [X] cve_2016_5321
+	- [X] cve_2016_9273
+	- [X] cve_2016_9532
+	- [X] cve_2016_10092
+	- [X] cve_2016_10094
+	- [X] cve_2016_10272, memory problem?
+	- [X] cve_2017_5225
+	- [X] cve_2017_7595, no inputs within 5min
+	- [X] cve_2017_7599, no inputs within 5min
 	- [X] cve_2017_7600, not tested
 	- [X] cve_2017_7601, not tested
 - [ ] binutils
 	- [X] cve_2017_6965
-	- [X] cve_2017_14745, memory problem?
-	- [X] cve_2017_15020, memory problem?
+	- [X] cve_2017_14745
+	- [X] cve_2017_15020, memory problem?, (running on server)
 	- [X] cve_2017_15025, memory problem?
 - [ ] coreutils
 	- [X] gnubug_19784, crashes in input writing (byte conversion)
@@ -121,6 +121,7 @@ vi /benchmarks/libtiff/cve_2016_5314/config.ini
 
 ```
 /opt/fuzzer/code/fuzz --config_file /benchmarks/libtiff/cve_2016_5314/config.ini --tag cve_2016_5314
+/opt/fuzzer/code/fuzz --config_file config.ini --tag cve_2016_5314
 ```
 
 ... wait for specified time bound in config.ini (current default setup is 5 min for testing purpose)
