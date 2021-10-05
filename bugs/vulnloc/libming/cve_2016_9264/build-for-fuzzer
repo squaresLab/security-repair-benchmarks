@@ -1,0 +1,7 @@
+#!/bin/bash
+set -eu
+
+cd source
+./autogen.sh
+./configure
+make CFLAGS="-static -ggdb" CXXFLAGS="-static -ggdb"
