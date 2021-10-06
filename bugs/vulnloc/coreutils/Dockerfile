@@ -46,6 +46,4 @@ RUN cd "${SUT_SOURCE_PATH}" \
  && git checkout "${SUT_VERSION}"
 
 ARG BUG_DIR
-COPY "${BUG_DIR}/*.json" ./
-COPY "${BUG_DIR}/test" test
-# COPY "${BUG_DIR}/exploit" exploit
+COPY "${BUG_DIR}/" ./
