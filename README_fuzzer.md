@@ -21,7 +21,7 @@
 	- [X] cve_2016_10094
 	- [X] cve_2016_10272
 	- [X] cve_2017_5225
-	- [X] cve_2017_7595, no inputs within 5min
+	- [X] cve_2017_7595, no inputs within 30 min
 	- [X] cve_2017_7599, no inputs within 5min
 	- [X] cve_2017_7600, no inputs within 5min
 	- [X] cve_2017_7601
@@ -39,10 +39,10 @@
 	- [ ] bugchrom_1404 TODO
 	- [ ] cve_2017_9992 TODO
 - [ ] jasper
-	- [X] cve_2016_8691, no inputs within 5min
+	- [X] cve_2016_8691, no inputs within 30 min -> running on server for 4 hours
 	- [X] cve_2016_9557, no inputs within 5min
 - [ ] libarchive
-	- [X] cve_2016_5844, (running on server)
+	- [X] cve_2016_5844, memory problem?
 - [ ] libjpeg
 	- [X] cve_2012_2806, no inputs within 5min
 	- [X] cve_2017_15232
