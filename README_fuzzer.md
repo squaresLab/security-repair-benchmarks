@@ -9,7 +9,7 @@
  	- [ ] include fuzzer volume in secbugs container (not sure exactly, see below)
 - [ ] Integrate fuzzer in patch validation and ranking algorithm. Chris wanted to fill in the control code and the instrumentation of the patched program.
 - [ ] Provide configuration files (`config.ini`) and binary compilation for all subjects (expected to need a recompilation for each fuzzing campaign because of different parameters)
-- [] libtiff
+- [ ] libtiff
 	- [X] bugzilla_2611, no inputs within 20 min (test on server)
 	- [X] bugzilla_2633
 	- [X] cve_2016_3186
@@ -19,31 +19,31 @@
 	- [X] cve_2016_9532
 	- [X] cve_2016_10092
 	- [X] cve_2016_10094
-	- [X] cve_2016_10272, memory problem?
+	- [X] cve_2016_10272
 	- [X] cve_2017_5225
 	- [X] cve_2017_7595, no inputs within 5min
 	- [X] cve_2017_7599, no inputs within 5min
-	- [X] cve_2017_7600, not tested
-	- [X] cve_2017_7601, not tested
+	- [X] cve_2017_7600, no inputs within 5min
+	- [X] cve_2017_7601
 - [ ] binutils
 	- [X] cve_2017_6965
 	- [X] cve_2017_14745
-	- [X] cve_2017_15020, memory problem?, (running on server)
-	- [X] cve_2017_15025, memory problem?
+	- [X] cve_2017_15020
+	- [X] cve_2017_15025, no inputs within 5 min
 - [ ] coreutils
-	- [X] gnubug_19784, crashes in input writing (byte conversion)
-	- [X] gnubug_25003, crashes in input writing (byte conversion)
-	- [X] gnubug_25023, not tested
-	- [X] gnubug_26545, not tested
+	- [X] gnubug_19784 (store all inputs)
+	- [X] gnubug_25003 (store all inputs)
+	- [X] gnubug_25023 (store all inputs)
+	- [X] gnubug_26545 (store all inputs), ! no inputs are generated
 - [ ] ffmpeg
-	- [ ] bugchrom_1404, ? not in our benchmark
-	- [ ] cve_2017_9992, ? not in our benchmark
+	- [ ] bugchrom_1404 TODO
+	- [ ] cve_2017_9992 TODO
 - [ ] jasper
 	- [X] cve_2016_8691, no inputs within 5min
-	- [X] cve_2016_9557, not tested
-- [] libarchive
-	- [X] cve_2016_5844, memory problem?
-- [] libjpeg
+	- [X] cve_2016_9557, no inputs within 5min
+- [ ] libarchive
+	- [X] cve_2016_5844, (running on server)
+- [ ] libjpeg
 	- [X] cve_2012_2806, no inputs within 5min
 	- [X] cve_2017_15232
 	- [X] cve_2018_14498, no inputs within 5min
@@ -52,12 +52,12 @@
 	- [X] cve_2016_9264
 	- [X] cve_2018_8806
 	- [X] cve_2018_8964
-- [] libxml2
+- [ ] libxml2
 	- [X] cve_2012_5134
 	- [X] cve_2016_1838, memory problem?
 	- [X] cve_2016_1839, memory problem?
 	- [X] cve_2017_5969
-- [] potrace
+- [ ] potrace
 	- [X] cve_2013_7437, memory problem?
 - [X] zziplib
 	- [X] cve_2017_5974
