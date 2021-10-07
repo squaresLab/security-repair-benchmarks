@@ -39,7 +39,7 @@
 	- [ ] bugchrom_1404 TODO
 	- [ ] cve_2017_9992 TODO
 - [ ] jasper
-	- [X] cve_2016_8691, no inputs within 30 min -> running on server for 4 hours
+	- [X] cve_2016_8691, ! no inputs after 4 hours on the server (all inputs enabled)
 	- [X] cve_2016_9557, no inputs within 5min
 - [ ] libarchive
 	- [X] cve_2016_5844, memory problem?
