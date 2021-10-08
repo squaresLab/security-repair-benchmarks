@@ -1,3 +1,6 @@
 [submodule "tools/HiFix"]
 	path = tools/HiFix
 	url = git@github.com:squaresLab/HiFix
+[submodule "tools/ExtractFix"]
+	path = tools/ExtractFix
+	url = git@github.com:ChrisTimperley/ExtractFix
