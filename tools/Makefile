@@ -1,4 +1,4 @@
-all: extractfix hifix fuzzer
+all: extractfix hifix
 
 extractfix:
 	docker build -t extractfix ExtractFix
@@ -6,7 +6,4 @@ extractfix:
 hifix:
 	make -C HiFix/docker
 
-fuzzer:
-	docker build -t fuzzer VulnLoc
-
-.PHONY: extractfix hifix fuzzer
+.PHONY: extractfix hifif
