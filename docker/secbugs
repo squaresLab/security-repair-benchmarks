@@ -1,10 +1,27 @@
 #!/usr/bin/env python3
 import argparse
+import contextlib
 import functools
 import json
+import logging
+import multiprocessing
 import os
+import shutil
 import subprocess
 import typing as t
+
+logger = logging.getLogger("secbugs")
+logger.setLevel(logging.DEBUG)
+
+BENCHMARKS_DIRECTORY = "/benchmarks"
+
+RESULTS_DIRECTORY = "/results"
+HIFIX_RESULTS_DIRECTORY = os.path.join(RESULTS_DIRECTORY, "hifix")
+EXTRACTFIX_RESULTS_DIRECTORY = os.path.join(RESULTS_DIRECTORY, "extractfix")
+
+LOGS_DIRECTORY = "/logs"
+HIFIX_LOGS_DIRECTORY = os.path.join(LOGS_DIRECTORY, "hifix")
+EXTRACTFIX_LOGS_DIRECTORY = os.path.join(LOGS_DIRECTORY, "extractfix")
 
 REPAIR_TOOLS = (
     'extractfix',
@@ -118,6 +135,33 @@ fi
 """.strip()
 
 
+def run_command(
+   command: str,
+   log_to_file: t.Optional[str] = None,
+) -> None:
+    with contextlib.ExitStack() as stack:
+        stdout = None
+        stderr = None
+
+        if log_to_file:
+            if os.path.exists(log_to_file):
+                os.remove(log_to_file)
+            else:
+                os.makedirs(os.path.dirname(log_to_file), exist_ok=True)
+            logger = open(log_to_file, "a")
+            stack.enter_context(logger)
+            stdout = logger
+            stderr = logger
+
+        subprocess.run(
+            args=command,
+            shell=True,
+            stdin=subprocess.DEVNULL,
+            stdout=stdout,
+            stderr=stderr,
+        )
+
+
 def generic_sanity_check(bug_dir: str) -> None:
     """
     Performs general sanity checking of a scenario contained within a given
@@ -209,9 +253,17 @@ def prepare_for_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
     os.chmod(path_klee_driver, 0o775)
 
 
-def repair_with_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
+def repair_with_extractfix(
+    bug_dir: str,
+    bug_json: t.Dict[str, t.Any],
+) -> None:
     extractfix_sanity_check(bug_dir, bug_json)
     prepare_for_extractfix(bug_dir, bug_json)
+
+    # determine the log filename
+    log_filename = "{}_{}.log.txt"
+    log_filename = log_filename.format(bug_json["subject"], bug_json["name"])
+    log_filename = os.path.join(EXTRACTFIX_LOGS_DIRECTORY, log_filename)
 
     # TODO prepare results directory
 
@@ -229,12 +281,44 @@ def repair_with_extractfix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
         "-n",
         bug_json["options"]["extractfix"]["binary"]["name"],
     ])
-    subprocess.check_call(command, shell=True)
+    run_command(command, log_to_file=log_filename)
 
 
-def repair_with_hifix(bug_dir: str, bug_json: t.Dict[str, t.Any]) -> None:
+def repair_with_hifix(
+    bug_dir: str,
+    bug_json: t.Dict[str, t.Any],
+) -> None:
+    qualified_bug_name = "{}_{}".format(bug_json["subject"], bug_json["name"])
+
+    log_filename = "{}.log.txt".format(qualified_bug_name)
+    log_filename = os.path.join(HIFIX_LOGS_DIRECTORY, log_filename)
+
+    results_dir = os.path.join(HIFIX_RESULTS_DIRECTORY, qualified_bug_name)
+    if os.path.exists(results_dir):
+        shutil.rmtree(results_dir, ignore_errors=True)
+    os.makedirs(results_dir, exist_ok=True)
+
     command = "/opt/hifix/bin/hifix repair {}".format(bug_dir)
-    subprocess.check_call(command, shell=True)
+    run_command(command, log_to_file=log_filename)
+
+    # copy across all of the relevant result artifacts
+    to_copy = (
+        "fix-locations.json",
+        "localization.json",
+        "mutations.json",
+        "patches",
+        "source-mapping.json",
+    )
+
+    for path in to_copy:
+        copy_from_path = os.path.join(bug_dir, path)
+        copy_to_path = os.path.join(results_dir, path)
+        if os.path.isdir(copy_from_path):
+            shutil.copytree(copy_from_path, copy_to_path)
+        elif os.path.isfile(copy_from_path):
+            shutil.copy(copy_from_path, copy_to_path)
+        else:
+            logger.debug("could not find results artifact [%s]", path)
 
 
 def load_bug_info(bug_dir: str) -> t.Dict[str, t.Any]:
@@ -257,15 +341,60 @@ def repair(bug_dir: str, tool: str) -> None:
         raise ValueError("unrecognized repair tool")
 
 
+def find_bug_files(directory: str = BENCHMARKS_DIRECTORY) -> t.Set[str]:
+    output = set()
+    for root, dirs, filenames in os.walk(directory):
+        for filename in filenames:
+            if filename == "bug.json":
+                filename = os.path.join(root, filename)
+                output.add(filename)
+    return output
+
+
 def repair_command(args: argparse.Namespace) -> None:
     repair(args.bug, args.tool)
 
 
+def collect_bug(bug_filename: str) -> None:
+    bug_dir = os.path.dirname(bug_filename)
+    # logger.info("collecting results for bug file: %s", bug_filename)
+    repair(bug_dir, "hifix")
+
+
+def collect_command(args: argparse.Namespace) -> None:
+    num_jobs = args.jobs
+    bug_files = find_bug_files()
+    logger.info("found %d bug files", len(bug_files))
+
+    with multiprocessing.Pool(processes=num_jobs) as pool:
+        pool.map(collect_bug, bug_files)
+
+    logger.info("collected all results")
+
+
 if __name__ == "__main__":
+    logging.basicConfig(
+        format="%(asctime)s: %(levelname)s: %(message)s",
+        datefmt="%I:%M:%S %p",
+    )
+
     parser = argparse.ArgumentParser(
         "Provides helpful utilities for performing APR experiments.",
     )
     subparsers = parser.add_subparsers()
+
+    parser_collect = subparsers.add_parser(
+        "collect",
+        help="Runs all of the experiments and collects the results.",
+    )
+    parser_collect.add_argument(
+        "-j", "--jobs",
+        help="the number of experiments that may be run in parallel",
+        dest="jobs",
+        type=int,
+        default=1,
+    )
+    parser_collect.set_defaults(func=collect_command)
 
     parser_repair = subparsers.add_parser(
         "repair",

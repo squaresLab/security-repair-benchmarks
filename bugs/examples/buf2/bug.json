@@ -1,6 +1,6 @@
 {
   "subject": "hello-world",
-  "name": "simpleif",
+  "name": "buf2",
   "options": {
     "extractfix": {
       "bug-type": "buffer_overflow",
@@ -13,5 +13,5 @@
       }
     }
   },
-  "binary": "program"
+  "binary": "buf2"
 }

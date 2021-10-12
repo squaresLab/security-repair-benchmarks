@@ -12,8 +12,8 @@ if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
 fi
 
 pushd "${BUILD_DIR}"
-
-export CFLAGS="-std=c++1 ${CFLAGS:-}"
+export CFLAGS="-g -D__NO_STRING_INLINES  -D_FORTIFY_SOURCE=0 -U__OPTIMIZE__ -Wno-everything ${CFLAGS:-}"
+export CXXFLAGS="-std=c++11 ${CXXFLAGS:-}"
 
 "${SOURCE_DIR}/configure" \
   --pkg-config-flags="--static" \
