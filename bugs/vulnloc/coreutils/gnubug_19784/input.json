@@ -6,5 +6,21 @@
 		"value": "5",
 		"type": "int",
 		"src_line": 174
+	},
+	{
+		"module": "src/make-prime-list.c",
+		"function": "main",
+		"variable": "argc",
+		"value": "2",
+		"type": "int",
+		"src_line": 172
+	},
+	{
+		"module": "src/make-prime-list.c",
+		"function": "main",
+		"variable": "argv",
+		"value": "2",
+		"type": "array",
+		"src_line": 172
 	}
 ]
