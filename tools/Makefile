@@ -6,4 +6,4 @@ extractfix:
 hifix:
 	make -C HiFix/docker
 
-.PHONY: extractfix hifif
+.PHONY: extractfix hifix
