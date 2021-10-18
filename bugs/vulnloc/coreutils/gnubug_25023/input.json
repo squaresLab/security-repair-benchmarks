@@ -1,0 +1,18 @@
+[
+	{
+		"module": "src/pr.c",
+		"function": "main",
+		"variable": "col_sep_length",
+		"value": "3",
+		"type": "int",
+		"src_line": 692
+	},
+	{
+		"module": "src/pr.c",
+		"function": "main",
+		"variable": "col_sep_string",
+		"value": "\t\t\t",
+		"type": "string",
+		"src_line": 691
+	}
+]
