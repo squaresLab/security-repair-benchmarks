@@ -1,0 +1,10 @@
+[
+	{
+		"module": "binutils/objdump.c",
+		"function": "main",
+		"variable": "argv",
+		"value": "["objdump","-D", "/root/exploit"]",
+		"type": "string-array",
+		"src_line": 3730 
+	}
+]
