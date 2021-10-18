@@ -54,6 +54,8 @@ ARG BUG_DIR
 COPY "${BUG_DIR}/bug.json" bug.json
 COPY "${BUG_DIR}/exploit" exploit
 COPY "${BUG_DIR}/test" test
+COPY "${BUG_DIR}/config.ini" config.ini
+COPY "${BUG_DIR}/build-for-fuzzer" build-for-fuzzer
 
 RUN wget -nv https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 \
      && chmod u+x jq-linux64 \

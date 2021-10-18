@@ -1,0 +1,6 @@
+#!/bin/bash
+set -eu
+
+cd source
+CC=clang CFLAGS="-DFORTIFY_SOURCE=2 -ggdb -Wno-error" ./configure --disable-shared --disable-gdb --disable-libdecnumber --disable-readline --disable-sim
+make

@@ -1,0 +1,6 @@
+#!/bin/bash
+set -eu
+
+cd source
+./configure --without-openssl
+make CFLAGS="-ggdb"

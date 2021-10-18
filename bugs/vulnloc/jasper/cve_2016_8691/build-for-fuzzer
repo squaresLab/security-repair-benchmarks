@@ -1,0 +1,7 @@
+#!/bin/bash
+set -eu
+
+cd source
+autoreconf -i
+./configure
+make CFLAGS="-static -ggdb" CXXFLAGS="-static -ggdb"

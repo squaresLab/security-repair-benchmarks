@@ -1,0 +1,7 @@
+#!/bin/bash
+set -eu
+
+cd source
+./bootstrap
+export FORCE_UNSAFE_CONFIGURE=1 && ./configure
+make CFLAGS="-ggdb" CXXFLAGS="-ggdb"
