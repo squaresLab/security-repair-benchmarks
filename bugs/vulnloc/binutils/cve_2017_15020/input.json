@@ -3,7 +3,7 @@
 		"module": "./source/binutils/nm.c",
 		"function": "main",
 		"variable": "argv",
-		"value": "["-A", "-a", "-l", "-S", "-s", "--special-syms", "--synthetic", "--with-symbol-expression", "../exploit"]",
+		"value": ["-A", "-a", "-l", "-S", "-s", "--special-syms", "--synthetic", "--with-symbol-expression", "../exploit"],
 		"type": "string-array",
 		"src_line": 1624
 	}
