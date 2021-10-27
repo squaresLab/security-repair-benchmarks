@@ -1,0 +1,26 @@
+[
+	{
+		"module": "source/xmllint.c",
+		"function": "main",
+		"variable": "argc",
+		"value": "3",
+		"type": "int",
+		"src_line": 3134
+	},
+	{
+		"module": "source/xmllint.c",
+		"function": "main",
+		"variable": "argv",
+		"value": ["./imginfo", "-f", "/root/exploit"],
+		"type": "string-array",
+		"src_line": 3134
+	},
+    {
+		"module": "src/appl/imginfo.c",
+		"function": "main",
+		"variable": "infile",
+		"value": "/root/exploit",
+		"type": "char",
+		"src_line": 3134
+    }
+]
