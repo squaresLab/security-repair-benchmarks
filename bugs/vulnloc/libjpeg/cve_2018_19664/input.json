@@ -1,0 +1,18 @@
+[
+	{
+		"module": "source/xmllint.c",
+		"function": "main",
+		"variable": "argc",
+		"value": "4",
+		"type": "int",
+		"src_line": 507
+	},
+	{
+		"module": "source/xmllint.c",
+		"function": "main",
+		"variable": "argv",
+		"value": ["./djpeg", "-colors", "256", "-bmp", "/root/exploit"],
+		"type": "string-array",
+		"src_line": 507
+	}
+]

@@ -1,0 +1,18 @@
+[
+	{
+		"module": "source/xmllint.c",
+		"function": "main",
+		"variable": "argc",
+		"value": "14",
+		"type": "int",
+		"src_line": 434
+	},
+	{
+		"module": "source/xmllint.c",
+		"function": "main",
+		"variable": "argv",
+		"value": ["./djpeg -crop", "1x1+16+16", "-onepass", "-dither", "ordered", "-dct", "float", "-colors", "8", "-targa", "-grayscale", "-outfile", "o", "/root/exploit"],
+		"type": "string-array",
+		"src_line": 434
+	}
+]
