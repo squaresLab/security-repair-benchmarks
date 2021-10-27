@@ -1,0 +1,18 @@
+[
+	{
+		"module": "source/xmllint.c",
+		"function": "main",
+		"variable": "argc",
+		"value": "2",
+		"type": "int",
+		"src_line": 3102
+	},
+	{
+		"module": "source/xmllint.c",
+		"function": "main",
+		"variable": "argv",
+		"value": ["./xmllint", "/root/exploit"],
+		"type": "string-array",
+		"src_line": 3102
+	}
+]
