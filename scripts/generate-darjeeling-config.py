@@ -142,6 +142,7 @@ def main(args: t.Optional[t.Sequence[str]] = None) -> None:
     )
 
     parsed_args = parser.parse_args(args)
+    generate_for_bug_directory(parsed_args.directory)
 
 
 if __name__ == "__main__":
