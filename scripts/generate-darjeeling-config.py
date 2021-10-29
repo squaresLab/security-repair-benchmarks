@@ -9,29 +9,6 @@ import yaml
 
 DESCRIPTION = "generates a Darjeeling config file for a given bug."
 
-TESTS_CONFIG = {
-    "type": "shell",
-    "workdir": "FOO_BAR_BAZ",  # FIXME
-    "time-limit": 5,
-    "tests": [
-
-    ],
-}
-
-BUILD_INSTRUCTIONS = {
-    "time-limit": 30,
-    "environment": {
-        "REPAIR_TOOL": "darjeeling",
-    },
-    "steps": [
-        "REPAIR_TOOL=darjeeling ./prebuild",
-        "REPAIR_TOOL=darjeeling ./build",
-    ],
-    "steps-for-coverage": [
-        "REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./prebuild",
-    ],
-}
-
 
 def generate_config(
     program_name: str,
@@ -41,6 +18,8 @@ def generate_config(
     max_candidates: int,
     *,
     source_directory: str = "/workspace/src",
+    workspace_directory: str = "/workspace",
+    test_time_limit_seconds: int = 5,
 ) -> t.Dict[str, t.Any]:
     config = {}
     config["version"] = 1.0
@@ -81,25 +60,33 @@ def generate_config(
         "image": docker_image_name,
         "language": "c",
         "source-directory": source_directory,
-        "build-instructions": BUILD_INSTRUCTIONS,
-        "tests": "FIXME",
+        "build-instructions": {
+            "time-limit": 30,
+            "environment": {
+                "REPAIR_TOOL": "darjeeling",
+            },
+            "steps": [
+                "REPAIR_TOOL=darjeeling ./prebuild",
+                "REPAIR_TOOL=darjeeling ./build",
+            ],
+            "steps-for-coverage": [
+                "REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./prebuild",
+            ],
+        },
+        "tests": {
+            "type": "shell",
+            "workdir": workspace_directory,
+            "tests": ["./test"],
+            "time-limit": test_time_limit_seconds,
+        }
     }
 
-    # TODO add test config to program
-    # program:
-    #   tests:
-    #     type: genprog
-    #     workdir: /experiment
-    #     number-of-failing-tests: 4
-    #     number-of-passing-tests: 18
-    #     time-limit: 5
-
-    # TODO coverage
-    # coverage:
-    #   method:
-    #     type: gcov
-    #     files-to-instrument:
-    #       - zune.c
+    # FIXME we almost certainly need to specify files-to-instrument here
+    config["coverage"] = {
+        "method": {
+            "type": "gcov",
+        },
+    }
 
     return config
 
