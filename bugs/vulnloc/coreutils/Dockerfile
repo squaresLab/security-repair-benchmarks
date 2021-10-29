@@ -9,6 +9,7 @@ RUN apt-get update \
       build-essential \
       clang \
       flex \
+      gcovr \
       gettext \
       git \
       gperf \

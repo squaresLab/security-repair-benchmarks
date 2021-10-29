@@ -6,6 +6,7 @@ RUN apt-get update \
       build-essential \
       clang \
       flex \
+      gcovr \
       git \
       ipython \
       libtool \
