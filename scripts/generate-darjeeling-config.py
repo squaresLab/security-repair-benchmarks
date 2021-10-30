@@ -16,8 +16,9 @@ def generate_config(
     seed: int,
     threads: int,
     max_candidates: int,
+    coverage_files: t.List[str],
     *,
-    source_directory: str = "/workspace/src",
+    source_directory: str = "/workspace/source",
     workspace_directory: str = "/workspace",
     test_time_limit_seconds: int = 5,
 ) -> t.Dict[str, t.Any]:
@@ -48,9 +49,9 @@ def generate_config(
     }
 
     config["optimizations"] = {
-        "ignore-equivalent-insertions": "yes",
-        "ignore-dead-code": "yes",
-        "ignore-string-equivalent-snippets": "yes",
+        "ignore-equivalent-insertions": True,
+        "ignore-dead-code": True,
+        "ignore-string-equivalent-snippets": True,
     }
 
     # determine the name of the Docker image
@@ -66,11 +67,20 @@ def generate_config(
                 "REPAIR_TOOL": "darjeeling",
             },
             "steps": [
-                "REPAIR_TOOL=darjeeling ./prebuild",
-                "REPAIR_TOOL=darjeeling ./build",
+                {
+                    "command": "REPAIR_TOOL=darjeeling ./prebuild",
+                    "directory": workspace_directory,
+                },
+                {
+                    "command": "REPAIR_TOOL=darjeeling ./build",
+                    "directory": workspace_directory,
+                },
             ],
             "steps-for-coverage": [
-                "REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./prebuild",
+                {
+                    "command": "REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./prebuild",
+                    "directory": workspace_directory,
+                },
             ],
         },
         "tests": {
@@ -81,10 +91,10 @@ def generate_config(
         }
     }
 
-    # FIXME we almost certainly need to specify files-to-instrument here
     config["coverage"] = {
         "method": {
             "type": "gcov",
+            "files-to-instrument": coverage_files,
         },
     }
 
@@ -104,6 +114,7 @@ def generate_for_bug_file(bug_filename: str) -> str:
     expected_fields = (
         "subject",
         "name",
+        "options",
     )
     for field_name in expected_fields:
         if field_name not in bug_description:
@@ -114,13 +125,18 @@ def generate_for_bug_file(bug_filename: str) -> str:
     threads = 8
     max_candidates = 100
 
-    # FIXME
+    try:
+        coverage_files = bug_description["options"]["darjeeling"]["coverage-files"]
+    except KeyError:
+        raise ValueError("missing darjeeling.coverage-files field in bug.json")
+
     config = generate_config(
         program_name=bug_description["subject"],
         bug_name=bug_description["name"],
         seed=seed,
         threads=threads,
         max_candidates=max_candidates,
+        coverage_files=coverage_files,
     )
 
     with open(output_filename, "w") as fh:
