@@ -32,6 +32,7 @@ ARG SUT_SOURCE_PATH=/workspace/source
 RUN git clone "${SUT_REPO_URL}" "${SUT_SOURCE_PATH}"
 
 COPY build build
+COPY clean clean
 COPY prebuild prebuild
 COPY recompile recompile
 

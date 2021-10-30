@@ -22,6 +22,7 @@ RUN apt-get update \
 
 WORKDIR /workspace
 COPY build build
+COPY clean clean
 COPY prebuild prebuild
 
 ARG SUT_SOURCE_PATH=/workspace/source
