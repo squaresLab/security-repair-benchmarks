@@ -5,6 +5,7 @@ RUN apt-get update \
       autoconf \
       automake \
       autopoint \
+      bear \
       bison \
       build-essential \
       clang \
@@ -50,5 +51,5 @@ RUN cd "${SUT_SOURCE_PATH}" \
 ARG BUG_DIR
 COPY "${BUG_DIR}/" ./
 
-RUN REPAIR_TOOL=none ./prebuild \
- && REPAIR_TOOL=none ./build
+RUN REPAIR_TOOL=none bear ./prebuild \
+ && REPAIR_TOOL=none bear ./build
