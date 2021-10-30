@@ -5,6 +5,7 @@ RUN apt-get update \
       autoconf \
       automake \
       autopoint \
+      bear \
       bison \
       build-essential \
       clang \
@@ -41,5 +42,5 @@ RUN unzip source.zip \
  && cd "${SUT_SOURCE_PATH}" \
  && autoreconf -i
 
-RUN REPAIR_TOOL=none ./prebuild \
- && REPAIR_TOOL=none ./build
+RUN REPAIR_TOOL=none bear ./prebuild \
+ && REPAIR_TOOL=none bear ./build
