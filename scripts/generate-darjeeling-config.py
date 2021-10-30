@@ -16,7 +16,7 @@ def generate_config(
     seed: int,
     threads: int,
     max_candidates: int,
-    coverage_files: t.List[str],
+    coverage_files: t.List[t.Union[str, t.Dict[str, t.Any]]],
     *,
     source_directory: str = "/workspace/source",
     workspace_directory: str = "/workspace",
@@ -45,7 +45,7 @@ def generate_config(
 
     config["localization"] = {
         "type": "spectrum",
-        "metric": "tarantula",
+        "metric": "genprog",
     }
 
     config["optimizations"] = {
