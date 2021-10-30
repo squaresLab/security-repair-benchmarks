@@ -40,3 +40,6 @@ RUN unzip source.zip \
  && rm source.zip \
  && cd "${SUT_SOURCE_PATH}" \
  && autoreconf -i
+
+RUN REPAIR_TOOL=none ./prebuild \
+ && REPAIR_TOOL=none ./build
