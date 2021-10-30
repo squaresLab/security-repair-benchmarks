@@ -49,3 +49,6 @@ RUN cd "${SUT_SOURCE_PATH}" \
 
 ARG BUG_DIR
 COPY "${BUG_DIR}/" ./
+
+RUN REPAIR_TOOL=none ./prebuild \
+ && REPAIR_TOOL=none ./build
