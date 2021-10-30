@@ -81,6 +81,10 @@ def generate_config(
                     "command": "REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./prebuild",
                     "directory": workspace_directory,
                 },
+                {
+                    "command": "REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./build",
+                    "directory": workspace_directory,
+                },
             ],
         },
         "tests": {
