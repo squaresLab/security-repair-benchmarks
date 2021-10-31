@@ -14,6 +14,7 @@ RUN apt-get update \
       git \
       gperf \
       ipython \
+      jq \
       libjpeg-dev \
       libtool \
       python-dev \
