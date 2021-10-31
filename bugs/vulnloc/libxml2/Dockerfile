@@ -5,6 +5,7 @@ RUN apt-get update \
       autoconf \
       automake \
       autopoint \
+      bear \
       bison \
       build-essential \
       clang \
@@ -13,6 +14,7 @@ RUN apt-get update \
       git \
       gperf \
       ipython \
+      jq \
       libtool \
       pkg-config \
       python-dev \
@@ -21,7 +23,7 @@ RUN apt-get update \
       texinfo \
       unzip \
       vim \
-			wget \
+      wget \
       zip \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/*
@@ -33,6 +35,7 @@ ARG SUT_SOURCE_PATH=/workspace/source
 RUN git clone "${SUT_REPO_URL}" "${SUT_SOURCE_PATH}"
 
 COPY build build
+COPY clean clean
 COPY prebuild prebuild
 COPY recompile recompile
 
@@ -50,5 +53,8 @@ ARG BUG_DIR
 COPY "${BUG_DIR}/" ./
 
 RUN wget -nv https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 \
-     && chmod u+x jq-linux64 \
-     && mv jq-linux64 /bin/jq
+ && chmod u+x jq-linux64 \
+ && mv jq-linux64 /bin/jq
+
+RUN REPAIR_TOOL=none bear ./prebuild \
+ && REPAIR_TOOL=none bear ./build

@@ -31,6 +31,7 @@ WORKDIR /workspace
 ARG SUT_SOURCE_PATH=/workspace/source
 
 COPY build build
+COPY clean clean
 COPY prebuild prebuild
 COPY recompile recompile
 
