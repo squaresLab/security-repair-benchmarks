@@ -64,6 +64,13 @@ ExtractFix, execute the following:
   # secbugs repair extractfix .
 
 
+Darjeeling
+...........
+
+Running the original, baseline version of Darjeeling requires a different set of
+steps, described here: https://github.com/squaresLab/security-repair-benchmarks/blob/main/docs/darjeeling.rst
+
+
 Scenario Format
 ---------------
 
