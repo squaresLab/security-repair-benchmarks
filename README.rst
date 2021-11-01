@@ -15,7 +15,7 @@ for quickly running experiments using those tools. We also provide the VulnLoc b
 Installation
 ------------
 
-To build a single Docker image, :code:`secbugs`, containing all bug scenarios, repair tools, and experimental
+To build a single Docker image, :code:`secbugs`, containing all of the bug scenarios and experimental
 infrastructure, execute the following:
 
 .. code:: command
