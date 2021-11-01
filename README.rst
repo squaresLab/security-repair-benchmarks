@@ -56,6 +56,19 @@ ExtractFix, execute the following:
 Scenario Format
 ---------------
 
+Each bug scenario within this benchmark is given its own directory (e.g., :code:`/benchmarks/vulnloc/binutils/cve_2017_14745`),
+which provides the files necessary to perform repair on that bug using a variety of tools.
+Below is a brief description of the files that MUST be included in each bug scenario directory:
+
+* :code:`bug.json` provides several details about the bug as well as tool-specific configuration
+  options that should be used when attempting to repair it.
+* :code:`test` provides a script for executing the single failing test (i.e., payload) for the bug
+  scenario. The script takes a single, optional argument, providing the absolute path of the binary
+  that should be used to run the test. (This is useful in cases where a repaired binary is created in
+  a different location to the original binary.) If no argument is provided, the script will use the
+  original binary to perform the test.
+
+
 Contributors
 ------------
 
