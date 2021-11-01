@@ -12,12 +12,6 @@ Out of the box, we provide Dockerized versions of ExtractFix and HiFix, as well 
 for quickly running experiments using those tools. We also provide the VulnLoc benchmarks.
 
 
-Citation
---------
-
-TODO: Add our paper; VulnLoc; ExtractFix; etc.
-
-
 Installation
 ------------
 
