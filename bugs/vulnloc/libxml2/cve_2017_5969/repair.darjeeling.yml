@@ -1,0 +1,50 @@
+algorithm:
+  type: exhaustive
+coverage:
+  method:
+    files-to-instrument:
+    - xmllint.c
+    type: gcov
+localization:
+  metric: genprog
+  type: spectrum
+optimizations:
+  ignore-dead-code: true
+  ignore-equivalent-insertions: true
+  ignore-string-equivalent-snippets: true
+program:
+  build-instructions:
+    environment:
+      REPAIR_TOOL: darjeeling
+    steps:
+    - command: REPAIR_TOOL=darjeeling ./prebuild
+      directory: /workspace
+    - command: REPAIR_TOOL=darjeeling ./build
+      directory: /workspace
+    steps-for-coverage:
+    - command: REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./clean
+      directory: /workspace
+    - command: REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./prebuild
+      directory: /workspace
+    - command: REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./build
+      directory: /workspace
+    time-limit: 30
+  image: libxml2-cve_2017_5969
+  language: c
+  source-directory: /workspace/source
+  tests:
+    tests:
+    - ./test
+    time-limit: 5
+    type: shell
+    workdir: /workspace
+resource-limits:
+  candidates: 100
+seed: 0
+threads: 8
+transformations:
+  schemas:
+  - type: delete-statement
+  - type: replace-statement
+  - type: append-statement
+version: 1.0

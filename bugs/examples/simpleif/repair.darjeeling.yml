@@ -1,0 +1,19 @@
+algorithm:
+  type: exhaustive
+localization:
+  metric: tarantula
+  type: spectrum
+optimizations:
+  ignore-dead-code: 'yes'
+  ignore-equivalent-insertions: 'yes'
+  ignore-string-equivalent-snippets: 'yes'
+resource-limits:
+  candidates: 100
+seed: 0
+threads: 8
+transformations:
+  schemas:
+  - type: delete-statement
+  - type: replace-statement
+  - type: append-statement
+version: 1.0
