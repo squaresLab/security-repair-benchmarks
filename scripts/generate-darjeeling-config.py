@@ -78,6 +78,10 @@ def generate_config(
             ],
             "steps-for-coverage": [
                 {
+                    "command": "REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./clean",
+                    "directory": workspace_directory,
+                },
+                {
                     "command": "REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./prebuild",
                     "directory": workspace_directory,
                 },
