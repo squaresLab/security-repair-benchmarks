@@ -67,6 +67,16 @@ Below is a brief description of the files that MUST be included in each bug scen
   that should be used to run the test. (This is useful in cases where a repaired binary is created in
   a different location to the original binary.) If no argument is provided, the script will use the
   original binary to perform the test.
+* :code:`clean` (equivalent to :code:`make clean`) removes any compiled binaries, objects, etc. This
+  is useful for recompiling the program with coverage instrumentation enabled (e.g., when performing
+  repair with Darjeeling).
+* :code:`prebuild` (similar to :code:`./configure`) appropriately configures the project. Note that
+  this script requires that a :code:`REPAIR_TOOL` environment variable is set, stating the repair tool,
+  if any, that is being used in conjunction with the code. This feature is used to compile the program
+  in slightly different ways according to the assumptions of various tools. To build the program without
+  targeting any specific tool, you can just pass in :code:`REPAIR_TOOL=none`. (E.g., :code:`REPAIR_TOOL=none ./prebuild`.)
+* :code:`build` (similar to :code:`make`) builds the project. As with :code:`prebuild`, this step requires
+  that the :code:`REPAIR_TOOL` environment variable be appropriately set.
 
 
 Contributors
