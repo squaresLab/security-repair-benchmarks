@@ -1,26 +1,26 @@
 [
 	{
-		"module": "source/xmllint.c",
+		"module": "source/src/appl/imginfo.c",
 		"function": "main",
 		"variable": "argc",
 		"value": "3",
 		"type": "int",
-		"src_line": 3134
+		"src_line": 116
 	},
 	{
-		"module": "source/xmllint.c",
+		"module": "source/src/appl/imginfo.c",
 		"function": "main",
 		"variable": "argv",
 		"value": ["./imginfo", "-f", "/root/exploit"],
 		"type": "string-array",
-		"src_line": 3134
+		"src_line": 116
 	},
     {
-		"module": "src/appl/imginfo.c",
+		"module": "source/src/appl/imginfo.c",
 		"function": "main",
 		"variable": "infile",
 		"value": "/root/exploit",
 		"type": "char",
-		"src_line": 3134
+		"src_line": 120
     }
 ]
