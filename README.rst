@@ -23,6 +23,17 @@ infrastructure, execute the following:
   $ git submodule update --init --recursive
   $ make
 
+**Beware that this will take a considerable amount of time (1-3 hours depending on hardware), memory (16 GB is a minimum), and disk space
+(tens of GBs) to build for the first time.**
+Subsequent builds will be faster since image caching can be used.
+
+Note that you may observe failures when building the complete benchmark Docker image
+(e.g., failed to copy non-existent layer for :code:`COPY --from=...` instructions).
+This is an issue that non-deterministically crops up in Docker when attempting to copy
+from large images. The (rather hacky) solution is to simply attempt to rebuild the image.
+You may need to attempt building the image several times until it finishes successfully,
+but in most cases, you should see progress being made between build attempts.
+
 
 Usage
 -----
