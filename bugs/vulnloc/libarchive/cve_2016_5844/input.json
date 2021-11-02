@@ -1,0 +1,18 @@
+[
+	{
+		"module": "source/tar/bsdtar.c",
+		"function": "main",
+		"variable": "argc",
+		"value": "3",
+		"type": "int",
+		"src_line": 133
+	},
+	{
+		"module": "source/tar/bsdtar.c",
+		"function": "main",
+		"variable": "argv",
+		"value": ["sources/bsdtar", "-tf", "./exploit/libarchive-signed-int-overflow.iso"],
+		"type": "string-array",
+		"src_line": 133
+	}
+]
