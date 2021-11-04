@@ -4,7 +4,7 @@ set -eu
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SOURCE_DIR="${HERE_DIR}/source"
 CONFIG_PATH="./autogen.sh"
-CONFIG_OPTIONS=""
+CONFIG_OPTIONS="--enable-static"
 
 pushd "${SOURCE_DIR}"
 
