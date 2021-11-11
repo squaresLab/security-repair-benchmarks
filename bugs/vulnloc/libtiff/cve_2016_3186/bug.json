@@ -15,6 +15,11 @@
     },
     "hifix": {
       "linker-options": "/benchmarks/libtiff/cve_2016_3186/source/libtiff/.libs/libtiff.a -ljpeg -llzma -lm -ljbig -lz"
+    },
+    "darjeeling": {
+      "coverage-files": [
+        "tools/gif2tiff.c"
+      ]
     }
   }
 }

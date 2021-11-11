@@ -14,6 +14,11 @@
     },
     "hifix": {
       "linker-options": "/benchmarks/libtiff/bugzilla_2633/source/libtiff/.libs/libtiff.a -ljpeg -llzma -lm -ljbig -lz"
+    },
+    "darjeeling": {
+      "coverage-files": [
+        "tools/tiff2ps.c"
+      ]
     }
   },
   "binary": "tools/.libs/tiff2ps"

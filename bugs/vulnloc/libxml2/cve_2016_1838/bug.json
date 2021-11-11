@@ -14,7 +14,12 @@
     },
     "hifix": {
       "linker-options": "/benchmarks/libxml2/cve_2016_1838/source/.libs/libxml2.a -lz -lpthread -lm -llzma"
-     }
+    },
+    "darjeeling": {
+      "coverage-files": [
+        "xmllint.c"
+      ]
+    }
   },
-  "binary": ".libs/xmllint"
+  "binary": "xmllint"
 }

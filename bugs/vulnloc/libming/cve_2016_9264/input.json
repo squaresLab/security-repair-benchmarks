@@ -1,0 +1,18 @@
+[
+	{
+		"module": "source/util/listmp3.c",
+		"function": "main",
+		"variable": "argc",
+		"value": "2",
+		"type": "int",
+		"src_line": 179
+	},
+	{
+		"module": "source/util/listmp3.c",
+		"function": "main",
+		"variable": "argv",
+		"value": ["/root/source/util/listmp3", "/root/exploit"],
+		"type": "string-array",
+		"src_line": 179
+	}
+]

@@ -5,10 +5,12 @@ RUN apt-get update \
       autoconf \
       automake \
       autopoint \
+      bear \
       bison \
       build-essential \
       clang \
       flex \
+      gcovr \
       gettext \
       git \
       gperf \
@@ -31,6 +33,7 @@ ARG SUT_SOURCE_PATH=/workspace/source
 RUN git clone "${SUT_REPO_URL}" "${SUT_SOURCE_PATH}"
 
 COPY build build
+COPY clean clean
 COPY prebuild prebuild
 COPY recompile recompile
 
@@ -47,3 +50,6 @@ RUN cd "${SUT_SOURCE_PATH}" \
 
 ARG BUG_DIR
 COPY "${BUG_DIR}/" ./
+
+RUN REPAIR_TOOL=none bear ./prebuild \
+ && REPAIR_TOOL=none bear ./build

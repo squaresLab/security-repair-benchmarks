@@ -5,6 +5,7 @@ RUN apt-get update \
       autoconf \
       automake \
       autopoint \
+      bear \
       bison \
       build-essential \
       clang \
@@ -30,6 +31,7 @@ WORKDIR /workspace
 ARG SUT_SOURCE_PATH=/workspace/source
 
 COPY build build
+COPY clean clean
 COPY prebuild prebuild
 COPY recompile recompile
 
@@ -40,3 +42,6 @@ RUN unzip source.zip \
  && rm source.zip \
  && cd "${SUT_SOURCE_PATH}" \
  && autoreconf -i
+
+RUN REPAIR_TOOL=none bear ./prebuild \
+ && REPAIR_TOOL=none bear ./build
