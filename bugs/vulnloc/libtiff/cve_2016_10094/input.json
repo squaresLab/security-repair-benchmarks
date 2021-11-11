@@ -1,14 +1,14 @@
 [
     {
-		"module": "src/split.c",
+		"module": "tools/tiff2pdf.c",
 		"function": "main",
 		"variable": "argv",
 		"value": ["./tiff2pdf", "./exploit", "-o", "foo"],
 		"type": "string-array",
 		"src_line": 2178
 	},
-    {
-		"module": "src/split.c",
+  {
+		"module": "tools/tiff2pdf.c",
 		"function": "main",
 		"variable": "argc",
 		"value": "4",

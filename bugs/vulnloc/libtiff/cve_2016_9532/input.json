@@ -3,16 +3,16 @@
 		"module": "tools/tiffcrop.c",
 		"function": "main",
 		"variable": "argv",
-		"value": ["./tiffcrop", "-i", "/root/exploit", "foo"],
+		"value": ["./tiffcrop", "/root/exploit", "test"],
 		"type": "string-array",
-		"tools_line": 2178
+		"src_line": 2141
 	},
     {
 		"module": "tools/tiffcrop.c",
 		"function": "main",
 		"variable": "argc",
-		"value": "4",
+		"value": "3",
 		"type": "int",
-		"tools_line": 2178
+		"src_line": 2141
 	}
 ]
