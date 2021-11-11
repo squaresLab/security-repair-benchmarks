@@ -1,0 +1,18 @@
+[
+    {
+		"module": "src/split.c",
+		"function": "main",
+		"variable": "argv",
+		"value": ["./tiffcrop", "-i", "/root/exploit", "foo"],
+		"type": "string-array",
+		"src_line": 2178
+	},
+    {
+		"module": "src/split.c",
+		"function": "main",
+		"variable": "argc",
+		"value": "4",
+		"type": "int",
+		"src_line": 2178
+	}
+]
