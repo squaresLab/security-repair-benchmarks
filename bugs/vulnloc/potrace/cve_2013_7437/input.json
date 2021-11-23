@@ -1,0 +1,18 @@
+[
+	{
+		"module": "src/main.c",
+		"function": "main",
+		"variable": "argv",
+		"value": ["./potrace", "/root/exploit"],
+		"type": "string-array",
+		"src_line": 1137 
+	},
+	{
+		"module": "src/main.c",
+		"function": "main",
+		"variable": "argc",
+		"value": 2,
+		"type": "string-array",
+		"src_line": 1137 
+	}
+]
