@@ -149,5 +149,10 @@ Other files should not be added.
 If multiple source files from the same binary are instrumented, compilation will fail due to multiple definitions.
 
 
-Inadequate oracles lead to false negatives during repair
-........................................................
+Problem: Inadequate oracles lead to false negatives during repair
+.................................................................
+
+As it stands, Darjeeling (like GenProg, etc.) checks the outcome of a test execution by inspecting its exit code.
+If :code:`./test` produces a zero exit code, the test is passed; if it produces a non-zero exit code, the test is failed.
+While this approach works fine for nominal inputs, it leads to problems when the correct behavior is for the program to produce a non-zero exit code.
+To counter this, the :code:`./test` scripts need to be modified to check whether the expected exit code was produced.
