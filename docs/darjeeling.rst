@@ -38,6 +38,51 @@ To generate the Darjeeling configuration file for a particular scenario, execute
 
 where :code:`[path-to-experiment-directory]` is replaced by the path to the directory for a particular bug scenario (e.g., :code:`bugs/vulnloc/libtiff/bugzilla_2611`).
 
+**Note that you will need to provide coverage instructions for that scenario via its associated bug.json file.**
+An example of those coverage instructions, provided by the :code:`darjeeling` sub-section of :code:`options`, is given below.
+
+.. code:: json
+
+  {
+    "subject": "coreutils",
+    "name": "gnubug_19784",
+    "options": {
+      "extractfix": {
+        "bug-type": "buffer_overflow",
+        "binary": {
+          "name": "make-prime-list",
+          "path": "src/make-prime-list"
+        },
+        "lowfat": {
+          "CFLAGS": "-fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-no-replace-globals -mllvm -lowfat-memcpy-overlap -mllvm -lowfat-symbolize -lstlimpl"
+        }
+      },
+      "darjeeling": {
+        "coverage-files": [
+          {
+            "filename": "src/make-prime-list.c",
+            "line": 29
+          }
+        ]
+      }
+    },
+    "binary": "src/make-prime-list"
+  }
+
+The :code:`coverage-files` property can take either a list of filenames, shown below, or a more detailed list, where each entry specifies the particular line in each file where coverage instrumentation should be added.
+This detail is necessary when dealing with programs (e.g., coreutils) that require that certain includes appear before others.
+
+.. code:: json
+
+      "darjeeling": {
+        "coverage-files": [
+          {
+            "filename": "src/make-prime-list.c",
+            "line": 29
+          }
+        ]
+      }
+
 Once a Darjeeling configuration file has been created, you perform repair via Darjeeling on the given bug via the following:
 
 .. code::
