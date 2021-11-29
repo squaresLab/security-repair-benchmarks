@@ -88,3 +88,66 @@ Once a Darjeeling configuration file has been created, you perform repair via Da
 .. code::
 
   $ pipenv run darjeeling repair [path-to-experiment-directory]/repair.darjeeling.yml
+
+
+Troubleshooting and Questions
+-----------------------------
+
+How does Darjeeling obtain coverage?
+....................................
+
+Darjeeling recompiles the program with the appropriate :code:`--coverage` flags to allow line-level coverage to be collected via :code:`gcov`.
+(More specifically, we use :code:`gcovr` under the hood to make life a little easier.)
+A problem with this approach is that if the program abruptly terminates (i.e., crashes), coverage information will not be flushed to disk (:code:`.gcda` files).
+This causes coverage to be incomplete or missing for essentially every program in this benchmark.
+
+To workaround that limitation, Darjeeling injects instrumentation, shown below, into the top of the program under repair to cause it to flush coverage information before terminating.
+Darjeeling uses the information provided by :code:`coverage-files` to determine which files should be instrumented.
+
+.. code:: c
+
+    /* DARJEELING :: INSTRUMENTATION :: START */
+    #include <stdio.h>
+    #include <stdlib.h>
+    #include <signal.h>
+    #ifdef __cplusplus
+      extern "C" void __gcov_flush(void);
+    #else
+      void __gcov_flush(void);
+    #endif
+    void darjeeling_sighandler(int sig){
+      __gcov_flush();
+      if(sig != SIGUSR1 && sig != SIGUSR2)
+        exit(1);
+    }
+    void darjeeling_ctor (void) __attribute__ ((constructor));
+    void darjeeling_ctor (void) {
+      struct sigaction new_action;
+      new_action.sa_handler = darjeeling_sighandler;
+      sigemptyset(&new_action.sa_mask);
+      new_action.sa_flags = 0;
+      sigaction(SIGTERM, &new_action, NULL);
+      sigaction(SIGINT, &new_action, NULL);
+      sigaction(SIGKILL, &new_action, NULL);
+      sigaction(SIGSEGV, &new_action, NULL);
+      sigaction(SIGFPE, &new_action, NULL);
+      sigaction(SIGBUS, &new_action, NULL);
+      sigaction(SIGILL, &new_action, NULL);
+      sigaction(SIGABRT, &new_action, NULL);
+      /* Use signal for SIGUSR to remove handlers */
+      signal(SIGUSR1, darjeeling_sighandler);
+      signal(SIGUSR2, darjeeling_sighandler);
+    }
+    /* DARJEELING :: INSTRUMENTATION :: END */
+
+
+What files should I add to coverage-files?
+..........................................
+
+You should add the translation unit that provides :code:`main` for the specific binary that is under repair.
+Other files should not be added.
+If multiple source files from the same binary are instrumented, compilation will fail due to multiple definitions.
+
+
+Inadequate oracles lead to false negatives during repair
+........................................................
