@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import argparse
 import json
 import os
@@ -100,6 +100,7 @@ def generate_config(
     }
 
     config["coverage"] = {
+        "restrict-to-files": [ x['filename'] for x in coverage_files ],
         "method": {
             "type": "gcov",
             "files-to-instrument": coverage_files,

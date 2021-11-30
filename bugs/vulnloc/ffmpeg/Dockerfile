@@ -12,6 +12,8 @@ RUN apt-get update \
       flex \
       gettext \
       git \
+      jq \
+      gcovr \
       gperf \
       ipython \
       libass-dev \

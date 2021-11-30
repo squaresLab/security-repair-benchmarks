@@ -13,6 +13,8 @@ RUN apt-get update \
       gettext \
       git \
       gperf \
+      jq \
+      gcovr \
       ipython \
       jq \
       libtool \

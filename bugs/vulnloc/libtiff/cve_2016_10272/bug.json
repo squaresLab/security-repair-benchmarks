@@ -15,7 +15,8 @@
     },
     "darjeeling": {
       "coverage-files": [
-        "tools/tiffcrop.c"
+	      { "filename":"tools/tif_next.c", "line":64 },
+	      { "filename":"libtiff/tif_next.c", "line":64 }
       ]
     }
   }

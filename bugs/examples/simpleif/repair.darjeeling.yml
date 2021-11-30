@@ -1,12 +1,44 @@
 algorithm:
   type: exhaustive
+coverage:
+  method:
+    files-to-instrument:
+    - filename: source/code.c
+      line: 7
+    type: gcov
 localization:
-  metric: tarantula
+  metric: genprog
   type: spectrum
 optimizations:
-  ignore-dead-code: 'yes'
-  ignore-equivalent-insertions: 'yes'
-  ignore-string-equivalent-snippets: 'yes'
+  ignore-dead-code: true
+  ignore-equivalent-insertions: true
+  ignore-string-equivalent-snippets: true
+program:
+  build-instructions:
+    environment:
+      REPAIR_TOOL: darjeeling
+    steps:
+    - command: REPAIR_TOOL=darjeeling ./prebuild
+      directory: /workspace
+    - command: REPAIR_TOOL=darjeeling ./build
+      directory: /workspace
+    steps-for-coverage:
+    - command: REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./clean
+      directory: /workspace
+    - command: REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./prebuild
+      directory: /workspace
+    - command: REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./build
+      directory: /workspace
+    time-limit: 30
+  image: hello-world-simpleif
+  language: c
+  source-directory: /workspace/source
+  tests:
+    tests:
+    - ./test
+    time-limit: 5
+    type: shell
+    workdir: /workspace
 resource-limits:
   candidates: 100
 seed: 0

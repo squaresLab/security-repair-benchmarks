@@ -18,7 +18,8 @@
     },
     "darjeeling": {
       "coverage-files": [
-        "tools/tiff2pdf.c"
+	      { "filename":"tools/tiff2pdf.c", "line":2898 },
+	      { "filename":"tools/tiff2pdf.c", "line":2900 }
       ]
     }
   }

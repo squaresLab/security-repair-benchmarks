@@ -10,6 +10,7 @@ RUN apt-get update \
       build-essential \
       clang \
       flex \
+      jq \
       gcovr \
       gettext \
       git \

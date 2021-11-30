@@ -6,6 +6,8 @@ coverage:
     - filename: src/make-prime-list.c
       line: 29
     type: gcov
+  restrict-to-files:
+  - src/make-prime-list.c
 localization:
   metric: genprog
   type: spectrum
@@ -23,6 +25,8 @@ program:
     - command: REPAIR_TOOL=darjeeling ./build
       directory: /workspace
     steps-for-coverage:
+    - command: REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./clean
+      directory: /workspace
     - command: REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./prebuild
       directory: /workspace
     - command: REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./build
