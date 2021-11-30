@@ -1,0 +1,18 @@
+[
+    {
+		"module": "tools/tiffcrop.c",
+		"function": "main",
+		"variable": "argv",
+		"value": ["./tiffcrop", "/root/exploit", "./tmpout.tif"],
+		"type": "int",
+		"src_line": 2111
+	},
+    {
+		"module": "tools/tiffcrop.c",
+		"function": "main",
+		"variable": "argc",
+		"value": "3",
+		"type": "int",
+		"src_line": 2111
+	}
+]

@@ -114,7 +114,7 @@ def generate_for_bug_file(bug_filename: str) -> str:
     output_filename = os.path.join(bug_directory, "repair.darjeeling.yml")
 
     if not os.path.exists(bug_filename):
-        raise ValueError(f"bug.json file does not exist: {filename}")
+        raise ValueError(f"bug.json file does not exist: {bug_filename}")
 
     with open(bug_filename, "r") as fh:
         bug_description = json.load(fh)

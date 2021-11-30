@@ -1,0 +1,18 @@
+[
+    {
+		"module": "tools/tiffcrop.c",
+		"function": "main",
+		"variable": "argv",
+		"value": ["./tiffcrop", "-i", "/root/exploit", "foo"],
+		"type": "string-array",
+		"tools_line": 2178
+	},
+    {
+		"module": "tools/tiffcrop.c",
+		"function": "main",
+		"variable": "argc",
+		"value": "4",
+		"type": "int",
+		"tools_line": 2178
+	}
+]
