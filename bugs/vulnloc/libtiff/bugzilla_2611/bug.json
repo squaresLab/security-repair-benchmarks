@@ -2,6 +2,11 @@
   "subject": "libtiff",
   "name": "bugzilla_2611",
   "options": {
+    "darjeeling": {
+      "coverage-files": [
+       { "filename": "tools/tiffmedian.c", "line": 283}
+      ]
+    },
     "extractfix": {
       "bug-type": "divide_by_0",
       "binary": {
@@ -14,11 +19,6 @@
     },
     "hifix": {
       "linker-options": "/benchmarks/libtiff/bugzilla_2611/source/libtiff/.libs/libtiff.a -ljpeg -llzma -lm -ljbig -lz"
-    },
-    "darjeeling": {
-      "coverage-files": [
-        "tools/tiffmedian.c"
-      ]
     }
   },
   "binary": "tools/.libs/tiffmedian"

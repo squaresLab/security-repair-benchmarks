@@ -2,6 +2,11 @@
   "subject": "coreutils",
   "name": "gnubug_26545",
   "options": {
+    "darjeeling": {
+      "coverage-files": [
+       { "filename": "src/shred.c", "line": 1317}
+      ]
+    },
     "extractfix": {
       "supported": false,
       "bug-type": "unsupported",

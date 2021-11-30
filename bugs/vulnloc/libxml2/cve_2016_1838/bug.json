@@ -2,6 +2,11 @@
   "subject": "libxml2",
   "name": "cve_2012_5134",
   "options": {
+    "darjeeling": {
+      "coverage-files": [
+       { "filename": "xmllint.c", "line": 3767}
+      ]
+    },
     "extractfix": {
       "bug-type": "buffer_overflow",
       "binary": {
@@ -14,11 +19,6 @@
     },
     "hifix": {
       "linker-options": "/benchmarks/libxml2/cve_2016_1838/source/.libs/libxml2.a -lz -lpthread -lm -llzma"
-    },
-    "darjeeling": {
-      "coverage-files": [
-        "xmllint.c"
-      ]
     }
   },
   "binary": "xmllint"

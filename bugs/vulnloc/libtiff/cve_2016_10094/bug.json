@@ -3,6 +3,11 @@
   "name": "cve_2016_10094",
   "binary": "tools/.libs/tiff2pdf",
   "options": {
+    "darjeeling": {
+      "coverage-files": [
+       { "filename": "tools/tiff2pdf.c", "line": 808}
+      ]
+    },
     "extractfix": {
       "bug-type": "buffer_overflow",
       "binary": {
@@ -15,12 +20,6 @@
     },
     "hifix": {
       "linker-options": "/benchmarks/libtiff/cve_2016_10094/source/libtiff/.libs/libtiff.a -ljpeg -llzma -lm -ljbig -lz"
-    },
-    "darjeeling": {
-      "coverage-files": [
-	      { "filename":"tools/tiff2pdf.c", "line":2898 },
-	      { "filename":"tools/tiff2pdf.c", "line":2900 }
-      ]
     }
   }
 }

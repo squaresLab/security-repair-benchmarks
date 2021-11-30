@@ -2,6 +2,11 @@
   "subject": "coreutils",
   "name": "gnubug_19784",
   "options": {
+    "darjeeling": {
+      "coverage-files": [
+       { "filename": "src/make-prime-list.c", "line": 214}
+      ]
+    },
     "extractfix": {
       "bug-type": "buffer_overflow",
       "binary": {
@@ -11,14 +16,6 @@
       "lowfat": {
         "CFLAGS": "-fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-no-replace-globals -mllvm -lowfat-memcpy-overlap -mllvm -lowfat-symbolize -lstlimpl"
       }
-    },
-    "darjeeling": {
-      "coverage-files": [
-        {
-          "filename": "src/make-prime-list.c",
-          "line": 29
-        }
-      ]
     }
   },
   "binary": "src/make-prime-list"

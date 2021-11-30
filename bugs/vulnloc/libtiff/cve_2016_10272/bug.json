@@ -3,6 +3,11 @@
   "name": "cve_2016_10272",
   "binary": "tools/.libs/tiffcrop",
   "options": {
+    "darjeeling": {
+      "coverage-files": [
+       { "filename": "tools/tiffcrop.c", "line": 2345}
+      ]
+    },
     "extractfix": {
       "bug-type": "buffer_overflow",
       "binary": {
@@ -12,12 +17,6 @@
     },
     "hifix": {
       "linker-options": "/benchmarks/libtiff/cve_2016_10272/source/libtiff/.libs/libtiff.a -ljpeg -llzma -lm -ljbig -lz"
-    },
-    "darjeeling": {
-      "coverage-files": [
-	      { "filename":"tools/tif_next.c", "line":64 },
-	      { "filename":"libtiff/tif_next.c", "line":64 }
-      ]
     }
   }
 }
