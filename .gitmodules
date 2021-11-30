@@ -1,12 +1,9 @@
 [submodule "tools/HiFix"]
 	path = tools/HiFix
 	url = git@github.com:squaresLab/HiFix
-[submodule "tools/ExtractFix"]
-	path = tools/ExtractFix
-	url = git@github.com:ChrisTimperley/ExtractFix
 [submodule "tools/Darjeeling"]
 	path = tools/Darjeeling
 	url = git@github.com:squaresLab/Darjeeling
 [submodule "tools/Kaskara"]
 	path = tools/Kaskara
-	url = git@github.com:ChrisTimperley/Kaskara
+	url = git@github.com:squaresLab/Kaskara
