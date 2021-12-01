@@ -5,6 +5,11 @@ HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SOURCE_DIR="${HERE_DIR}/source"
 BUILD_DIR="${SOURCE_DIR}"
 
+if [[ -e $HERE_DIR/BUG.cfg ]]; then 
+    source $HERE_DIR/BUG.cfg
+fi
+
+
 # FIXME this can go into the generated script
 if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   BUILD_DIR="${SOURCE_DIR}/klee"

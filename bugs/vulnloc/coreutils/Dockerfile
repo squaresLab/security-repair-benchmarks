@@ -54,3 +54,4 @@ COPY "${BUG_DIR}/" ./
 
 RUN REPAIR_TOOL=none bear ./prebuild \
  && REPAIR_TOOL=none bear ./build
+RUN [ -e "MYBUG.cfg" ] && mv MYBUG.cfg BUG.cfg;

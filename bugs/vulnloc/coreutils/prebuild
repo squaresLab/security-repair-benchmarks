@@ -4,6 +4,10 @@ SOURCE_DIR="${HERE_DIR}/source"
 CONFIG_PATH="./configure"
 CONFIG_OPTIONS="--disable-nls"
 
+if [[ -e $HERE_DIR/BUG.cfg ]]; then 
+  source $HERE_DIR/BUG.cfg
+fi
+
 export CFLAGS="-DFORTIFY_SOURCE=2 -ggdb -Wno-error ${CFLAGS:-}"
 export CXXFLAGS="$CFLAGS  ${CXXFLAGS:-}"
 
@@ -19,5 +23,9 @@ if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   mkdir klee
   pushd klee
 fi
+
+echo "CFLAGS=$CFLAGS"
+echo "CXXFLAGS=$CXXFLAGS"
+echo "LDFLAGS=$LDFLAGS"
 
 FORCE_UNSAFE_CONFIGURE=1 "${CONFIG_PATH}" ${CONFIG_OPTIONS}
