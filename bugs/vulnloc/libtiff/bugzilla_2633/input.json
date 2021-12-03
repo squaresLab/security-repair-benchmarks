@@ -1,0 +1,18 @@
+[
+    {
+		"module": "tools/tiff2ps.c",
+		"function": "main",
+		"variable": "argv",
+		"value": ["./tiff2ps", "/root/exploit"],
+		"type": "int",
+		"tools_line": 118
+	},
+    {
+		"module": "tools/tiff2ps.c",
+		"function": "main",
+		"variable": "argc",
+		"value": "2",
+		"type": "int",
+		"tools_line": 118
+	}
+]
