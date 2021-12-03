@@ -1,0 +1,18 @@
+[
+    {
+		"module": "tools/tiffcp.c",
+		"function": "main",
+		"variable": "argv",
+		"value": ["./tiffcp", "-i", "/root/exploit", "foo"],
+		"type": "int",
+		"tools_line": 157
+	},
+    {
+		"module": "tools/tiffcp.c",
+		"function": "main",
+		"variable": "argc",
+		"value": "4",
+		"type": "int",
+		"tools_line": 157
+	}
+]
