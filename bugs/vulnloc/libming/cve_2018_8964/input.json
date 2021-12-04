@@ -1,0 +1,18 @@
+[
+	{
+		"module": "source/util/makeswf.c",
+		"function": "main",
+		"variable": "argc",
+		"value": "2",
+		"type": "int",
+		"src_line": 182
+	},
+	{
+		"module": "source/util/makeswf.c",
+		"function": "main",
+		"variable": "argv",
+		"value": ["/root/source/bin/swftophp", "/root/exploit"],
+		"type": "string-array",
+		"src_line": 182
+	}
+]
