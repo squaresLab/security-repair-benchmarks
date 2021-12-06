@@ -4,7 +4,7 @@ coverage:
   method:
     files-to-instrument:
     - filename: src/make-prime-list.c
-      line: 29
+      line: 214
     type: gcov
   restrict-to-files:
   - src/make-prime-list.c

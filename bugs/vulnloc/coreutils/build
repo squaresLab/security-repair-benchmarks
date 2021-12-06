@@ -3,11 +3,7 @@ set -eu
 
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SOURCE_DIR="${HERE_DIR}/source"
-BUILD_DIR="${SOURCE_DIR}"
-
-if [[ -e $HERE_DIR/BUG.cfg ]]; then 
-    source $HERE_DIR/BUG.cfg
-fi
+BUILD_DIR="${SOURCE_DIR}/build"
 
 
 # FIXME this can go into the generated script
@@ -17,3 +13,14 @@ fi
 
 pushd "${BUILD_DIR}"
 make
+popd > /dev/null
+
+if [[ -e ${HERE_DIR}/BUG.cfg ]]; then
+  FAILBUILD_DIR="${SOURCE_DIR}/fbuild"
+  source ${HERE_DIR}/BUG.cfg
+  pushd "${FAILBUILD_DIR}"
+  make
+  x=$?
+  echo "Make exit code $x"
+  exit $x
+fi

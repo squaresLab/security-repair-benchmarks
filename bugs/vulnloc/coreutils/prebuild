@@ -1,12 +1,14 @@
 #!/bin/bash
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SOURCE_DIR="${HERE_DIR}/source"
-CONFIG_PATH="./configure"
-CONFIG_OPTIONS="--disable-nls"
+CONFIG_PATH="../configure"
+BUILD_DIR="${SOURCE_DIR}/build"
 
-if [[ -e $HERE_DIR/BUG.cfg ]]; then 
-  source $HERE_DIR/BUG.cfg
-fi
+mkdir -p $BUILD_DIR
+
+
+
+CONFIG_OPTIONS="--disable-nls"
 
 export CFLAGS="-DFORTIFY_SOURCE=2 -ggdb -Wno-error ${CFLAGS:-}"
 export CXXFLAGS="$CFLAGS  ${CXXFLAGS:-}"
@@ -24,8 +26,24 @@ if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   pushd klee
 fi
 
-echo "CFLAGS=$CFLAGS"
-echo "CXXFLAGS=$CXXFLAGS"
-echo "LDFLAGS=$LDFLAGS"
-
+pushd ${BUILD_DIR}
+# default image
 FORCE_UNSAFE_CONFIGURE=1 "${CONFIG_PATH}" ${CONFIG_OPTIONS}
+popd > /dev/null
+
+if [[ -e ${HERE_DIR}/BUG.cfg ]]; then
+  FAILBUILD_DIR="${SOURCE_DIR}/fbuild"
+  mkdir -p ${BUILD_DIR} ${FAILBUILD_DIR}
+
+  # importing failure-inducing ENV vars (CFLAGS, etc)
+  source ${HERE_DIR}/BUG.cfg
+  echo "CFLAGS=$CFLAGS"
+  echo "CXXFLAGS=$CXXFLAGS"
+  echo "LDFLAGS=$LDFLAGS"
+  
+  pushd ${FAILBUILD_DIR}
+  # failing image
+  FORCE_UNSAFE_CONFIGURE=1 "${CONFIG_PATH}" ${CONFIG_OPTIONS}
+  popd > /dev/null
+  echo "Configured Failing image"
+fi
