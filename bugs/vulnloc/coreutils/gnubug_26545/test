@@ -3,8 +3,20 @@ set -eu
 
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 BUG_FILE="${HERE_DIR}/bug.json"
-SUBJECT_PATH="$(jq -r ".options.extractfix.binary.path" "${BUG_FILE}")"
+SUBJECT_PATH="$(jq -r ".binary" "${BUG_FILE}")"
 PATH_BIN="${1:-${HERE_DIR}/source/${SUBJECT_PATH}}"
 
 touch abc
 ${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" -n4 -s7 abc
+x=$?
+
+SUBJECT_PATH="$(jq -r ".fbinary" "${BUG_FILE}")"
+PATH_BIN="${1:-${HERE_DIR}/source/${SUBJECT_PATH}}"
+if [[ -e $PATH_BIN ]]; then 
+
+rm abc; touch abc
+${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" -n4 -s7 abc
+x=$?
+fi
+
+exit $x
