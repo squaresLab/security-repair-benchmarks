@@ -18,7 +18,7 @@
     },
     "darjeeling": {
       "coverage-files": [
-        "tools/gif2tiff.c"
+	      { "filename":"tools/gif2tiff.c", "line":137 }
       ]
     }
   }

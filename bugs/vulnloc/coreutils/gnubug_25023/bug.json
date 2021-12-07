@@ -2,6 +2,11 @@
   "subject": "coreutils",
   "name": "gnubug_25023",
   "options": {
+    "darjeeling": {
+      "coverage-files":[
+    	  { "filename":"src/pr.c", "line": 856 }
+      ]
+    },
     "extractfix": {
       "bug-type": "buffer_overflow",
       "binary": {

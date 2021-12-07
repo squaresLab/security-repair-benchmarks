@@ -2,6 +2,11 @@
   "subject": "binutils",
   "name": "cve_2017_6965",
   "options": {
+    "darjeeling": {
+      "coverage-files":[
+         { "filename":"binutils/readelf.c","line": 17182}
+      ]
+    },
     "extractfix": {
       "bug-type": "buffer_overflow",
       "binary": {
@@ -17,4 +22,5 @@
     }
   },
   "binary": "binutils/readelf"
+
 }
