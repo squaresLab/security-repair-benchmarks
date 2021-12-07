@@ -21,6 +21,8 @@ def generate_config(
     source_directory: str = "/workspace/source",
     workspace_directory: str = "/workspace",
     test_time_limit_seconds: int = 5,
+    build_subdir: str = None,
+    src_subdir: str = None,
 ) -> t.Dict[str, t.Any]:
     config = {}
     config["version"] = 1.0
@@ -57,10 +59,15 @@ def generate_config(
     # determine the name of the Docker image
     docker_image_name = f"{program_name}-{bug_name}"
 
+    build_dir=os.path.join(source_directory,build_subdir) if build_subdir else source_directory
+    src_dir=src_subdir if src_subdir else os.path.dirname(coverage_files[0]['filename'])
+
     config["program"] = {
         "image": docker_image_name,
         "language": "c",
         "source-directory": source_directory,
+        "build-directory": build_dir,
+        "src-subdirectory": src_dir,
         "build-instructions": {
             "time-limit": 30,
             "environment": {
@@ -134,6 +141,9 @@ def generate_for_bug_file(bug_filename: str) -> str:
     threads = 8
     max_candidates = 100
 
+    build_subdir = bug_description["options"]["darjeeling"].get("build-subdir",None)
+    src_subdir = bug_description["options"]["darjeeling"].get("src-subdir",None)
+
     try:
         coverage_files = bug_description["options"]["darjeeling"]["coverage-files"]
     except KeyError:
@@ -146,6 +156,7 @@ def generate_for_bug_file(bug_filename: str) -> str:
         threads=threads,
         max_candidates=max_candidates,
         coverage_files=coverage_files,
+        build_subdir=build_subdir, src_subdir=src_subdir,
     )
 
     with open(output_filename, "w") as fh:

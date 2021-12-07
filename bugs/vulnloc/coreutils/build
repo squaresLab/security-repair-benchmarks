@@ -17,10 +17,11 @@ popd > /dev/null
 
 if [[ -e ${HERE_DIR}/BUG.cfg ]]; then
   FAILBUILD_DIR="${SOURCE_DIR}/fbuild"
-  source ${HERE_DIR}/BUG.cfg
+  source ${HERE_DIR}/BUG.cfg 1
   pushd "${FAILBUILD_DIR}"
   make
   x=$?
+  source ${HERE_DIR}/BUG.cfg 0
   echo "Make exit code $x"
   exit $x
 fi

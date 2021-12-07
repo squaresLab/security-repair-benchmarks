@@ -36,7 +36,7 @@ if [[ -e ${HERE_DIR}/BUG.cfg ]]; then
   mkdir -p ${BUILD_DIR} ${FAILBUILD_DIR}
 
   # importing failure-inducing ENV vars (CFLAGS, etc)
-  source ${HERE_DIR}/BUG.cfg
+  source ${HERE_DIR}/BUG.cfg 1
   echo "CFLAGS=$CFLAGS"
   echo "CXXFLAGS=$CXXFLAGS"
   echo "LDFLAGS=$LDFLAGS"
@@ -44,6 +44,7 @@ if [[ -e ${HERE_DIR}/BUG.cfg ]]; then
   pushd ${FAILBUILD_DIR}
   # failing image
   FORCE_UNSAFE_CONFIGURE=1 "${CONFIG_PATH}" ${CONFIG_OPTIONS}
+  source ${HERE_DIR}/BUG.cfg 0
   popd > /dev/null
   echo "Configured Failing image"
 fi

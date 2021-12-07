@@ -4,5 +4,10 @@ set -eu
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SOURCE_DIR="${HERE_DIR}/source"
 
-pushd "${SOURCE_DIR}"
+pushd "${SOURCE_DIR}/build"
 make clean
+
+if [[ -e "$SOURCE_DIR/fbuild" ]]; then 
+pushd "${SOURCE_DIR}/fbuild"
+make clean
+fi

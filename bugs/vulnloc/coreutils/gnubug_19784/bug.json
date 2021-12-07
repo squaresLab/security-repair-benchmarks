@@ -5,7 +5,9 @@
     "darjeeling": {
       "coverage-files": [
        { "filename": "src/make-prime-list.c", "line": 214}
-      ]
+      ],
+      "build-subdir": "build",
+      "src-subdir": "src"
     },
     "extractfix": {
       "bug-type": "buffer_overflow",
