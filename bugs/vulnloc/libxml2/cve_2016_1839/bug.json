@@ -4,7 +4,7 @@
   "options": {
     "darjeeling": {
       "coverage-files": [
-       { "filename": "xmllint.c", "line": 3133}
+       { "filename": "xmllint.c", "line": 3767}
       ]
     },
     "extractfix": {

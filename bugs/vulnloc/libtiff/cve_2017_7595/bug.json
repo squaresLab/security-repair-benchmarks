@@ -17,7 +17,7 @@
     },
     "darjeeling": {
       "coverage-files": [
-	      { "filename":"tools/tiffcp.c", "line":157 }
+	      { "filename":"tools/tiffcp.c", "line":156 }
       ]
     }
   },
