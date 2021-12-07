@@ -4,7 +4,7 @@
   "options": {
     "darjeeling": {
       "coverage-files": [
-       { "filename": "tools/tiffcrop.c", "line": 2141}
+       { "filename": "tools/tiffcrop.c", "line": 2140}
       ]
     },
     "extractfix": {

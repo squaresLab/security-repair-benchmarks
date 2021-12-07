@@ -5,7 +5,7 @@
   "options": {
     "darjeeling": {
       "coverage-files": [
-       { "filename": "tools/tiff2pdf.c", "line": 808}
+       { "filename": "tools/tiff2pdf.c", "line": 599}
       ]
     },
     "extractfix": {

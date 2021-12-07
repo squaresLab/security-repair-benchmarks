@@ -2,6 +2,11 @@
   "subject": "binutils",
   "name": "cve_2017_15020",
   "options": {
+    "darjeeling": {
+      "coverage-files":[
+       { "filename":"binutils/nm.c", "line": 1623}
+      ]
+    },
     "extractfix": {
       "bug-type": "buffer_overflow",
       "binary": {

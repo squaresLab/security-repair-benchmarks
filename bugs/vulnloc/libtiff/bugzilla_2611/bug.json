@@ -4,7 +4,7 @@
   "options": {
     "darjeeling": {
       "coverage-files": [
-       { "filename": "tools/tiffmedian.c", "line": 283}
+       { "filename": "tools/tiffmedian.c", "line": 117}
       ]
     },
     "extractfix": {

@@ -17,10 +17,7 @@
     },
     "darjeeling": {
       "coverage-files": [
-        {
-          "filename": "binutils/objdump.c",
-          "line": 77
-        }
+        { "filename": "binutils/objdump.c", "line": 3729 }
       ]
     }
   },
