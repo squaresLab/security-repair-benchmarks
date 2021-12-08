@@ -5,18 +5,20 @@
     "darjeeling": {
       "coverage-files":[
     	  { "filename":"src/pr.c", "line": 856 }
-      ]
+      ],
+      "build-subdir": "build",
+      "src-subdir": "src"
     },
     "extractfix": {
       "bug-type": "buffer_overflow",
       "binary": {
         "name": "pr",
-        "path": "src/pr"
+        "path": "build/src/pr"
       },
       "lowfat": {
         "CFLAGS": "-fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-no-replace-globals -mllvm -lowfat-memcpy-overlap -mllvm -lowfat-symbolize -lstlimpl"
       }
     }
   },
-  "binary": "src/pr"
+  "binary": "build/src/pr"
 }
