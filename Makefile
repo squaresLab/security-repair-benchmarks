@@ -1,7 +1,7 @@
 all: benchmark
 
 init:
-	git submodule update --init --recursive
+	git submodule update --init --recursive tools/Darjeeling tools/Kaskara
 
 bugs: init
 	make -C bugs
