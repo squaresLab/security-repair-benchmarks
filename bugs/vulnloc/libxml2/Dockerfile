@@ -58,5 +58,7 @@ RUN wget -nv https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 
  && chmod u+x jq-linux64 \
  && mv jq-linux64 /bin/jq
 
-RUN REPAIR_TOOL=none bear ./prebuild \
- && REPAIR_TOOL=none bear ./build
+RUN REPAIR_TOOL=none bear ./prebuild
+RUN REPAIR_TOOL=none bear ./build
+
+RUN if [ -e MYBUG.cfg ]; then cp MYBUG.cfg BUG.cfg; fi

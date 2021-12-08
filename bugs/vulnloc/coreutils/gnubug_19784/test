@@ -16,4 +16,4 @@ ${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" 5
 x=$?
 fi
 
-exit $?
+exit $x

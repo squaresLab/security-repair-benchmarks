@@ -3,8 +3,12 @@ set -eu
 
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SOURCE_DIR="${HERE_DIR}/source"
-CONFIG_PATH="./autogen.sh"
+CONFIG_PATH="../autogen.sh"
 CONFIG_OPTIONS="--enable-static"
+BUILD_DIR="${SOURCE_DIR}/build"
+
+mkdir -p $BUILD_DIR
+
 
 pushd "${SOURCE_DIR}"
 
@@ -18,4 +22,22 @@ if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   pushd klee
 fi
 
+pushd ${BUILD_DIR}
 "${CONFIG_PATH}" ${CONFIG_OPTIONS}
+popd > /dev/null
+
+if [[ -e ${HERE_DIR}/BUG.cfg ]]; then
+  FAILBUILD_DIR="${SOURCE_DIR}/fbuild"
+  mkdir -p ${BUILD_DIR} ${FAILBUILD_DIR}
+
+  # importing failure-inducing ENV vars (CFLAGS, etc)
+  source ${HERE_DIR}/BUG.cfg 1
+  echo "CFLAGS=$CFLAGS"
+
+  pushd ${FAILBUILD_DIR}
+  # failing image
+  "${CONFIG_PATH}" ${CONFIG_OPTIONS}
+  source ${HERE_DIR}/BUG.cfg 0
+  popd > /dev/null
+  echo "Configured Failing image"
+fi

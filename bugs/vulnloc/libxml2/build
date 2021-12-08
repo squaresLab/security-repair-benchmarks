@@ -4,11 +4,15 @@ set -eu
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SOURCE_DIR="${HERE_DIR}/source"
 BUG_FILE="${HERE_DIR}/bug.json"
+BUILD_DIR="${SOURCE_DIR}/build"
+
 
 SUBJECT="$(jq -r ".options.extractfix.binary.name" "${BUG_FILE}")"
-SUBJECT_PATH="$(jq -r ".options.extractfix.binary.path" "${BUG_FILE}")"
+# SUBJECT_PATH="$(jq -r ".options.binary" "${BUG_FILE}")"
 
-pushd "${SOURCE_DIR}"
+# pushd "${SOURCE_DIR}"
+
+pushd "${BUILD_DIR}"
 
 # FIXME this can go into the generated script
 if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
@@ -16,3 +20,15 @@ if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
 fi
 
 make
+popd > /dev/null
+
+if [[ -e ${HERE_DIR}/BUG.cfg ]]; then
+  FAILBUILD_DIR="${SOURCE_DIR}/fbuild"
+  source ${HERE_DIR}/BUG.cfg 1
+  pushd "${FAILBUILD_DIR}"
+  make
+  x=$?
+  source ${HERE_DIR}/BUG.cfg 0
+  echo "Make exit code $x"
+  exit $x
+fi

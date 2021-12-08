@@ -5,13 +5,14 @@
     "darjeeling": {
       "coverage-files": [
        { "filename": "xmllint.c", "line": 3133}
-      ]
+      ],
+      "build-subdir": "build"
     },
     "extractfix": {
       "bug-type": "null_pointer",
       "binary": {
         "name": "xmllint",
-        "path": "xmllint"
+        "path": "build/xmllint"
       },
       "lowfat": {
         "CFLAGS": "-fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-null-deref -mllvm -lowfat-no-check-reads -mllvm -lowfat-no-check-writes -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-check-whole-access -mllvm -lowfat-no-replace-globals -mllvm -lowfat-no-replace-alloca -mllvm -lowfat-no-replace-malloc -mllvm -lowfat-symbolize -lstlimpl"
@@ -21,5 +22,5 @@
       "linker-options": "/benchmarks/libxml2/cve_2017_5969/source/.libs/libxml2.a -lz -lpthread -lm -llzma"
     }
   },
-  "binary": "/benchmarks/libxml2/cve_2017_5969/source/xmllint"
+  "binary": "build/xmllint"
 }

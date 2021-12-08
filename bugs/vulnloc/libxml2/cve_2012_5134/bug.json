@@ -4,14 +4,15 @@
   "options": {
     "darjeeling": {
       "coverage-files": [
-       { "filename": "xmllint.c", "line": 3101}
-      ]
+       { "filename": "xmllint.c", "line": 3100}
+      ],
+      "build-subdir": "build"
     },
     "extractfix": {
       "bug-type": "buffer_overflow",
       "binary": {
         "name": "xmllint",
-        "path": "xmllint"
+        "path": "build/xmllint"
       },
       "lowfat": {
         "CFLAGS": "-fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-symbolize -lstlimpl"
@@ -21,6 +22,7 @@
       "linker-options": "/benchmarks/libxml2/cve_2012_5134/source/.libs/libxml2.a -lz -lpthread -lm -llzma"
     }
   },
-  "binary": "xmllint",
-  "alt-binary": ".libs/xmllint"
+  "binary": "build/xmllint",
+  "fbinary": "fbuild/xmllint",
+  "alt-binary": "build/.libs/xmllint"
 }
