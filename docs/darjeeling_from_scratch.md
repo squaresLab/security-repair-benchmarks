@@ -16,11 +16,15 @@ Docker is required for this project and must be installed first. We recommend us
 - `scripts/run.sh`
 	- This will open the docker container from the command line.
 ## Setup the system to run darjeeling:
+The following steps assume you are in the same directory as as above (`security-repair-benchmarks`).
 1. Install pipenv and pip:
 `sudo apt-get install pipenv pip`
-2. `python3 -m pip install --user pipenv`
-3. run `pipenv install`
+2. Set up the python environment:
+`python3 -m pip install --user pipenv`
+`pipenv install`
 
 4. Run darjeeling
-- `pipenv run scripts/generate-darjeeling-config.py bugs/vulnloc/coreutils/gnubug_19784`
-- `pipenv run darjeeling repair bugs/vulnloc/coreutils/gnubug_19784/repair.darjeeling.yml`
+To run darjeeling first generate the configuration file:
+`pipenv run scripts/generate-darjeeling-config.py bugs/vulnloc/coreutils/gnubug_19784`.
+Next run darjeeling on the generated yml file:
+`pipenv run darjeeling repair bugs/vulnloc/coreutils/gnubug_19784/repair.darjeeling.yml`
