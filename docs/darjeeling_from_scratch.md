@@ -62,7 +62,7 @@ pipenv install
 ~~~
 If prompted about "lock" issues reboot the machine.
 
-If running Ubuntu 18.04 use the following instructions:
+***If running Ubuntu 18.04 use the following instructions:***
 ~~~
 sudo apt update && sudo apt install software-properties-common && sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt install python3.9
 sudo apt install python3.9-distutils
