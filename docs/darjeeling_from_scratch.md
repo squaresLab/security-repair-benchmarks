@@ -1,3 +1,8 @@
+## Prerequisites
+This guide assumes a fresh updated installation of Ubuntu 21.04. Other Ubuntu versions
+may require more/different packages to be installed. This guide is annotated with
+instructions necessary to configure Ubuntu 18.04 when instructions differ. 
+
 ## Install docker
 Docker is required for this project and must be installed first. We recommend using the official
 [docker](https://docs.docker.com/engine/install/ubuntu/) documentation.
