@@ -23,6 +23,7 @@ def generate_config(
     test_time_limit_seconds: int = 5,
     build_subdir: str = None,
     src_subdir: str = None,
+    test_info: dict = None,
 ) -> t.Dict[str, t.Any]:
     config = {}
     config["version"] = 1.0
@@ -105,6 +106,11 @@ def generate_config(
             "time-limit": test_time_limit_seconds,
         }
     }
+    # overriding default test generation content from bug.json file
+    if test_info:
+        for key in ["type","tests","time-limit"]:
+            if test_info.get(key,None):
+                config["program"]["tests"][key] = test_info[key]
 
     config["coverage"] = {
         "restrict-to-files": [ x['filename'] for x in coverage_files ],
@@ -143,6 +149,7 @@ def generate_for_bug_file(bug_filename: str) -> str:
 
     build_subdir = bug_description["options"]["darjeeling"].get("build-subdir",None)
     src_subdir = bug_description["options"]["darjeeling"].get("src-subdir",None)
+    test_info = bug_description.get("test-suite",None)
 
     try:
         coverage_files = bug_description["options"]["darjeeling"]["coverage-files"]
@@ -157,6 +164,7 @@ def generate_for_bug_file(bug_filename: str) -> str:
         max_candidates=max_candidates,
         coverage_files=coverage_files,
         build_subdir=build_subdir, src_subdir=src_subdir,
+        test_info=test_info,
     )
 
     with open(output_filename, "w") as fh:
