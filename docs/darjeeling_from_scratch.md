@@ -23,10 +23,9 @@ Make the project:
 make
 ~~~
 This will make all the test containers and requires no less than an hour.
-To make an individual test: <add docs here after verifying>
+To make an individual test: ADD DOCS HERE AFTER VERIFYING.
 3. Verify the project made correctly:
 ~~~
-cd security-repair-benchmarks
 scripts/run.sh
 ~~~
 This will open the secbugs docker container. `<ctrl> d` to exit.
