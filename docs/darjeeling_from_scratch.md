@@ -70,7 +70,7 @@ sudo apt install python3-pip
 python3.9 -m pip install --user pipenv
 pipenv install
 ~~~
-If this fails, log out and log back in again, then rerun:
+If this fails, log out and log back in again, then rerun in `security-repair-benchmarks`:
 ~~~
 pipenv install
 ~~~
