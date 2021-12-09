@@ -3,11 +3,11 @@ algorithm:
 coverage:
   method:
     files-to-instrument:
-    - filename: tools/tiffmedian.c
-      line: 117
+    - filename: src/pr.c
+      line: 856
     type: gcov
   restrict-to-files:
-  - tools/tiffmedian.c
+  - src/pr.c
 localization:
   metric: genprog
   type: spectrum
@@ -16,7 +16,7 @@ optimizations:
   ignore-equivalent-insertions: true
   ignore-string-equivalent-snippets: true
 program:
-  build-directory: /workspace/source
+  build-directory: /workspace/source/build
   build-instructions:
     environment:
       REPAIR_TOOL: darjeeling
@@ -33,10 +33,10 @@ program:
     - command: REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./build
       directory: /workspace
     time-limit: 30
-  image: libtiff-bugzilla_2611
+  image: coreutils-gnubug_25023
   language: c
   source-directory: /workspace/source
-  src-subdirectory: tools
+  src-subdirectory: src
   tests:
     tests:
     - ./test

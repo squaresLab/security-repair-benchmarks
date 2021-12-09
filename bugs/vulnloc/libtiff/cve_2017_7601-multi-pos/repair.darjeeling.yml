@@ -3,11 +3,11 @@ algorithm:
 coverage:
   method:
     files-to-instrument:
-    - filename: tools/tiffmedian.c
-      line: 117
+    - filename: tools/tiffcp.c
+      line: 156
     type: gcov
   restrict-to-files:
-  - tools/tiffmedian.c
+  - tools/tiffcp.c
 localization:
   metric: genprog
   type: spectrum
@@ -33,13 +33,14 @@ program:
     - command: REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./build
       directory: /workspace
     time-limit: 30
-  image: libtiff-bugzilla_2611
+  image: libtiff-cve_2017_7601
   language: c
   source-directory: /workspace/source
   src-subdirectory: tools
   tests:
     tests:
     - ./test
+    - ./test-1
     time-limit: 5
     type: shell
     workdir: /workspace
