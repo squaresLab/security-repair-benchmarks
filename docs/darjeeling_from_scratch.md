@@ -7,12 +7,19 @@ Docker is required for this project and must be installed first. We recommend us
    that you run into errors cloning, use the https version: `git clone
    https://github.com/squaresLab/security-repair-benchmarks.git`.
 2. Make the project in the cloned repository
-- `cd security-repair-benchmarks`
-- Checkout the demonstration branch:
-	- `git checkout aflr_demo_12_2021`
-- `make`
-	- This will make all the test containers and requires no less than an hour.
-	- To make an individual test: <add docs here after verifying>
+~~~
+cd security-repair-benchmarks
+~~~
+Checkout the demonstration branch:
+~~~
+git checkout aflr_demo_12_2021
+~~~
+Make the project:
+~~~
+make
+~~~
+This will make all the test containers and requires no less than an hour.
+To make an individual test: <add docs here after verifying>
 3. Verify the project made correctly:
 
 ~~~
