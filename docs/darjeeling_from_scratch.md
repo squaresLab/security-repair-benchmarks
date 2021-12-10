@@ -115,4 +115,10 @@ The following bugs can be used with darjeeling:
 |binutils |cve_2017_15025   | 
 |coreutils|gnubug_19784     |
 
+To run darjeeling on any of the bugs:
+~~~
+pipenv run scripts/generate-darjeeling-config.py bugs/vulnloc/<Project>/<CVE/exploit>
+pipenv run darjeeling repair bugs/vulnloc/<Project>/<CVE/exploit>/repair.darjeeling.yml
+~~~
+~~~
 
