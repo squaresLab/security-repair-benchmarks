@@ -8,6 +8,10 @@ This guide assumes a fresh updated installation of Ubuntu 21.04. Other Ubuntu ve
 may require more/different packages to be installed. This guide is annotated with
 instructions necessary to configure Ubuntu 18.04 when instructions differ. 
 
+## Authentication and Github.com
+This git repository and related submodules assume by default that the user has both a `github.com` account and uses `SSH` authentication between their local machine and their `github.com` account. 
+If you do not have any of these, please see the instructions at [Git without SSH Authentication](#git-without-ssh-authentication)
+
 ## Install docker
 Docker is required for this project and must be installed first. We recommend using the official
 [docker](https://docs.docker.com/engine/install/ubuntu/) documentation.
@@ -16,43 +20,29 @@ Docker is required for this project and must be installed first. We recommend us
 ~~~
 git clone git@github.com:squaresLab/security-repair-benchmarks.git
 ~~~
-In the event that you run into errors cloning, such as:
-~~~
-Please make sure you have the correct access rights
-and the repository exists.
-~~~
-use the https version: 
-~~~
-git clone https://github.com/squaresLab/security-repair-benchmarks.git
-~~~
-2. Make the project in the cloned repository
+***NOTE:*** In the event that you run into errors cloning, such as ```Please make sure you have the correct access rights and the repository exists```, please follow all instructions at [Git without SSH Authentication](#git-without-ssh-authentication).
+
+2. Check out the demonstration branch:
 ~~~
 cd security-repair-benchmarks
-~~~
-Checkout the demonstration branch:
-~~~
 git checkout aflr_demo_12_2021
 ~~~
-Make the project:
+
+3. Make the project:
 ~~~
 make
 ~~~
-In the event that make gives the same error about access rights, edit `.git/config` such
-that the URLs are of the https type. For example:
-~~~
-[submodule "tools/Darjeeling"]
-	active = true
-	url = https://github.com/squaresLab/Darjeeling
+In the event that `make` gives an error about 'access rights', see [Git without SSH Authentication](#git-without-ssh-authentication).
 
-~~~
 This will make all the test containers and requires no less than an hour.
+
 To make an individual test container: 
 ~~~
 cd security-repair-benchmarks/bugs/vulnloc/<prog>
 make <CVE/exploit>
 ~~~
 
-3. Verify the project made correctly:
+4. Verify the project made correctly:
 ~~~
 scripts/run.sh
 ~~~
@@ -60,6 +50,8 @@ This will open the secbugs docker container. `<ctrl> d` to exit.
 
 ## Install requirements and run darjeeling:
 The following steps assume you are in the same directory as as above (`security-repair-benchmarks`).
+
+***NOTE: If running Ubuntu 18.04 use the instructions at [Ubuntu 18.04 Installation](#ubuntu-18-installation) instead of 1 and 2 below.***
 1. Install pipenv and pip:
 ~~~
 sudo apt-get install python3-pip
@@ -70,33 +62,9 @@ sudo apt-get install pipenv
 ~~~
 pipenv install
 ~~~
-If prompted about the following "lock" error, log out and back in to solve this issue.
-~~~
-Traceback (most recent call last):
-  File "/home/tony/.local/lib/python3.9/site-packages/pipenv/resolver.py", line 766, in <module>
-    main()
-  File "/home/tony/.local/lib/python3.9/site-packages/pipenv/resolver.py", line 751, in main
-    from pipenv.vendor.vistir.compat import ResourceWarning
-ModuleNotFoundError: No module named 'pipenv.vendor.vistir'
-~~~
-
-
-***If running Ubuntu 18.04 use the following instructions in stead of 1 and 2 above:***
-~~~
-sudo apt update && sudo apt install software-properties-common && sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt install python3.9
-sudo apt install python3.9-distutils
-sudo apt install python3-pip
-python3.9 -m pip install --user pipenv
-pipenv install
-~~~
-If this fails, log out and log back in again, then rerun in `security-repair-benchmarks`:
-~~~
-pipenv install
-~~~
+***NOTE:*** If you run into `pipenv` issues, please see [Resolutions for Known Issues](#resolutions-for-known-issues)-[PIPENV Issues](#pipenv-issues)
 
 3. Run darjeeling
-
-
 To run darjeeling first generate a configuration file, for example: 
 ~~~
 pipenv run scripts/generate-darjeeling-config.py bugs/vulnloc/coreutils/gnubug_19784
@@ -105,6 +73,7 @@ Next run darjeeling on the generated yml file:
 ~~~
 pipenv run darjeeling repair bugs/vulnloc/coreutils/gnubug_19784/repair.darjeeling.yml
 ~~~
+### Darjeeling-supported <Project,CVE/Exploit>s
 The following bugs can be used with darjeeling:
 | Project | CVE/exploit |
 |---------|-------------|
@@ -130,3 +99,54 @@ pipenv run scripts/generate-darjeeling-config.py bugs/vulnloc/<Project>/<CVE/exp
 pipenv run darjeeling repair bugs/vulnloc/<Project>/<CVE/exploit>/repair.darjeeling.yml
 ~~~
 where `<Project>` and `<CVE/exploit>` can be any of the pairs of values from the table.
+
+---
+## Resolutions for Known Issues
+
+### Git without SSH Authentication
+This git repository and related submodules assume by default that the user has both a `github.com` account and uses `SSH` authentication between their local machine and their `github.com` account. 
+If you do not have both, follow these directions:
+
+1. Clone the https version: 
+~~~
+git clone https://github.com/squaresLab/security-repair-benchmarks.git
+~~~
+2. Checkout the demonstration branch:
+~~~
+cd security-repair-benchmarks
+git checkout aflr_demo_12_2021
+~~~
+3. Edit `.git/config` to reference `https` not `git@` urls.
+For example:
+~~~
+[submodule "tools/Darjeeling"]
+	active = true
+	url = https://github.com/squaresLab/Darjeeling
+~~~
+
+### PIPENV Issues 
+If prompted about the following "lock" error, log out and back in to solve this issue.
+~~~
+Traceback (most recent call last):
+  File "/home/tony/.local/lib/python3.9/site-packages/pipenv/resolver.py", line 766, in <module>
+    main()
+  File "/home/tony/.local/lib/python3.9/site-packages/pipenv/resolver.py", line 751, in main
+    from pipenv.vendor.vistir.compat import ResourceWarning
+ModuleNotFoundError: No module named 'pipenv.vendor.vistir'
+~~~
+
+
+### UBUNTU 18 Installation 
+
+***If running Ubuntu 18.04 use the following instructions***
+~~~
+sudo apt update && sudo apt install software-properties-common && sudo add-apt-repository ppa:deadsnakes/ppa && sudo apt install python3.9
+sudo apt install python3.9-distutils
+sudo apt install python3-pip
+python3.9 -m pip install --user pipenv
+pipenv install
+~~~
+If this fails, log out and log back in again, then rerun in `security-repair-benchmarks`:
+~~~
+pipenv install
+~~~
