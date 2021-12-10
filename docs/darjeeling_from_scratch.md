@@ -1,7 +1,5 @@
 # Baseline darjeeling
-This is a step by step guide to get darjeeling up and running on an Ubuntu
-machine. There are currently 15 exploits (located in the table at the bottom)
-on which darjeeling can be successfully run. 
+This is a step by step guide to get darjeeling up and running on the bugs in this benchmark set on an Ubuntu machine. There are currently 15 exploits (located in the table at the bottom) on which darjeeling can be successfully run. 
 
 ## Prerequisites
 This guide assumes a fresh updated installation of Ubuntu 21.04. Other Ubuntu versions
@@ -42,6 +40,13 @@ cd security-repair-benchmarks/bugs/vulnloc/<prog>
 make <CVE/exploit>
 ~~~
 
+Note that you may observe failures when building the complete benchmark Docker image
+(e.g., failed to copy non-existent layer for :code:`COPY --from=...` instructions).
+This is an issue that non-deterministically crops up in Docker when attempting to copy
+from large images. The (rather hacky) solution is to simply attempt to rebuild the image.
+You may need to attempt building the image several times until it finishes successfully,
+but in most cases, you should see progress being made between build attempts.
+
 4. Verify the project made correctly:
 ~~~
 scripts/run.sh
@@ -65,11 +70,12 @@ pipenv install
 ***NOTE:*** If you run into `pipenv` issues, please see [Resolutions for Known Issues](#resolutions-for-known-issues)-[PIPENV Issues](#pipenv-issues)
 
 3. Run darjeeling
-To run darjeeling first generate a configuration file, for example: 
+To run darjeeling on a specific bug first generate a configuration file for that bug, for example: 
 ~~~
 pipenv run scripts/generate-darjeeling-config.py bugs/vulnloc/coreutils/gnubug_19784
 ~~~
-Next run darjeeling on the generated yml file:
+This command uses the information in the `bug.json` file for the given bug to generate a Darjeeling 
+configuration yml file. Next run darjeeling on this generated yml file:
 ~~~
 pipenv run darjeeling repair bugs/vulnloc/coreutils/gnubug_19784/repair.darjeeling.yml
 ~~~
