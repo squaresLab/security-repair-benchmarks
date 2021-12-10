@@ -1,8 +1,29 @@
 #!/bin/bash
-set -eu
+#!/bin/bash
+
+echo "Got to begining"
+FAILURE_EXIT_CODE=139
+PASSING_EXIT_CODE=1
 
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 PATH_EXPLOIT="${HERE_DIR}/exploit"
 PATH_BIN="${1:-${HERE_DIR}/source/binutils/objdump}"
 
+echo "Got here"
 ${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" -D "${PATH_EXPLOIT}"
+
+y=$?;
+
+echo "Got after test, the y value was"
+echo "$y"
+
+if [[ $y == $FAILURE_EXIT_CODE ]]; then
+   echo "In failure exit code"
+   exit 1;
+elif [[ $y == $PASSING_EXIT_CODE ]]; then
+   echo "In passing exit code"
+   exit 0;
+else
+   echo "In other exit code"
+   exit $y;
+fi;
