@@ -3,8 +3,11 @@ algorithm:
 coverage:
   method:
     files-to-instrument:
-    - xmllint.c
+    - filename: xmllint.c
+      line: 3133
     type: gcov
+  restrict-to-files:
+  - xmllint.c
 localization:
   metric: genprog
   type: spectrum
@@ -13,6 +16,7 @@ optimizations:
   ignore-equivalent-insertions: true
   ignore-string-equivalent-snippets: true
 program:
+  build-directory: /workspace/source/build
   build-instructions:
     environment:
       REPAIR_TOOL: darjeeling
@@ -32,6 +36,7 @@ program:
   image: libxml2-cve_2017_5969
   language: c
   source-directory: /workspace/source
+  src-subdirectory: ''
   tests:
     tests:
     - ./test

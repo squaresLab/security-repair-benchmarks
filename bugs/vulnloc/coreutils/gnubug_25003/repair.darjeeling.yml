@@ -3,11 +3,11 @@ algorithm:
 coverage:
   method:
     files-to-instrument:
-    - filename: binutils/objdump.c
-      line: 3729
+    - filename: src/split.c
+      line: 1284
     type: gcov
   restrict-to-files:
-  - binutils/objdump.c
+  - src/split.c
 localization:
   metric: genprog
   type: spectrum
@@ -16,7 +16,7 @@ optimizations:
   ignore-equivalent-insertions: true
   ignore-string-equivalent-snippets: true
 program:
-  build-directory: /workspace/source
+  build-directory: /workspace/source/build
   build-instructions:
     environment:
       REPAIR_TOOL: darjeeling
@@ -33,10 +33,10 @@ program:
     - command: REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./build
       directory: /workspace
     time-limit: 30
-  image: binutils-cve_2017_14745
+  image: coreutils-gnubug_25003
   language: c
   source-directory: /workspace/source
-  src-subdirectory: binutils
+  src-subdirectory: src
   tests:
     tests:
     - ./test
