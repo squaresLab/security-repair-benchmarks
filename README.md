@@ -1,7 +1,7 @@
 Security Repair Benchmark - Overview for Red Team Use
 =====================================================
 
-**Author:** `Chris Timperley <https://github.com/ChrisTimperley>
+**Author:** Chris Timperley <https://github.com/ChrisTimperley>
 
 This project provides a reusable and reproducible infrastructure for evaluating C/C++ security vulnerability
 repair techniques. In particular, it can be used to evaluate both a baseline approach: *Baseline Darjeeling*
@@ -129,7 +129,7 @@ This causes coverage to be incomplete or missing for essentially every program i
 To workaround that limitation, Darjeeling injects instrumentation, shown below, into the top of the program under repair to cause it to flush coverage information before terminating.
 Darjeeling uses the information provided by `coverage-files` to determine which files should be instrumented.
 
-.. code:: c
+```c
 
     /* DARJEELING :: INSTRUMENTATION :: START */
     #include <stdio.h>
@@ -164,7 +164,7 @@ Darjeeling uses the information provided by `coverage-files` to determine which 
       signal(SIGUSR2, darjeeling_sighandler);
     }
     /* DARJEELING :: INSTRUMENTATION :: END */
-
+```
 
 ### What files should I add to coverage-files?
 
