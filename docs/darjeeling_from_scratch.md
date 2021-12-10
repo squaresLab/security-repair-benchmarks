@@ -53,14 +53,24 @@ This will open the secbugs docker container. `<ctrl> d` to exit.
 The following steps assume you are in the same directory as as above (`security-repair-benchmarks`).
 1. Install pipenv and pip:
 ~~~
-sudo apt-get install pipenv pip
+sudo apt-get install python3-pip
+python3 -m pip install --user pipenv
+sudo apt-get install pipenv
 ~~~
 2. Set up the python environment:
 ~~~
-python3 -m pip install --user pipenv
 pipenv install
 ~~~
-If prompted about "lock" issues reboot the machine.
+If prompted about the following "lock" error, log out and back in to solve this issue.
+~~~
+Traceback (most recent call last):
+  File "/home/tony/.local/lib/python3.9/site-packages/pipenv/resolver.py", line 766, in <module>
+    main()
+  File "/home/tony/.local/lib/python3.9/site-packages/pipenv/resolver.py", line 751, in main
+    from pipenv.vendor.vistir.compat import ResourceWarning
+ModuleNotFoundError: No module named 'pipenv.vendor.vistir'
+~~~
+
 
 ***If running Ubuntu 18.04 use the following instructions in stead of 1 and 2 above:***
 ~~~
