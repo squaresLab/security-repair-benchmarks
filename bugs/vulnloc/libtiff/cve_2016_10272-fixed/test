@@ -1,14 +1,18 @@
 #!/bin/bash
+
 function EXIT_CHECK {
 local y=$1
 local x=$y
 
 FAILURE_EXIT_CODE=134
+SIGTERM_EXIT_CODE=143
 
 if [[ $y == $FAILURE_EXIT_CODE ]]; then 
 	x=1; 
-else
+elif [[ $y == $SIGTERM_EXIT_CODE ]] ; then
 	x=0; 
+else
+	x=$y; 
 fi; 
 echo $x
 
