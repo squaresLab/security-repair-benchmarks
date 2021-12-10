@@ -41,8 +41,9 @@ that the URLs are of the https type. For example:
 
 ~~~
 This will make all the test containers and requires no less than an hour.
-To make an individual test: ADD DOCS HERE AFTER VERIFYING.
-
+To make an individual test container: 
+	- `cd security-repair-benchmarks/bugs/vulnloc/<prog>`
+	- `make <CVE/exploit>`
 3. Verify the project made correctly:
 ~~~
 scripts/run.sh
