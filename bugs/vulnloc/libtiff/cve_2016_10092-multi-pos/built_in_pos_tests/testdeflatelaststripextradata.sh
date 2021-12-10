@@ -2,7 +2,7 @@
 #
 # check decoding of a deflate compressed file whose last strip which should
 # contain data for only 4 lines has more in it.
-. ${srcdir:-.}/common.sh
+. /workspace/built_in_pos_tests/common.sh
 infile="${IMAGES}/deflate-last-strip-extra-data.tiff"
 outfile="o-deflate-last-strip-extra-data.tiff"
 rm -f $outfile

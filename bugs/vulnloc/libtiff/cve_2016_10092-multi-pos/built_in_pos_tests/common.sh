@@ -1,11 +1,11 @@
 # Common code fragment for tests
 #
-srcdir=${srcdir:-.}
+srcdir='/workspace/built_in_pos_tests'
 BUILDDIR=`pwd`
 SRCDIR=`dirname $0`
 SRCDIR=`cd $SRCDIR && pwd`
 TOPSRCDIR=`cd $srcdir/.. && pwd`
-TOOLS=`cd ../dbuild/tools && pwd`
+TOOLS=`cd workspace/source/dbuild/tools && pwd`
 IMAGES="${SRCDIR}/images"
 REFS="${SRCDIR}/refs"
 

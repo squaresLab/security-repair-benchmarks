@@ -1,6 +1,6 @@
 #!/bin/sh
 # Generated file, master is Makefile.am
-. ${srcdir:-.}/common.sh
+. /workspace/built_in_pos_tests/common.sh
 infile="$srcdir/images/quad-tile.jpg.tiff"
 outfile="o-tiffcrop-doubleflip-quad-tile.jpg.tiff"
 f_test_convert "$TIFFCROP -F both" $infile $outfile

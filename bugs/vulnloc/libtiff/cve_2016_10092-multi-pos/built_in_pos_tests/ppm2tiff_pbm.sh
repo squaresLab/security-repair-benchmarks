@@ -1,5 +1,5 @@
 #!/bin/sh
-. ${srcdir:-.}/common.sh
+. /workspace/built_in_pos_tests/common.sh
 infile="$IMG_MINISWHITE_1C_1B_PBM"
 outfile="o-ppm2tiff_pbm.tiff"
 f_test_convert "$PPM2TIFF" $infile $outfile

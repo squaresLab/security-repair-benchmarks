@@ -1,6 +1,6 @@
 #!/bin/sh
 # Generated file, master is Makefile.am
-. ${srcdir:-.}/common.sh
+. /workspace/built_in_pos_tests/common.sh
 infile="$srcdir/images/minisblack-1c-8b.tiff"
 outfile="o-tiff2bw-minisblack-1c-8b.tiff"
 f_test_convert "$TIFF2BW" $infile $outfile

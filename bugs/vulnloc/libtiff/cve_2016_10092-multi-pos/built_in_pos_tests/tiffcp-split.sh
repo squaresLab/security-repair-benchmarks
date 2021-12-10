@@ -5,7 +5,7 @@
 # First we use tiffcp to join our test files into a multi-frame TIFF
 # and then we use tiffsplit to split them out again.
 #
-. ${srcdir:-.}/common.sh
+. /workspace/built_in_pos_tests/common.sh
 conjoined=o-tiffcp-split-conjoined.tif
 splitfile=o-tiffcp-split-split-
 

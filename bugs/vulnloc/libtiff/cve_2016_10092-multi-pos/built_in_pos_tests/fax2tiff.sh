@@ -2,7 +2,7 @@
 #
 # Basic sanity check for fax2tiff
 #
-. ${srcdir:-.}/common.sh
+. /workspace/built_in_pos_tests/common.sh
 infile="${IMAGES}/miniswhite-1c-1b.g3"
 outfile="o-fax2tiff.tiff"
 rm -f $outfile

@@ -6,7 +6,7 @@
 # then we use tiffsplit to split them out again, and then we use
 # tiffcp to recombine again.
 
-. ${srcdir:-.}/common.sh
+. /workspace/built_in_pos_tests/common.sh
 conjoined=o-tiffcp-split-join-conjoined.tif
 reconjoined=o-tiffcp-split-join-reconjoined.tif
 splitfile=o-tiffcp-split-join-split-

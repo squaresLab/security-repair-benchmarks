@@ -2,7 +2,7 @@
 #
 # check decoding of a CCITT Group 4 encoded TIFF
 # with 0 length runs
-. ${srcdir:-.}/common.sh
+. /workspace/built_in_pos_tests/common.sh
 infile="${IMAGES}/testfax4.tiff"
 outfile="o-testfax4.tiff"
 rm -f $outfile

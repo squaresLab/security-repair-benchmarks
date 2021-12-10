@@ -2,5 +2,5 @@
 #
 # Basic sanity check for tiffinfo.
 #
-. ${srcdir:-.}/common.sh
+. /workspace/built_in_pos_tests/common.sh
 f_test_reader "${TIFFINFO} -c -D -d -j -s " "${IMG_MINISBLACK_1C_16B}"

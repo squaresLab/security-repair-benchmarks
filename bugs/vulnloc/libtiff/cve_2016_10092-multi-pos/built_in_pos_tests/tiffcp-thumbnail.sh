@@ -2,7 +2,7 @@
 #
 # Basic sanity check for thumbnail
 #
-. ${srcdir:-.}/common.sh
+. /workspace/built_in_pos_tests/common.sh
 
 outfile1=o-tiffcp-thumbnail-in.tif
 outfile2=o-tiffcp-thumbnail-out.tif
