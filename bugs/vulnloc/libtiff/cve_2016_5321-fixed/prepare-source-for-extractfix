@@ -1,0 +1,5 @@
+#!/bin/bash
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+SOURCE_DIR="${HERE_DIR}/source"
+
+sed -i '992s/s = 0/s/' "${SOURCE_DIR}/tools/tiffcrop.c"

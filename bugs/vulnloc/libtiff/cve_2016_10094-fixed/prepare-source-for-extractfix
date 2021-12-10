@@ -1,0 +1,7 @@
+#!/bin/bash
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+SOURCE_DIR="${HERE_DIR}/source"
+
+sed -i '2901s/_TIFFmemcpy(buffer, jpt, count - 2)/\/\/_TIFFmemcpy(buffer, jpt, count - 2);/' "${SOURCE_DIR}/tools/tiff2pdf.c"
+sed -i '2904s/table_end\[0\] = buffer\[bufferoffset-2\]/table_end[1]=buffer[bufferoffset-1]/' "${SOURCE_DIR}/tools/tiff2pdf.c"
+sed -i '2905s/table_end\[1\] = buffer\[bufferoffset-1\];/table_end[0]=buffer[bufferoffset-2];/' "${SOURCE_DIR}/tools/tiff2pdf.c"

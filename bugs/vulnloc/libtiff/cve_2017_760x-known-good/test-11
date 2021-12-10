@@ -1,0 +1,8 @@
+#!/bin/bash
+set -eu
+
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+PATH_EXPLOIT="${HERE_DIR}/exploit-11"
+PATH_BIN="${1:-${HERE_DIR}/source/tools/tiffcp}"
+
+${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" -p separate "${PATH_EXPLOIT}" out.tiff

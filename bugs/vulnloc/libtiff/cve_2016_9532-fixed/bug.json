@@ -1,0 +1,25 @@
+{
+  "subject": "libtiff",
+  "name": "cve_2016_9532",
+  "options": {
+    "darjeeling": {
+      "coverage-files": [
+       { "filename": "tools/tiffcrop.c", "line": 2140}
+      ]
+    },
+    "extractfix": {
+      "bug-type": "buffer_overflow",
+      "binary": {
+        "name": "tiffcrop",
+        "path": "dbuild/tools/tiffcrop"
+      }
+    },
+    "hifix": {
+      "linker-options": "/benchmarks/libtiff/cve_2016_9532/source/port/.libs/libport.a /benchmarks/libtiff/cve_2016_9532/source/libtiff/.libs/libtiff.a /benchmarks/libtiff/cve_2016_9532/source/libtiff/.libs/libtiffxx.a -ljpeg -llzma -lm -ljbig -lz"
+    }
+  },
+  "test-suite": {
+    "tests":[ "./test-0" ]
+  },
+  "binary": "dbuild/tools/.libs/tiffcrop"
+}

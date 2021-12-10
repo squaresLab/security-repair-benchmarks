@@ -1,0 +1,18 @@
+[
+    {
+		"module": "tools/tiffsplit.c",
+		"function": "main",
+		"variable": "argv",
+		"value": ["./tiffsplit", "/root/exploit"],
+		"type": "string-array",
+		"tools_line": 58
+	},
+    {
+		"module": "tools/tiffsplit.c",
+		"function": "main",
+		"variable": "argc",
+		"value": "2",
+		"type": "int",
+		"tools_line": 58
+	}
+]
