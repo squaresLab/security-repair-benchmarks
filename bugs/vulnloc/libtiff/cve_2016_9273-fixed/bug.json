@@ -3,8 +3,8 @@
   "name": "cve_2016_9273",
   "options": {
     "darjeeling": {
-      "build-subdir": "dbuild",
-      "src-subdir": "tools",
+      "build-subdir": "dbuild/tools",
+      "src-subdir":"",
       "coverage-files": [
        { "filename": "tools/tiffsplit.c", "line": 89}
       ]

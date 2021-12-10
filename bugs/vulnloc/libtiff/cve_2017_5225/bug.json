@@ -3,8 +3,8 @@
   "name": "cve_2017_5225",
   "options": {
     "darjeeling": {
-      "build-subdir": "dbuild",
-      "src-subdir": "tools",
+      "build-subdir": "dbuild/tools",
+      "src-subdir":"",
       "coverage-files": [
        { "filename": "tools/tiffcp.c", "line": 303}
       ]

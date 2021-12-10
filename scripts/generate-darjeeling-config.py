@@ -61,14 +61,13 @@ def generate_config(
     docker_image_name = f"{program_name}-{bug_name}"
 
     build_dir=os.path.join(source_directory,build_subdir) if build_subdir else source_directory
-    src_dir=src_subdir if src_subdir else os.path.dirname(coverage_files[0]['filename'])
 
     config["program"] = {
         "image": docker_image_name,
         "language": "c",
         "source-directory": source_directory,
         "build-directory": build_dir,
-        "src-subdirectory": src_dir,
+        "src-subdirectory": src_subdir,
         "build-instructions": {
             "time-limit": 30,
             "environment": {
@@ -147,14 +146,14 @@ def generate_for_bug_file(bug_filename: str) -> str:
     threads = 8
     max_candidates = 100
 
-    build_subdir = bug_description["options"]["darjeeling"].get("build-subdir",None)
-    src_subdir = bug_description["options"]["darjeeling"].get("src-subdir",None)
-    test_info = bug_description.get("test-suite",None)
-
     try:
         coverage_files = bug_description["options"]["darjeeling"]["coverage-files"]
     except KeyError:
         raise ValueError("missing darjeeling.coverage-files field in bug.json")
+
+    build_subdir = bug_description["options"]["darjeeling"].get("build-subdir",None)
+    src_subdir = bug_description["options"]["darjeeling"].get("src-subdir",os.path.dirname(coverage_files[0]['filename']))
+    test_info = bug_description.get("test-suite",None)
 
     config = generate_config(
         program_name=bug_description["subject"],

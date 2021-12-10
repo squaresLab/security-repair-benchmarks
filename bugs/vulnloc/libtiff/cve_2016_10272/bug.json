@@ -5,8 +5,8 @@
   "fbinary": "fbuild/tools/.libs/tiffcrop",
   "options": {
     "darjeeling": {
-      "build-subdir": "dbuild",
-      "src-subdir": "tools",
+      "build-subdir": "dbuild/tools",
+      "src-subdir":"",
       "coverage-files": [
        { "filename": "tools/tiffcrop.c", "line": 2177}
       ]

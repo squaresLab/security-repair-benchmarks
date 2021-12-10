@@ -3,8 +3,8 @@
   "name": "bugzilla_2633",
   "options": {
     "darjeeling": {
-      "build-subdir": "dbuild",
-      "src-subdir": "tools",
+      "build-subdir": "dbuild/tools",
+      "src-subdir":"",
       "coverage-files": [
        { "filename": "tools/tiff2ps.c", "line": 239}
       ]
