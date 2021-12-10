@@ -37,33 +37,33 @@ More details about the specific bug scenarios we currently support with darjeeli
 Bug Scenario Format
 -------------------
 
-Each bug scenario within this benchmark is given its own directory (e.g., :code:`/benchmarks/vulnloc/binutils/cve_2017_14745`),
+Each bug scenario within this benchmark is given its own directory (e.g., `/benchmarks/vulnloc/binutils/cve_2017_14745`),
 which provides the files necessary to perform repair on that bug using a variety of tools.
 Below is a brief description of the files that MUST be included in each bug scenario directory:
 
-* :code:`bug.json` provides several details about the bug as well as tool-specific configuration
+* `bug.json` provides several details about the bug as well as tool-specific configuration
   options that should be used when attempting to repair it.
-* :code:`test` provides a script for executing the single failing test (i.e., payload) for the bug
+* `test` provides a script for executing the single failing test (i.e., payload) for the bug
   scenario. The script takes a single, optional argument, providing the absolute path of the binary
   that should be used to run the test. (This is useful in cases where a repaired binary is created in
   a different location to the original binary.) If no argument is provided, the script will use the
   original binary to perform the test.
-* :code:`clean` (equivalent to :code:`make clean`) removes any compiled binaries, objects, etc. This
+* `clean` (equivalent to `make clean`) removes any compiled binaries, objects, etc. This
   is useful for recompiling the program with coverage instrumentation enabled (e.g., when performing
   repair with Darjeeling).
-* :code:`prebuild` (similar to :code:`./configure`) appropriately configures the project. Note that
-  this script requires that a :code:`REPAIR_TOOL` environment variable is set, stating the repair tool,
+* `prebuild` (similar to `./configure`) appropriately configures the project. Note that
+  this script requires that a `REPAIR_TOOL` environment variable is set, stating the repair tool,
   if any, that is being used in conjunction with the code. This feature is used to compile the program
   in slightly different ways according to the assumptions of various tools. To build the program without
-  targeting any specific tool, you can just pass in :code:`REPAIR_TOOL=none`. (E.g., :code:`REPAIR_TOOL=none ./prebuild`.)
-* :code:`build` (similar to :code:`make`) builds the project. As with :code:`prebuild`, this step requires
-  that the :code:`REPAIR_TOOL` environment variable be appropriately set.
+  targeting any specific tool, you can just pass in `REPAIR_TOOL=none`. (E.g., `REPAIR_TOOL=none ./prebuild`.)
+* `build` (similar to `make`) builds the project. As with `prebuild`, this step requires
+  that the `REPAIR_TOOL` environment variable be appropriately set.
 
 
 File Format: bug.json
 .....................
 
-Below is an example of a :code:`bug.json` file for :code:`libtiff/cve_2016_10092`.
+Below is an example of a `bug.json` file for `libtiff/cve_2016_10092`.
 
 ```json
 {
@@ -123,13 +123,13 @@ Troubleshooting and Questions
 How does Darjeeling obtain coverage?
 ....................................
 
-Darjeeling recompiles the program with the appropriate :code:`--coverage` flags to allow line-level coverage to be collected via :code:`gcov`.
-(More specifically, we use :code:`gcovr` under the hood to make life a little easier.)
-A problem with this approach is that if the program abruptly terminates (i.e., crashes), coverage information will not be flushed to disk (:code:`.gcda` files).
+Darjeeling recompiles the program with the appropriate `--coverage` flags to allow line-level coverage to be collected via `gcov`.
+(More specifically, we use `gcovr` under the hood to make life a little easier.)
+A problem with this approach is that if the program abruptly terminates (i.e., crashes), coverage information will not be flushed to disk (`.gcda` files).
 This causes coverage to be incomplete or missing for essentially every program in this benchmark.
 
 To workaround that limitation, Darjeeling injects instrumentation, shown below, into the top of the program under repair to cause it to flush coverage information before terminating.
-Darjeeling uses the information provided by :code:`coverage-files` to determine which files should be instrumented.
+Darjeeling uses the information provided by `coverage-files` to determine which files should be instrumented.
 
 .. code:: c
 
@@ -171,7 +171,7 @@ Darjeeling uses the information provided by :code:`coverage-files` to determine 
 What files should I add to coverage-files?
 ..........................................
 
-You should add the translation unit that provides :code:`main` for the specific binary that is under repair.
+You should add the translation unit that provides `main` for the specific binary that is under repair.
 Other files should not be added.
 If multiple source files from the same binary are instrumented, compilation will fail due to multiple definitions.
 
