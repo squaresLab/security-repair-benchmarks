@@ -1,7 +1,7 @@
 Security Repair Benchmark - Overview for Red Team Use
 =====================================================
 
-**Author:** `Chris Timperley <https://github.com/ChrisTimperley>`_ (ctimperley at cmu dot edu)
+**Author:** `Chris Timperley <https://github.com/ChrisTimperley>
 
 This project provides a reusable and reproducible infrastructure for evaluating C/C++ security vulnerability
 repair techniques. In particular, it can be used to evaluate both a baseline approach: *Baseline Darjeeling*
