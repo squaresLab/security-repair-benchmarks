@@ -56,5 +56,6 @@ RUN [ "${SUT_GET_CODE_FROM_ARCHIVE}" = yes ] \
  && rm source.zip \
  || exit 0
 
-RUN REPAIR_TOOL=none bear ./prebuild \
- && REPAIR_TOOL=none bear ./build
+RUN REPAIR_TOOL=none bear ./prebuild && REPAIR_TOOL=none bear ./build
+
+RUN if [ -e MYBUG.cfg ]; then mv MYBUG.cfg BUG.cfg; fi

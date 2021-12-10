@@ -16,7 +16,7 @@ optimizations:
   ignore-equivalent-insertions: true
   ignore-string-equivalent-snippets: true
 program:
-  build-directory: /workspace/source
+  build-directory: /workspace/source/dbuild
   build-instructions:
     environment:
       REPAIR_TOOL: darjeeling

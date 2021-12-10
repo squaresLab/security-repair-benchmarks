@@ -3,6 +3,8 @@
   "name": "cve_2016_9532",
   "options": {
     "darjeeling": {
+      "build-subdir": "dbuild",
+      "src-subdir": "tools",
       "coverage-files": [
        { "filename": "tools/tiffcrop.c", "line": 2140}
       ]

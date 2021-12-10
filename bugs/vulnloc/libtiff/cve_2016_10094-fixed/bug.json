@@ -5,6 +5,8 @@
   "fbinary": "fbuild/tools/.libs/tiff2pdf",
   "options": {
     "darjeeling": {
+      "build-subdir": "dbuild",
+      "src-subdir": "tools",
       "coverage-files": [
        { "filename": "tools/tiff2pdf.c", "line": 599}
       ]

@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 
 echo "Got to begining"
 FAILURE_EXIT_CODE=139

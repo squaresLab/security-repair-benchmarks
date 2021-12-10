@@ -3,6 +3,8 @@
   "name": "cve_2016_5314",
   "options": {
     "darjeeling": {
+      "build-subdir": "dbuild",
+      "src-subdir": "tools",
       "coverage-files": [
        { "filename": "tools/rgb2ycbcr.c", "line": 132}
       ]

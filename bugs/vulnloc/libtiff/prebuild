@@ -3,21 +3,39 @@ set -eu
 
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SOURCE_DIR="${HERE_DIR}/source"
-CONFIG_PATH="./configure"
+CONFIG_PATH="../configure"
+BUILD_DIR="${SOURCE_DIR}/dbuild"
+
+mkdir -p $BUILD_DIR
+
 # NOTE ./configure complains that the following option doesn't exist
 # CONFIG_OPTIONS="--disable-nls"
 CONFIG_OPTIONS=""
-CONFIG_OPTIONS=""
 
-pushd "${SOURCE_DIR}"
+pushd "${BUILD_DIR}"
 
 if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   COMPILE_TYPE="$1"
   CONFIG_PATH="../configure"
 
-  rm -rf klee
-  mkdir klee
-  pushd klee
+  rm -rf ${SOURCE_DIR}/klee
+  mkdir ${SOURCE_DIR}/klee
+  pushd ${SOURCE_DIR}/klee
 fi
 
 "${CONFIG_PATH}" "${CONFIG_OPTIONS}"
+
+if [[ -e ${HERE_DIR}/BUG.cfg ]]; then
+  FAILBUILD_DIR="${SOURCE_DIR}/fbuild"
+  mkdir -p ${BUILD_DIR} ${FAILBUILD_DIR}
+
+  # importing failure-inducing ENV vars (CFLAGS, etc)
+  source ${HERE_DIR}/BUG.cfg 1
+  
+  pushd ${FAILBUILD_DIR}
+  # failing image
+  "${CONFIG_PATH}" ${CONFIG_OPTIONS}
+  source ${HERE_DIR}/BUG.cfg 0
+  popd > /dev/null
+  echo "Configured Failing image"
+fi
