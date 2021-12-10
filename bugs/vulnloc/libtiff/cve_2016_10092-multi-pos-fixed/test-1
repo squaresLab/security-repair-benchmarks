@@ -1,0 +1,31 @@
+#!/bin/bash
+set -eu
+
+echo "In test script"
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+echo "Here dir is ${HERE_DIR}"
+PATH_TEST_TIFF="${HERE_DIR}/valid_tiffs/44.tiff"
+
+echo "PATH_TEST_TIFF is ${PATH_TEST_TIFF}"
+
+PATH_BIN="${1:-${HERE_DIR}/source/dbuild/tools/tiffcrop}"
+
+echo "PATH_BIN is ${PATH_BIN}"
+
+${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" -i "${PATH_TEST_TIFF}" foo
+x=$?
+
+echo "Just ran the test, error code was ${x}"
+
+if [[ -e "${HERE_DIR}/BUG.cfg" ]]; then 
+echo "In this if - shoud not be here!"
+PATH_BIN="${1:-${HERE_DIR}/source/fbuild/tools/tiffcrop}"
+if [[ -e $PATH_BIN ]]; then 
+echo "I am now running again"
+${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" -i "${PATH_TEST_TIFF}" foo
+x=$?
+fi
+fi
+
+exit $x
