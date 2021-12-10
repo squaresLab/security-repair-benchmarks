@@ -6,7 +6,7 @@
       "bug-type": "integer_overflow",
       "binary": {
         "name": "tiffcp",
-        "path": "tools/tiffcp"
+        "path": "dbuild/tools/tiffcp"
       },
       "lowfat": {
         "CFLAGS": "-fsanitize=shift -fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-reads -mllvm -lowfat-no-check-writes -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-check-whole-access -mllvm -lowfat-no-replace-globals -mllvm -lowfat-no-replace-alloca -mllvm -lowfat-no-replace-malloc -mllvm -lowfat-symbolize -lstlimpl"
@@ -21,7 +21,8 @@
       ]
     }
   },
-  "binary": "tools/.libs/tiffcp",
+  "fbinary": "fbuild/tools/.libs/tiffcp",
+  "binary": "dbuild/tools/.libs/tiffcp",
   "test-suite": {
     "type":"shell",
     "time-limit":5,

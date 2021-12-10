@@ -1,0 +1,5 @@
+#!/bin/bash
+HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+SOURCE_DIR="${HERE_DIR}/source"
+
+sed -i '352s/while ((count = getc(infile)) && count <= 255)/count = getc(infile);\nwhile (count <= 255)/' "${SOURCE_DIR}/tools/gif2tiff.c"

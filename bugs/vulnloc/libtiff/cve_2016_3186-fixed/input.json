@@ -1,0 +1,18 @@
+[
+    {
+		"module": "tools/gif2tiff.c",
+		"function": "main",
+		"variable": "argv",
+		"value": ["./gif2tiff", "../../exploit", "out.tif"],
+		"type": "int",
+		"src_line": 138
+	},
+    {
+		"module": "tools/gif2tiff.c",
+		"function": "main",
+		"variable": "argc",
+		"value": "4",
+		"type": "int",
+		"src_line": 138
+	}
+]

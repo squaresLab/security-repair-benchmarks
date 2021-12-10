@@ -1,0 +1,69 @@
+algorithm:
+  type: exhaustive
+coverage:
+  method:
+    files-to-instrument:
+    - filename: tools/tiffcp.c
+      line: 156
+    type: gcov
+  restrict-to-files:
+  - tools/tiffcp.c
+localization:
+  metric: genprog
+  type: spectrum
+optimizations:
+  ignore-dead-code: true
+  ignore-equivalent-insertions: true
+  ignore-string-equivalent-snippets: true
+program:
+  build-directory: /workspace/source
+  build-instructions:
+    environment:
+      REPAIR_TOOL: darjeeling
+    steps:
+    - command: REPAIR_TOOL=darjeeling ./prebuild
+      directory: /workspace
+    - command: REPAIR_TOOL=darjeeling ./build
+      directory: /workspace
+    steps-for-coverage:
+    - command: REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./clean
+      directory: /workspace
+    - command: REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./prebuild
+      directory: /workspace
+    - command: REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./build
+      directory: /workspace
+    time-limit: 30
+  image: libtiff-cve_2017_7601
+  language: c
+  source-directory: /workspace/source
+  src-subdirectory: tools
+  tests:
+    tests:
+    - ./test-0
+    - ./test-1
+    - ./test-2
+    - ./test-3
+    - ./test-4
+    - ./test-5
+    - ./test-6
+    - ./test-7
+    - ./test-8
+    - ./test-9
+    - ./test-10
+    - ./test-11
+    - ./test-12
+    - ./test-13
+    - ./test-14
+    time-limit: 5
+    type: shell
+    workdir: /workspace
+resource-limits:
+  candidates: 100
+seed: 0
+threads: 8
+transformations:
+  schemas:
+  - type: delete-statement
+  - type: replace-statement
+  - type: append-statement
+version: 1.0
