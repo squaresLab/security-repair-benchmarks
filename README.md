@@ -4,7 +4,7 @@ Security Repair Benchmark - Overview for Red Team Use
 **Author:** Chris Timperley <https://github.com/ChrisTimperley>
 
 This project provides a reusable and reproducible infrastructure for evaluating C/C++ security vulnerability
-repair techniques. In particular, it can be used to evaluate both a baseline approach: *Baseline Darjeeling*
+repair techniques. In particular, it can be used to evaluate both a baseline repair approach: *Baseline Darjeeling*
 as well as a future improved *Darjeeling++*. To enable this evaluation, this project consists of Dockerized 
 repair tools and bug benchmarks via separate Docker images for individual bug scenarios.
 
