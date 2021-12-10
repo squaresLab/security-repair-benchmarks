@@ -120,5 +120,4 @@ To run darjeeling on any of the bugs:
 pipenv run scripts/generate-darjeeling-config.py bugs/vulnloc/<Project>/<CVE/exploit>
 pipenv run darjeeling repair bugs/vulnloc/<Project>/<CVE/exploit>/repair.darjeeling.yml
 ~~~
-~~~
-
+where `<Project>` and `<CVE/exploit>` can be any of the pairs of values from the table.
