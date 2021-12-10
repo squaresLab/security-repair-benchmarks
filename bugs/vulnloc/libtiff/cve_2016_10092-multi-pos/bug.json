@@ -30,7 +30,8 @@
     "time-limit":5,
     "tests":[
        "./test", 
-       "./test-1"
+       "./test-1",
+       "./built_in_pos_tests/tiffdump.sh"
     ]
   }
 }

@@ -41,6 +41,7 @@ program:
     tests:
     - ./test
     - ./test-1
+    - ./built_in_pos_tests/tiffdump.sh
     time-limit: 5
     type: shell
     workdir: /workspace
