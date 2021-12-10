@@ -75,7 +75,14 @@ To run darjeeling on a specific bug first generate a configuration file for that
 pipenv run scripts/generate-darjeeling-config.py bugs/vulnloc/coreutils/gnubug_19784
 ~~~
 This command uses the information in the `bug.json` file for the given bug to generate a Darjeeling 
-configuration yml file. Next run darjeeling on this generated yml file:
+configuration yml file. 
+
+*Note:* `generate-darjeeling-config.py` currently generates a working default darjeeling yml
+configuration file for the bug scenario. Should you want to modify the yml directly (e.g., 
+modify the number of candidate patches evaluated), see the Darjeeling configuration documentation
+available [here](https://github.com/squaresLab/Darjeeling).
+
+Next run darjeeling on this generated yml file:
 ~~~
 pipenv run darjeeling repair bugs/vulnloc/coreutils/gnubug_19784/repair.darjeeling.yml
 ~~~

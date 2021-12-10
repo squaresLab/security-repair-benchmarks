@@ -60,8 +60,7 @@ Below is a brief description of the files that MUST be included in each bug scen
   that the `REPAIR_TOOL` environment variable be appropriately set.
 
 
-File Format: bug.json
-.....................
+### File Format: bug.json
 
 Below is an example of a `bug.json` file for `libtiff/cve_2016_10092`.
 
@@ -120,8 +119,7 @@ Here is a description of darjeeling specific fields in `bug.json`:
 Troubleshooting and Questions
 -----------------------------
 
-How does Darjeeling obtain coverage?
-....................................
+### How does Darjeeling obtain coverage?
 
 Darjeeling recompiles the program with the appropriate `--coverage` flags to allow line-level coverage to be collected via `gcov`.
 (More specifically, we use `gcovr` under the hood to make life a little easier.)
@@ -168,8 +166,7 @@ Darjeeling uses the information provided by `coverage-files` to determine which 
     /* DARJEELING :: INSTRUMENTATION :: END */
 
 
-What files should I add to coverage-files?
-..........................................
+### What files should I add to coverage-files?
 
 You should add the translation unit that provides `main` for the specific binary that is under repair.
 Other files should not be added.
