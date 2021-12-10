@@ -1,6 +1,6 @@
 {
   "subject": "libtiff",
-  "name": "cve_2016_10092",
+  "name": "cve_2016_10092-multi-pos",
   "binary": "dbuild/tools/.libs/tiffcrop",
   "fbinary": "fbuild/tools/.libs/tiffcrop",
   "options": {

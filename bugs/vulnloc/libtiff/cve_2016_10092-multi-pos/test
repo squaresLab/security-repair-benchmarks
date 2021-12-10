@@ -1,6 +1,8 @@
 #!/bin/bash
 set -eu
 
+ls
+
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 PATH_EXPLOIT="${HERE_DIR}/exploit"
 PATH_BIN="${1:-${HERE_DIR}/source/dbuild/tools/tiffcrop}"
@@ -16,4 +18,7 @@ x=$?
 fi
 fi
 
+echo "end of thing"
+
+ls
 exit $x

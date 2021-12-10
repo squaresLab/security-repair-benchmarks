@@ -6,8 +6,7 @@ for cve_2016_10092-multi-pos
 
 #${{TEST_EXECUTION_PREFIX:-}} "${{PATH_BIN}}" -i "${{PATH_TEST_TIFF}}" foo
 
-text_case_template_text = """
-#!/bin/bash
+text_case_template_text = """#!/bin/bash
 set -eu
 
 HERE_DIR=$( cd "$( dirname "${{BASH_SOURCE[0]}}" )" && pwd )
@@ -54,14 +53,14 @@ def make_test_case(test_num, tiff1, tiff2, tiff3, toolName, testExecution):
 # #${{TEST_EXECUTION_PREFIX:-}} "${{PATH_BIN}}" -i "${{PATH_TEST_TIFF}}" foo
 def generate_tiffcrop_execution_line(tiff1, tiff2, tiff3):
     el = []
-    el.append('tiffcrop -c lzw "${{BASE_TIFF_PATH}}{0}" "${{BASE_TIFF_PATH}}{1}" result.tiff'.format(tiff1, tiff2))
-    el.append('tiffcrop -c lzw "${{BASE_TIFF_PATH}}{0}" "${{BASE_TIFF_PATH}}{1}" result.tiff'.format(tiff1, tiff3))
-    el.append('tiffcrop -c lzw "${{BASE_TIFF_PATH}}{0}" "${{BASE_TIFF_PATH}}{1}" result.tiff'.format(tiff2, tiff3))
-    el.append('tiffcrop -F horiz "${{BASE_TIFF_PATH}}{0}"'.format(tiff1))
-    el.append('tiffcrop -F vert "${{BASE_TIFF_PATH}}{0}"'.format(tiff2))
-    el.append('tiffcrop -i lzw "${{BASE_TIFF_PATH}}{0}" "${{BASE_TIFF_PATH}}{1}"'.format(tiff1, tiff2))
-    el.append('tiffcrop -i lzw "${{BASE_TIFF_PATH}}{0}" "${{BASE_TIFF_PATH}}{1}"'.format(tiff1, tiff3))
-    el.append('tiffcrop -i lzw "${{BASE_TIFF_PATH}}{0}" "${{BASE_TIFF_PATH}}{1}"'.format(tiff2, tiff3))
+    el.append('-c lzw "${{BASE_TIFF_PATH}}{0}" "${{BASE_TIFF_PATH}}{1}" result.tiff'.format(tiff1, tiff2))
+    el.append('-c lzw "${{BASE_TIFF_PATH}}{0}" "${{BASE_TIFF_PATH}}{1}" result.tiff'.format(tiff1, tiff3))
+    el.append('-c lzw "${{BASE_TIFF_PATH}}{0}" "${{BASE_TIFF_PATH}}{1}" result.tiff'.format(tiff2, tiff3))
+    el.append('-F hor "${{BASE_TIFF_PATH}}{0}"'.format(tiff1))
+    el.append('-F vert "${{BASE_TIFF_PATH}}{0}"'.format(tiff2))
+    el.append('-i "${{BASE_TIFF_PATH}}{0}" "${{BASE_TIFF_PATH}}{1}"'.format(tiff1, tiff2))
+    el.append('-i "${{BASE_TIFF_PATH}}{0}" "${{BASE_TIFF_PATH}}{1}"'.format(tiff1, tiff3))
+    el.append('-i "${{BASE_TIFF_PATH}}{0}" "${{BASE_TIFF_PATH}}{1}"'.format(tiff2, tiff3))
     return(el)
 
 

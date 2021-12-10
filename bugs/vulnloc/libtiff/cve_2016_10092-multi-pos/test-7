@@ -1,4 +1,3 @@
-
 #!/bin/bash
 set -eu
 
@@ -6,13 +5,13 @@ HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 BASE_TIFF_PATH="${HERE_DIR}/valid_tiffs/"
 PATH_BIN="${1:-${HERE_DIR}/source/dbuild/tools/tiffcrop}"
 
-${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" tiffcrop -i lzw "${BASE_TIFF_PATH}0.tiff" "${BASE_TIFF_PATH}1006.tiff"
+${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" -i lzw "${BASE_TIFF_PATH}0.tiff" "${BASE_TIFF_PATH}1006.tiff"
 x=$?
 
 if [[ -e "${HERE_DIR}/BUG.cfg" ]]; then 
 PATH_BIN="${1:-${HERE_DIR}/source/fbuild/tools/tiffcrop}"
 if [[ -e $PATH_BIN ]]; then 
-${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" tiffcrop -i lzw "${BASE_TIFF_PATH}0.tiff" "${BASE_TIFF_PATH}1006.tiff"
+${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" -i lzw "${BASE_TIFF_PATH}0.tiff" "${BASE_TIFF_PATH}1006.tiff"
 x=$?
 fi
 fi

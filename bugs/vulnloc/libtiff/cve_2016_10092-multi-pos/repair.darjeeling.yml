@@ -33,7 +33,7 @@ program:
     - command: REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./build
       directory: /workspace
     time-limit: 30
-  image: libtiff-cve_2016_10092
+  image: libtiff-cve_2016_10092-multi-pos
   language: c
   source-directory: /workspace/source
   src-subdirectory: ''
