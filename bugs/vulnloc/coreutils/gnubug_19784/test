@@ -1,5 +1,7 @@
 #!/bin/bash
-set -eu
+
+FAILURE_EXIT_CODE=1
+PASSING_EXIT_CODE=23
 
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 BUG_FILE="${HERE_DIR}/bug.json"
@@ -7,13 +9,20 @@ SUBJECT_PATH="$(jq -r ".binary" "${BUG_FILE}")"
 PATH_BIN="${1:-${HERE_DIR}/source/${SUBJECT_PATH}}"
 
 ${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" 5
-x=$?
+y=$?
 
 SUBJECT_PATH="$(jq -r ".fbinary" "${BUG_FILE}")"
 PATH_BIN="${1:-${HERE_DIR}/source/${SUBJECT_PATH}}"
 if [[ -e $PATH_BIN ]]; then 
 ${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" 5
-x=$?
+y=$?
 fi
 
-exit $x
+if [[ $y == $FAILURE_EXIT_CODE ]]; then
+   exit 1;
+elif [[ $y == $PASSING_EXIT_CODE ]]; then
+   exit 0;
+else
+   exit $y;
+fi;
+
