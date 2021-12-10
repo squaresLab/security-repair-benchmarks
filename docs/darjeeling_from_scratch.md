@@ -1,3 +1,8 @@
+# Baseline darjeeling
+This is a step by step guide to get darjeeling up and running on an Ubuntu
+machine. There are currently 15 exploits (located in the table at the bottom)
+on which darjeeling can be successfully run. 
+
 ## Prerequisites
 This guide assumes a fresh updated installation of Ubuntu 21.04. Other Ubuntu versions
 may require more/different packages to be installed. This guide is annotated with
