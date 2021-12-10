@@ -86,7 +86,7 @@ Next run darjeeling on this generated yml file:
 ~~~
 pipenv run darjeeling repair bugs/vulnloc/coreutils/gnubug_19784/repair.darjeeling.yml
 ~~~
-### Darjeeling-supported <Project,CVE/Exploit>s
+### Darjeeling-supported Exploit Scenarios
 The following bugs can be used with darjeeling:
 | Project | CVE/exploit |
 |---------|-------------|
