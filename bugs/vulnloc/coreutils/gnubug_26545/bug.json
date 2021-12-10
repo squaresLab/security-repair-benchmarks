@@ -6,8 +6,8 @@
       "coverage-files": [
        { "filename": "src/shred.c", "line": 1216}
       ],
-      "build-subdir": "build",
-      "src-subdir": "src"
+      "gcovr-build-subdir": "build",
+      "gcovr-src-subdir": "src"
     },
     "extractfix": {
       "supported": false,

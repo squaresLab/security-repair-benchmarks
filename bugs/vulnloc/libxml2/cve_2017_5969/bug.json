@@ -6,7 +6,7 @@
       "coverage-files": [
        { "filename": "xmllint.c", "line": 3133}
       ],
-      "build-subdir": "build"
+      "gcovr-build-subdir": "build"
     },
     "extractfix": {
       "bug-type": "null_pointer",

@@ -5,11 +5,11 @@
   "fbinary": "fbuild/tools/.libs/tiffcrop",
   "options": {
     "darjeeling": {
+      "gcovr-build-subdir": "dbuild/tools",
+      "gcovr-src-subdir":"",
       "coverage-files": [
        { "filename": "tools/tiffcrop.c", "line": 2177}
-      ],
-      "build-subdir": "dbuild/tools",
-      "src-subdir":""
+      ]
     },
     "extractfix": {
       "bug-type": "buffer_overflow",
