@@ -7,7 +7,9 @@
     "darjeeling": {
       "coverage-files": [
        { "filename": "tools/tiffcrop.c", "line": 2177}
-      ]
+      ],
+      "build-subdir": "dbuild/tools",
+      "src-subdir":""
     },
     "extractfix": {
       "bug-type": "buffer_overflow",
