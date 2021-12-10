@@ -1,4 +1,8 @@
-all: cve_2012_5134 cve_2016_1838 cve_2016_1839 cve_2017_5969 cve_2012_5134_fixed cve_2016_1838_fixed cve_2016_1839_fixed cve_2017_5969_fixed
+all: buggy fixed
+
+buggy: cve_2012_5134 cve_2016_1838 cve_2016_1839 cve_2017_5969
+
+fixed: cve_2012_5134_fixed cve_2016_1838_fixed cve_2016_1839_fixed cve_2017_5969_fixed
 
 PROGRAM_NAME=libxml2
 
