@@ -1,0 +1,34 @@
+{
+  "subject": "libtiff",
+  "name": "cve_2016_10092",
+  "binary": "dbuild/tools/.libs/tiffcrop",
+  "fbinary": "fbuild/tools/.libs/tiffcrop",
+  "options": {
+    "darjeeling": {
+      "coverage-files": [
+       { "filename": "tools/tiffcrop.c", "line": 2177}
+      ]
+    },
+    "extractfix": {
+      "bug-type": "buffer_overflow",
+      "binary": {
+        "name": "tiffcrop",
+        "path": "dbuild/tools/tiffcrop"
+      },
+      "lowfat": {
+        "CFLAGS": "-fsanitize=lowfat -mllvm -lowfat-symbolize -lstlimpl"
+      }
+    },
+    "hifix": {
+      "linker-options": "/benchmarks/libtiff/cve_2016_10092/source/libtiff/.libs/libtiff.a -ljpeg -llzma -lm -ljbig -lz"
+    }
+  },
+  "test-suite": {
+    "type":"shell",
+    "time-limit":5,
+    "tests":[
+       "./test", 
+       "./test-1"
+    ]
+  }
+}
