@@ -1,12 +1,12 @@
 {
   "subject": "libxml2",
-  "name": "cve_2012_5134",
+  "name": "cve_2016_1839",
   "options": {
     "darjeeling": {
       "coverage-files": [
        { "filename": "xmllint.c", "line": 3767}
       ],
-      "build-subdir": "build"
+      "gcovr-build-subdir": "build"
     },
     "extractfix": {
       "bug-type": "buffer_overflow",

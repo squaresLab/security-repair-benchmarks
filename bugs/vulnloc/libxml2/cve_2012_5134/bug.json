@@ -6,7 +6,7 @@
       "coverage-files": [
        { "filename": "xmllint.c", "line": 3100}
       ],
-      "build-subdir": "build"
+      "gcovr-build-subdir": "build"
     },
     "extractfix": {
       "bug-type": "buffer_overflow",

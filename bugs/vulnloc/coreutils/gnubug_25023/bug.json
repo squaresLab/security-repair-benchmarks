@@ -6,8 +6,8 @@
       "coverage-files":[
     	  { "filename":"src/pr.c", "line": 856 }
       ],
-      "build-subdir": "build",
-      "src-subdir": "src"
+      "gcovr-build-subdir": "build",
+      "gcovr-src-subdir": "src"
     },
     "extractfix": {
       "bug-type": "buffer_overflow",

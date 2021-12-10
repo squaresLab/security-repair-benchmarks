@@ -3,8 +3,8 @@
   "name": "cve_2016_5321",
   "options": {
     "darjeeling": {
-      "build-subdir": "dbuild/tools",
-      "src-subdir":"",
+      "gcovr-build-subdir": "dbuild/tools",
+      "gcovr-src-subdir":"",
       "coverage-files": [
        { "filename": "tools/tiffcrop.c", "line": 2110}
       ]

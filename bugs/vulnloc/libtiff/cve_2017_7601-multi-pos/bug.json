@@ -16,8 +16,8 @@
       "linker-options": "/benchmarks/libtiff/cve_2017_7601/source/libtiff/.libs/libtiff.a -ljpeg -llzma -lm -ljbig -lz"
     },
     "darjeeling": {
-      "build-subdir": "dbuild/tools",
-      "src-subdir":"",
+      "gcovr-build-subdir": "dbuild/tools",
+      "gcovr-src-subdir":"",
       "coverage-files": [
 	{"filename":"tools/tiffcp.c", "line":156}
       ]

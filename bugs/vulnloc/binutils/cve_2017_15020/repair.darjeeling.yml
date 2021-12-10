@@ -16,7 +16,6 @@ optimizations:
   ignore-equivalent-insertions: true
   ignore-string-equivalent-snippets: true
 program:
-  build-directory: /workspace/source
   build-instructions:
     environment:
       REPAIR_TOOL: darjeeling
@@ -33,10 +32,11 @@ program:
     - command: REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./build
       directory: /workspace
     time-limit: 30
+  gcovr-build-directory: /workspace/source
+  gcovr-src-subdirectory: binutils
   image: binutils-cve_2017_15020
   language: c
   source-directory: /workspace/source
-  src-subdirectory: binutils
   tests:
     tests:
     - ./test

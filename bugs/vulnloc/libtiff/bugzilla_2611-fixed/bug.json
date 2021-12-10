@@ -3,8 +3,8 @@
   "name": "bugzilla_2611",
   "options": {
     "darjeeling": {
-      "build-subdir": "dbuild/tools",
-      "src-subdir":"",
+      "gcovr-build-subdir": "dbuild/tools",
+      "gcovr-src-subdir":"",
       "coverage-files": [
        { "filename": "tools/tiffmedian.c", "line": 117}
       ]

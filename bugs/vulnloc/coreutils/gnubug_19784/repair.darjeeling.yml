@@ -16,7 +16,6 @@ optimizations:
   ignore-equivalent-insertions: true
   ignore-string-equivalent-snippets: true
 program:
-  build-directory: /workspace/source/build
   build-instructions:
     environment:
       REPAIR_TOOL: darjeeling
@@ -33,10 +32,11 @@ program:
     - command: REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./build
       directory: /workspace
     time-limit: 30
+  gcovr-build-directory: /workspace/source/build
+  gcovr-src-subdirectory: src
   image: coreutils-gnubug_19784
   language: c
   source-directory: /workspace/source
-  src-subdirectory: src
   tests:
     tests:
     - ./test
