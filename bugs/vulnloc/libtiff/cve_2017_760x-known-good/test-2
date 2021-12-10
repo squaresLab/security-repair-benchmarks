@@ -3,6 +3,17 @@ set -eu
 
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 PATH_EXPLOIT="${HERE_DIR}/exploit-2"
-PATH_BIN="${1:-${HERE_DIR}/source/tools/tiff2ps}"
+PATH_BIN="${1:-${HERE_DIR}/source/dbuild/tools/tiffcrop}"
 
-${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" "${PATH_EXPLOIT}" foo
+${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" -i "${PATH_EXPLOIT}" foo
+x=$?
+
+if [[ -e "${HERE_DIR}/BUG.cfg" ]]; then 
+PATH_BIN="${1:-${HERE_DIR}/source/fbuild/tools/tiffcrop}"
+if [[ -e $PATH_BIN ]]; then 
+${TEST_EXECUTION_PREFIX:-} "${PATH_BIN}" -i "${PATH_EXPLOIT}" foo
+x=$?
+fi
+fi
+
+exit $x
