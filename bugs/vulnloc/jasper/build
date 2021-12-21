@@ -13,4 +13,9 @@ if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   pushd klee
 fi
 
-make
+if [[ "${REPAIR_TOOL}" == "hifix" ]]; then
+  make CFLAGS='-g -O0 -static'
+else
+  make
+fi
+
