@@ -1,0 +1,18 @@
+[
+    {
+		"module": "tools/tiffmedian.c",
+		"function": "main",
+		"variable": "argv",
+		"value": "./tiffmedian /benchmarks/libtiff/bugzilla_2611/exploit foo",
+		"type": "int",
+		"tools_line": 118
+	},
+    {
+		"module": "tools/tiffmedian.c",
+		"function": "main",
+		"variable": "argc",
+		"value": "3",
+		"type": "int",
+		"tools_line": 118
+	}
+]

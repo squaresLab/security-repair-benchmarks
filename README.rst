@@ -97,6 +97,49 @@ Below is a brief description of the files that MUST be included in each bug scen
   that the :code:`REPAIR_TOOL` environment variable be appropriately set.
 
 
+File Format: bug.json
+.....................
+
+Below is an example of a :code:`bug.json` file for :code:`coreutils/gnubug_19784`.
+
+.. code:: json
+
+  {
+    "subject": "libtiff",
+    "name": "cve_2016_10092",
+    "binary": "tools/.libs/tiffcrop",
+    "options": {
+      "extractfix": {
+        "bug-type": "buffer_overflow",
+        "binary": {
+          "name": "tiffcrop",
+          "path": "tools/tiffcrop"
+        },
+        "lowfat": {
+          "CFLAGS": "-fsanitize=lowfat -mllvm -lowfat-symbolize -lstlimpl"
+        }
+      },
+      "hifix": {
+        "linker-options": "/benchmarks/libtiff/cve_2016_10092/source/libtiff/.libs/libtiff.a -ljpeg -llzma -lm -ljbig -lz"
+      },
+      "darjeeling": {
+        "coverage-files": [
+          "tools/tiffcrop.c"
+        ]
+      }
+    }
+  }
+
+
+Here is a brief description of the fields in the above file:
+
+* :code:`subject` gives the name of the project/program that the bug occurs in (e.g., libtiff, coreutils)
+* :code:`name` gives the name of the bug, usually based on its CVE or issue number (e.g., cve_2016_10092)
+* :code:`binary` specifies the path of the affected binary, relative to the root of the :code:`source`
+  directory for the bug.
+* :code:`options` provides tool-specific options for repairing the bug.
+
+
 Contributors
 ------------
 

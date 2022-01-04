@@ -1,0 +1,18 @@
+[
+	{
+		"module": "../common/afl_driver.cpp",
+		"function": "main",
+		"variable": "argc",
+		"value": "1",
+		"type": "int",
+		"src_line": 232
+	},
+	{
+		"module": "../common/afl_driver.cpp",
+		"function": "main",
+		"variable": "argv",
+		"value": ["ffmpeg/project/tools/target_dec_cavs_fuzzer"],
+		"type": "array",
+		"src_line": 232
+	}
+]

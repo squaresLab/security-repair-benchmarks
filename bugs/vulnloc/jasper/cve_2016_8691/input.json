@@ -11,7 +11,7 @@
 		"module": "source/src/appl/imginfo.c",
 		"function": "main",
 		"variable": "argv",
-		"value": ["./imginfo", "-f", "/root/exploit"],
+		"value": "./imginfo -f /root/exploit",
 		"type": "string-array",
 		"src_line": 120
 	},
