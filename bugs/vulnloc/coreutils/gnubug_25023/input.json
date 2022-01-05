@@ -14,5 +14,21 @@
 		"value": "\t\t\t",
 		"type": "string",
 		"src_line": 691
+	},
+	 {
+		"module": "src/pr.c",
+		"function": "main",
+		"variable": "argv",
+		"value": "./pr \"-S$(printf \"\\t\\t\\t\")\" a -m a",
+		"type": "string-array",
+		"src_line": 857
+	},
+    {
+		"module": "src/pr.c",
+		"function": "main",
+		"variable": "argc",
+		"value": "5",
+		"type": "int",
+		"src_line": 857
 	}
 ]
