@@ -13,7 +13,7 @@
 		"variable": "argv",
 		"value": "./imginfo -f /benchmarks/jasper/cve_2016_8691/exploit",
 		"type": "string-array",
-		"src_line": 120
+		"src_line": 116
 	},
     {
 		"module": "source/src/appl/imginfo.c",
