@@ -20,7 +20,7 @@ pushd "${BUILD_DIR}"
 
 # prefer cmake if it's supported
 
-if [[ "${BUILD_SYSTEM}" == "cmake" ]]; then
+if [[ -e ../CMakeLists.txt ]]; then
   cmake  -DCMAKE_C_FLAGS_RELEASE='-g -O0 -fPIC' -DREQUIRE_SIMD=0 -DWITH_SIMD=0 ..
 else
   ../configure CFLAGS="-g -O0 -static" --without-simd

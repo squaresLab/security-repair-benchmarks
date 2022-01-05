@@ -1,7 +1,7 @@
 {
   "subject": "libjpeg",
   "name": "cve_2018_19664",
-  "binary": "build/.libs/djpeg",
+  "binary": "build/djpeg",
   "options": {
     "build-system": "cmake",
     "extractfix": {
