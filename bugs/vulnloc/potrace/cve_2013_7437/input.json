@@ -3,7 +3,7 @@
 		"module": "src/main.c",
 		"function": "main",
 		"variable": "argv",
-		"value": ["./potrace", "/root/exploit"],
+		"value": "./potrace /benchmarks/potrace/cve_2013_7437/exploit",
 		"type": "string-array",
 		"src_line": 1137 
 	},
@@ -11,8 +11,8 @@
 		"module": "src/main.c",
 		"function": "main",
 		"variable": "argc",
-		"value": 2,
-		"type": "string-array",
+		"value": "2",
+		"type": "int",
 		"src_line": 1137 
 	}
 ]
