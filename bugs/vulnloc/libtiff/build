@@ -15,7 +15,7 @@ if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   pushd klee
 fi
 
-make CFLAGS="-g -O0 -static"
+make -j`nproc`
 
 if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   COMPILE_TYPE="$1"
