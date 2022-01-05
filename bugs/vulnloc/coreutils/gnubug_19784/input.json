@@ -19,8 +19,8 @@
 		"module": "src/make-prime-list.c",
 		"function": "main",
 		"variable": "argv",
-		"value": "2",
-		"type": "array",
+		"value": "./make-prime-list 2",
+		"type": "string-array",
 		"src_line": 172
 	}
 ]
