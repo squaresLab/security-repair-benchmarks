@@ -9,9 +9,9 @@ SOURCE_DIR="${HERE_DIR}/source"
 # https://github.com/libming/libming/issues/199
 # https://github.com/libming/libming/issues/55
 # https://github.com/freebsd/freebsd-ports/commit/95c117ec659daec2ceba84d2cd4fdebd4101c8a2
-export CFLAGS="-fcommon ${CFLAGS:-}"
+# export CFLAGS="-fcommon ${CFLAGS:-}"
 
 pushd "${SOURCE_DIR}"
 
 ./autogen.sh
-./configure
+CFLAGS="-g -O0 -static" CXXFLAGS="$CFLAGS" ./configure --disable-shared --enable-static
