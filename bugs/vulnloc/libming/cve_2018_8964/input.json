@@ -1,18 +1,18 @@
 [
 	{
-		"module": "makeswf.c",
+		"module": "main.c",
 		"function": "main",
 		"variable": "argc",
 		"value": "2",
 		"type": "int",
-		"src_line": 182
+		"src_line": 303
 	},
 	{
-		"module": "makeswf.c",
+		"module": "main.c",
 		"function": "main",
 		"variable": "argv",
 		"value": "./swftophp /benchmarks/libming/cve_2018_8964/exploit",
 		"type": "string-array",
-		"src_line": 182
+		"src_line": 303
 	}
 ]
