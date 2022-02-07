@@ -106,23 +106,23 @@ Next run darjeeling on the generated yml file:
 pipenv run darjeeling repair bugs/vulnloc/coreutils/gnubug_19784/repair.darjeeling.yml
 ~~~
 The following bugs can be used with darjeeling:
-| Project | CVE/exploit |
-|---------|-------------|
-|libtiff  |bugzilla_2633    |
-|libtiff  |cve_2016_10092   |
-|libtiff  |cve_2016_10094   |
-|libtiff  |cve_2016_10272   |
-|libtiff  |cve_2016_3186    |
-|libtiff  |cve_2016_5321    |
-|libtiff  |cve_2016_9273    |
-|libtiff  |cve_2016_9532    |
-|libtiff  |cve_2017_7599    |
-|libxml2  |cve_2012_5134    |
-|libxml2  |cve_2016_1839    |
-|libxml2  |cve_2017_5969    |
-|binutils |cve_2017_14745   |
-|binutils |cve_2017_15025   | 
-|coreutils|gnubug_19784     |
+| Project | CVE/exploit | CWE # |
+|---------|-------------|-------|
+|libtiff  |bugzilla_2633   |N/A | 
+|libtiff  |cve_2016_10092  |119 |
+|libtiff  |cve_2016_10094  |189 |
+|libtiff  |cve_2016_10272  |119 |
+|libtiff  |cve_2016_3186   |119 |
+|libtiff  |cve_2016_5321   |119 |
+|libtiff  |cve_2016_9273   |125 |
+|libtiff  |cve_2016_9532   |125 |
+|libtiff  |cve_2017_7599   |20  |
+|libxml2  |cve_2012_5134   |119 |
+|libxml2  |cve_2016_1839   |125 |
+|libxml2  |cve_2017_5969   |476 |
+|binutils |cve_2017_14745  |190 |
+|binutils |cve_2017_15025  |369 |
+|coreutils|gnubug_19784    |N/A |
 
 To run darjeeling on any of the bugs:
 ~~~
