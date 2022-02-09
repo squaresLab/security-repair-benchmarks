@@ -88,23 +88,23 @@ pipenv run darjeeling repair bugs/vulnloc/coreutils/gnubug_19784/repair.darjeeli
 ~~~
 ### Darjeeling-supported Exploit Scenarios
 The following bugs can be used with darjeeling:
-| Project | CVE/exploit | CWE # |
-|---------|-------------|-------|
-|libtiff  |bugzilla_2633   |N/A | 
-|libtiff  |cve_2016_10092  |119 |
-|libtiff  |cve_2016_10094  |189 |
-|libtiff  |cve_2016_10272  |119 |
-|libtiff  |cve_2016_3186   |119 |
-|libtiff  |cve_2016_5321   |119 |
-|libtiff  |cve_2016_9273   |125 |
-|libtiff  |cve_2016_9532   |125 |
-|libtiff  |cve_2017_7599   |20  |
-|libxml2  |cve_2012_5134   |119 |
-|libxml2  |cve_2016_1839   |125 |
-|libxml2  |cve_2017_5969   |476 |
-|binutils |cve_2017_14745  |190 |
-|binutils |cve_2017_15025  |369 |
-|coreutils|gnubug_19784    |N/A |
+| Project | CVE/exploit | CWE # | Description |
+|---------|-------------|-------|-------------|
+|libtiff  |bugzilla_2633   |N/A |N/A |
+|libtiff  |cve_2016_10092  |119 |Improper Restriction of Operations within the Bounds of a Memory Buffer |
+|libtiff  |cve_2016_10094  |189 |Numeric Errors |
+|libtiff  |cve_2016_10272  |119 |Improper Restriction of Operations within the Bounds of a Memory Buffer |
+|libtiff  |cve_2016_3186   |119 |Improper Restriction of Operations within the Bounds of a Memory Buffer |
+|libtiff  |cve_2016_5321   |119 |Improper Restriction of Operations within the Bounds of a Memory Buffer |
+|libtiff  |cve_2016_9273   |125 |Out-of-bounds Read |
+|libtiff  |cve_2016_9532   |125 |Out-of-bounds Read |
+|libtiff  |cve_2017_7599   |20  |Improper Input Validation |
+|libxml2  |cve_2012_5134   |119 |Improper Restriction of Operations within the Bounds of a Memory Buffer |
+|libxml2  |cve_2016_1839   |125 |Out-of-bounds Read |
+|libxml2  |cve_2017_5969   |476 |NULL Pointer Dereference |
+|binutils |cve_2017_14745  |190 |Integer Overflow or Wraparound |
+|binutils |cve_2017_15025  |369 |Divide By Zero |
+|coreutils|gnubug_19784    |N/A |N/A |
 
 To run darjeeling on any of the bugs:
 ~~~
