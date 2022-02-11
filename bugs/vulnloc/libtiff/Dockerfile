@@ -41,6 +41,7 @@ COPY clean clean
 COPY prebuild prebuild
 COPY recompile recompile
 COPY extractfix/project_specific_lib project_specific_lib
+COPY getSanitizerInfo.sh getSanitizerInfo.sh
 
 ARG BUG_DIR
 COPY "${BUG_DIR}/" .
@@ -56,6 +57,6 @@ RUN [ "${SUT_GET_CODE_FROM_ARCHIVE}" = yes ] \
  && rm source.zip \
  || exit 0
 
-RUN REPAIR_TOOL=none bear ./prebuild && REPAIR_TOOL=none bear ./build
-
+#RUN REPAIR_TOOL=none bear ./prebuild && REPAIR_TOOL=none bear ./build
+RUN bash getSanitizerInfo.sh
 RUN if [ -e MYBUG.cfg ]; then mv MYBUG.cfg BUG.cfg; fi
