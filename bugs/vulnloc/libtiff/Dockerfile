@@ -60,3 +60,13 @@ RUN [ "${SUT_GET_CODE_FROM_ARCHIVE}" = yes ] \
 #RUN REPAIR_TOOL=none bear ./prebuild && REPAIR_TOOL=none bear ./build
 RUN bash getSanitizerInfo.sh
 RUN if [ -e MYBUG.cfg ]; then mv MYBUG.cfg BUG.cfg; fi
+
+COPY asan_symbolize.py /benchmarks/SanitizerResults/asan_symbolize.py
+WORKDIR /benchmarks/SanitizerResults
+
+RUN chmod +x asan_symbolize.py
+RUN ./asan_symbolize.py < / < addressSan.txt | c++filt > addressSan.output
+RUN ./asan_symbolize.py < / < bothSan.txt | c++filt > bothSan.output
+#RUN ./asan_symbolize.py < / < undefinedSan.txt | c++filt > undefinedSan.output
+
+WORKDIR /workspace
