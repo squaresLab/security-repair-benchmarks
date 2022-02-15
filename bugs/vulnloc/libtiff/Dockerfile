@@ -4,7 +4,7 @@ RUN apt-get update \
  && apt-get install -y --no-install-recommends \
       autoconf \
       automake \
-      autopoint \
+      autopoint \ 
       bear \
       bison \
       build-essential \
@@ -74,8 +74,6 @@ RUN [ "${SUT_GET_CODE_FROM_ARCHIVE}" = yes ] \
 #RUN REPAIR_TOOL=none bear ./prebuild && REPAIR_TOOL=none bear ./build
 RUN ln -sf /usr/bin/llvm-symbolizer-3.8 /usr/bin/llvm-symbolizer
 RUN bash getSanitizerInfo.sh
-RUN REPAIR_TOOL=none bear ./prebuild && REPAIR_TOOL=none bear ./build
-RUN if [ -e MYBUG.cfg ]; then mv MYBUG.cfg BUG.cfg; fi
 
 COPY asan_symbolize.py /benchmarks/SanitizerResults/asan_symbolize.py
 COPY sanitizer_parser.py /benchmarks/SanitizerResults/sanitizer_parser.py
@@ -89,3 +87,6 @@ RUN ./asan_symbolize.py < / < bothSan.txt | c++filt > bothSan.output
 RUN ./sanitizer_parser.py
 
 WORKDIR /workspace
+RUN ./clean
+RUN REPAIR_TOOL=none bear ./prebuild && REPAIR_TOOL=none bear ./build
+RUN if [ -e MYBUG.cfg ]; then mv MYBUG.cfg BUG.cfg; fi
