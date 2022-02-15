@@ -297,6 +297,7 @@ ASAN:DEADLYSIGNAL
 AddressSanitizer: nested bug in the same thread, aborting.
 
 """
+# cve_2016_5314
 
 test_6_json = """
 {
@@ -870,3 +871,70 @@ test_16_json = """
 
 """
 
+
+test_17 = """
+
+TIFFReadDirectoryCheckOrder: Warning, Invalid TIFF directory; tags are not sorted in ascending order.
+TIFFReadDirectory: Warning, Unknown field with tag 464 (0x1d0) encountered.
+TIFFReadDirectory: Warning, Unknown field with tag 513 (0x201) encountered.
+TIFFReadDirectory: Warning, Unknown field with tag 642 (0x282) encountered.
+/workspace/exploit: Warning, Nonstandard tile length 6, convert file.
+TIFFFetchNormalTag: Warning, Incompatible type for "DocumentName"; tag ignored.
+/workspace/exploit: PixarLog compression support is not configured.
+/workspace/exploit: Sorry, requested compression method is not configured.
+
+=================================================================
+==9518==ERROR: LeakSanitizer: detected memory leaks
+
+Direct leak of 1099 byte(s) in 1 object(s) allocated from:
+    #0 0x4957cd in malloc ??:0:0
+    #1 0x7f9d734fa87c in _TIFFmalloc /workspace/source/dbuild/libtiff/../../libtiff/tif_unix.c:316:10
+    #2 0x7f9d7347fdea in TIFFClientOpen /workspace/source/dbuild/libtiff/../../libtiff/tif_open.c:119:16
+    #3 0x7f9d734f8fda in TIFFFdOpen /workspace/source/dbuild/libtiff/../../libtiff/tif_unix.c:211:8
+    #4 0x7f9d734fa819 in TIFFOpen /workspace/source/dbuild/libtiff/../../libtiff/tif_unix.c:250:8
+    #5 0x4c618c in main /workspace/source/dbuild/tools/../../tools/rgb2ycbcr.c:124:8
+    #6 0x7f9d71f7f83f in __libc_start_main ??:0:0
+
+Indirect leak of 1240 byte(s) in 1 object(s) allocated from:
+    #0 0x495ae9 in realloc ??:0:0
+    #1 0x7f9d734fa8cc in _TIFFrealloc /workspace/source/dbuild/libtiff/../../libtiff/tif_unix.c:328:10
+    #2 0x7f9d7320d622 in _TIFFCheckRealloc /workspace/source/dbuild/libtiff/../../libtiff/tif_aux.c:73:8
+    #3 0x7f9d732639c8 in _TIFFMergeFields /workspace/source/dbuild/libtiff/../../libtiff/tif_dirinfo.c:374:4
+    #4 0x7f9d7326f977 in TIFFReadDirectory /workspace/source/dbuild/libtiff/../../libtiff/tif_dirread.c:3522:10
+    #5 0x7f9d7348830b in TIFFClientOpen /workspace/source/dbuild/libtiff/../../libtiff/tif_open.c:466:8
+    #6 0x7f9d734f8fda in TIFFFdOpen /workspace/source/dbuild/libtiff/../../libtiff/tif_unix.c:211:8
+    #7 0x7f9d734fa819 in TIFFOpen /workspace/source/dbuild/libtiff/../../libtiff/tif_unix.c:250:8
+    #8 0x4c618c in main /workspace/source/dbuild/tools/../../tools/rgb2ycbcr.c:124:8
+    #9 0x7f9d71f7f83f in __libc_start_main ??:0:0
+
+Indirect leak of 144 byte(s) in 3 object(s) allocated from:
+    #0 0x4957cd in malloc ??:0:0
+    #1 0x7f9d734fa87c in _TIFFmalloc /workspace/source/dbuild/libtiff/../../libtiff/tif_unix.c:316:10
+    #2 0x7f9d7326801e in _TIFFCreateAnonField /workspace/source/dbuild/libtiff/../../libtiff/tif_dirinfo.c:633:22
+    #3 0x7f9d7326f963 in TIFFReadDirectory /workspace/source/dbuild/libtiff/../../libtiff/tif_dirread.c:3523:6
+    #4 0x7f9d7348830b in TIFFClientOpen /workspace/source/dbuild/libtiff/../../libtiff/tif_open.c:466:8
+    #5 0x7f9d734f8fda in TIFFFdOpen /workspace/source/dbuild/libtiff/../../libtiff/tif_unix.c:211:8
+    #6 0x7f9d734fa819 in TIFFOpen /workspace/source/dbuild/libtiff/../../libtiff/tif_unix.c:250:8
+    #7 0x4c618c in main /workspace/source/dbuild/tools/../../tools/rgb2ycbcr.c:124:8
+    #8 0x7f9d71f7f83f in __libc_start_main ??:0:0
+
+SUMMARY: AddressSanitizer: 2771 byte(s) leaked in 15 allocation(s).
+"""
+
+test_17_json = """{
+    "num_ubsan": 0,
+    "num_addsan": 1,
+    "addsans": [
+        {
+            "type": "detected memory leaks",
+            "loc": ["tif_unix.c", "/workspace/source/dbuild/libtiff/../../libtiff", 316, 10, "_TIFFmalloc"],
+            "trace": [
+                ["tif_unix.c", "/workspace/source/dbuild/libtiff/../../libtiff", 316, 10, "_TIFFmalloc"],
+                ["tif_open.c", "/workspace/source/dbuild/libtiff/../../libtiff", 119, 16, "TIFFClientOpen"],
+                ["tif_unix.c", "/workspace/source/dbuild/libtiff/../../libtiff", 211, 8, "TIFFFdOpen"],
+                ["tif_unix.c", "/workspace/source/dbuild/libtiff/../../libtiff", 250, 8, "TIFFOpen"],
+                ["rgb2ycbcr.c", "/workspace/source/dbuild/tools/../../tools", 124, 8, "main"]
+            ]
+        }
+    ]
+}"""

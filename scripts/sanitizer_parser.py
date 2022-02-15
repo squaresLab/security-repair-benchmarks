@@ -101,22 +101,30 @@ def parse_complex_address_sanitizer(sanitizer_lines, json_message):
     This function adds the address sanitizer that is not attached to an undefined sanitizer if the program was also run with that
     """
     json_message["num_addsan"] += 1
-    loc_flag = "==ERROR: AddressSanitizer: "
 
     # First get the error type
-    addsan_to_add = {"trace": [], "loc": [None, None, None, None, None]}
-    error_line = sanitizer_lines[0][sanitizer_lines[0].find(loc_flag) + len(loc_flag):]
-    addsan_to_add["type"] = (error_line[:error_line.find(':')] if error_line.find(':') != -1 else error_line[:error_line.find(' ')])
-    
+    addsan_to_add = {"trace": [], "loc": [None, None, None, None, None]} 
+
+    loc_flag = "==ERROR: AddressSanitizer: "
+
+    if sanitizer_lines[0].find(loc_flag) != -1:
+        error_line = sanitizer_lines[0][sanitizer_lines[0].find(loc_flag) + len(loc_flag):]
+        addsan_to_add["type"] = (error_line[:error_line.find(':')] if error_line.find(':') != -1 else error_line[:error_line.find(' ')])
+    else: # When it is a leak sanitizer instead
+        loc_flag = "==ERROR: LeakSanitizer: "
+        error_line = sanitizer_lines[0][sanitizer_lines[0].find(loc_flag) + len(loc_flag):]
+        addsan_to_add["type"] = (error_line[:error_line.find(':')] if error_line.find(':') != -1 else error_line)
+
     # Now fill in the trace
     in_trace = False
     for i in range(len(sanitizer_lines)):
         line = sanitizer_lines[i].strip()
         #print(line, line.startswith('#'), in_trace)
-        if line.startswith('#'): 
+        if line.startswith('#'): # enter the trace
             in_trace = True
         if in_trace and not line.startswith('#'): break # we have finished the trace
-        if not in_trace or line.rfind(':') == -1: continue # if not in the trace or noting to do
+
+        if not in_trace or line.rfind(':') == -1 or line.find("??:0:0") != -1: continue # if not in the trace or not a resolved path
 
         func_name = line[line.find('in') + 3: line.find('/') - 1]
         path = os.path.split(line[line.find('/'): line.find(':')])
@@ -139,7 +147,7 @@ def parse_address_sanitizer(str_message, json_message):
     for i in range(len(str_message_lines)):
 
         # If we see this start, we have gotten to the last complex message
-        if str_message_lines[i].find("==ERROR: AddressSanitizer: ") != -1: 
+        if str_message_lines[i].find("==ERROR: ") != -1: 
             return parse_complex_address_sanitizer(str_message_lines[i:], json_message)
 
         # Otherwise, it is a simple one
@@ -148,9 +156,10 @@ def parse_address_sanitizer(str_message, json_message):
 
     return json_message
 
-def parse_sanitizer_message(str_message):
+def parse_sanitizer_message(str_message, resolve_paths=False):
     """
-    returns a dumped json string of the message
+    returns a dumped json string of the message str_message, paths_file is the path
+    to a file that contains the compile_commands.json used for path expansion
     """
     json_message = {"num_ubsan": 0, "num_addsan": 0}
     if str_message.find(" runtime error: ") != -1:
@@ -158,6 +167,9 @@ def parse_sanitizer_message(str_message):
     
     if str_message.find(" AddressSanitizer: ") != -1:
         json_message = parse_address_sanitizer(str_message, json_message)
+    
+    if resolve_paths: # If we want to try and expand paths
+        pass
 
     return json.dumps(json_message, indent=4)
 
@@ -168,9 +180,14 @@ def main():
     of.close()
     #call parse_sanitizer_message
     of = open("bothSan.json", 'w')
-    of.write(parse_sanitizer_message(lns))
+    try:
+        of.write(parse_sanitizer_message(lns, True))
+    except: 
+        pass
     of.close()
+
 if __name__ == "__main__":
+    
     main()
     """
     import example_sanitzer_outputs as eso
@@ -179,7 +196,7 @@ if __name__ == "__main__":
     def check_test(generated_json_str, test_json_str):
         generated_json = json.loads(generated_json_str)
         test_json = json.loads(test_json_str)
-        #print(generated_json, test_json)
+        print(generated_json, test_json)
         return sorted(generated_json.items()) == sorted(test_json.items())
 
     implemented_tests = [
@@ -189,9 +206,11 @@ if __name__ == "__main__":
         [4, eso.test_4, eso.test_4_json],
         [6, eso.test_6, eso.test_6_json],
         [7, eso.test_7, eso.test_7_json],
-        [9, eso.test_9, eso.test_9_json]
+        [9, eso.test_9, eso.test_9_json],
+        [17, eso.test_17, eso.test_17_json]
     ]
 
     print("All of these should be true:")
     [print("Test " + str(a[0]) + ": " + str(check_test(parse_sanitizer_message(a[1]), a[2]))) for a in implemented_tests]
     """
+    
