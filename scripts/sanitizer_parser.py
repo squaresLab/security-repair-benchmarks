@@ -1,3 +1,4 @@
+#! /usr/bin/env python3
 import os.path
 import json
 
@@ -158,10 +159,20 @@ def parse_sanitizer_message(str_message):
     if str_message.find(" AddressSanitizer: ") != -1:
         json_message = parse_address_sanitizer(str_message, json_message)
 
-    return json.dumps(json_message)
+    return json.dumps(json_message, indent=4)
 
+def main():
+    #open file with sanitizer output
+    of = open("bothSan.output", 'r')
+    lns = of.read()
+    of.close()
+    #call parse_sanitizer_message
+    of = open("bothSan.json", 'w')
+    of.write(parse_sanitizer_message(lns))
+    of.close()
 if __name__ == "__main__":
-
+    main()
+    """
     import example_sanitzer_outputs as eso
 
 
@@ -172,15 +183,15 @@ if __name__ == "__main__":
         return sorted(generated_json.items()) == sorted(test_json.items())
 
     implemented_tests = [
-        [1, eso.test_1, eso.test_1_json], 
-        [2, eso.test_2, eso.test_2_json], 
-        [3, eso.test_3, eso.test_3_json], 
-        [4, eso.test_4, eso.test_4_json], 
-        [6, eso.test_6, eso.test_6_json], 
-        [7, eso.test_7, eso.test_7_json], 
+        [1, eso.test_1, eso.test_1_json],
+        [2, eso.test_2, eso.test_2_json],
+        [3, eso.test_3, eso.test_3_json],
+        [4, eso.test_4, eso.test_4_json],
+        [6, eso.test_6, eso.test_6_json],
+        [7, eso.test_7, eso.test_7_json],
         [9, eso.test_9, eso.test_9_json]
     ]
 
     print("All of these should be true:")
     [print("Test " + str(a[0]) + ": " + str(check_test(parse_sanitizer_message(a[1]), a[2]))) for a in implemented_tests]
-
+    """
