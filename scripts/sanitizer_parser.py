@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 import os.path
 import json
+from collections import defaultdict
 
 """
 This file contains functions that parse a addressSanitizer or undefinedSanitizer message and put the results into json form.
@@ -33,7 +34,7 @@ Example json entry:
     "ubsans": [
         {
             "type": "division by zero",
-            "loc": ["tif_ojpeg.c", null, 816, 8, null]
+            "loc": ["tif_ojpeg.c", [list_of_possible_path_locations], 816, 8, null]
         }
     ],
     "num_addsan": 2,
@@ -156,6 +157,18 @@ def parse_address_sanitizer(str_message, json_message):
 
     return json_message
 
+def collect_compile_paths(file_path):
+    with open(file_path, 'r') as compile_commands_file:
+        compile_commands_json = json.load(compile_commands_file)
+        files_to_check = defaultdict(set)
+        for command in compile_commands_json:
+            path = os.path.split(command["file"])
+            files_to_check[path[1]].add(path[0])
+    
+    return files_to_check
+
+
+
 def parse_sanitizer_message(str_message, resolve_paths=False):
     """
     returns a dumped json string of the message str_message, paths_file is the path
@@ -168,8 +181,20 @@ def parse_sanitizer_message(str_message, resolve_paths=False):
     if str_message.find(" AddressSanitizer: ") != -1:
         json_message = parse_address_sanitizer(str_message, json_message)
     
-    if resolve_paths: # If we want to try and expand paths
-        pass
+    if resolve_paths and json_message["num_ubsan"] > 0: 
+
+        possible_paths = collect_compile_paths('/workspace/compile_commands.json')
+
+        # If we want to try and expand paths and there are paths to expand
+        for i in range(json_message["num_ubsan"]):
+            ubsan = json_message["ubsans"][i]
+
+            # Get the actual file name:
+            old_path = ubsan['loc'][0]
+            if old_path.find('/') != -1: old_path = old_path[old_path.rfind('/') + 1:]
+
+            ubsan['loc'][0] = old_path
+            ubsan['loc'][1] = list(possible_paths[old_path])
 
     return json.dumps(json_message, indent=4)
 
