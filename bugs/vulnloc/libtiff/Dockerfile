@@ -77,6 +77,7 @@ RUN bash getSanitizerInfo.sh
 
 COPY asan_symbolize.py /benchmarks/SanitizerResults/asan_symbolize.py
 COPY sanitizer_parser.py /benchmarks/SanitizerResults/sanitizer_parser.py
+COPY gen_llvm.py /benchmarks/SanitizerResults/gen_llvm.py
 WORKDIR /benchmarks/SanitizerResults
 
 RUN chmod +x asan_symbolize.py
@@ -90,3 +91,9 @@ WORKDIR /workspace
 RUN ./clean
 RUN REPAIR_TOOL=none bear ./prebuild && REPAIR_TOOL=none bear ./build
 RUN if [ -e MYBUG.cfg ]; then mv MYBUG.cfg BUG.cfg; fi
+
+#need compile_commands.json to be made by bear
+WORKDIR /benchmarks/SanitizerResults
+RUN python3 gen_llvm.py
+
+WORKDIR /workspace
