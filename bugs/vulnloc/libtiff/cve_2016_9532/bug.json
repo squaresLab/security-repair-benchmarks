@@ -10,7 +10,7 @@
       }
     },
     "hifix": {
-      "linker-options": "/benchmarks/libtiff/cve_2016_9532/source/port/.libs/libport.a /benchmarks/libtiff/cve_2016_9532/source/libtiff/.libs/libtiff.a /benchmarks/libtiff/cve_2016_9532/source/libtiff/.libs/libtiffxx.a -ljpeg -llzma -lm -ljbig -lz"
+      "linker-options": "-ljpeg -llzma -lm -ljbig -lz"
     },
     "darjeeling": {
       "coverage-files": [
@@ -18,5 +18,5 @@
       ]
     }
   },
-  "binary": "tools/.libs/tiffcrop"
+  "binary": "tools/tiffcrop"
 }

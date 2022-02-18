@@ -1,7 +1,7 @@
 {
   "subject": "libtiff",
   "name": "cve_2016_10092",
-  "binary": "tools/.libs/tiffcrop",
+  "binary": "tools/tiffcrop",
   "options": {
     "extractfix": {
       "bug-type": "buffer_overflow",
@@ -14,7 +14,7 @@
       }
     },
     "hifix": {
-      "linker-options": "/benchmarks/libtiff/cve_2016_10092/source/libtiff/.libs/libtiff.a -ljpeg -llzma -lm -ljbig -lz"
+      "linker-options": "-ljpeg -llzma -lm -ljbig -lz"
     },
     "darjeeling": {
       "coverage-files": [

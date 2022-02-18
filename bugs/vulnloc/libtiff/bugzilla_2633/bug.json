@@ -13,7 +13,7 @@
       }
     },
     "hifix": {
-      "linker-options": "/benchmarks/libtiff/bugzilla_2633/source/libtiff/.libs/libtiff.a -ljpeg -llzma -lm -ljbig -lz"
+      "linker-options": "-ljpeg -llzma -lm -ljbig -lz"
     },
     "darjeeling": {
       "coverage-files": [
@@ -21,5 +21,5 @@
       ]
     }
   },
-  "binary": "tools/.libs/tiff2ps"
+  "binary": "tools/tiff2ps"
 }

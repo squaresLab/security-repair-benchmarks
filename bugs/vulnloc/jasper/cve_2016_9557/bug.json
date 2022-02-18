@@ -13,7 +13,7 @@
       }
     },
     "hifix": {
-      "linker-options": "-ljpeg -lm /benchmarks/jasper/cve_2016_9557/source/src/libjasper/.libs/libjasper.a"
+      "linker-options": "-ljpeg -lm"
     },
     "darjeeling": {
       "coverage-files": [
