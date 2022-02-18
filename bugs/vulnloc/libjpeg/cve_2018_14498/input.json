@@ -1,6 +1,6 @@
 [
 	{
-		"module": "source/xmllint.c",
+		"module": "cjpeg.c",
 		"function": "main",
 		"variable": "argc",
 		"value": "4",
@@ -8,10 +8,10 @@
 		"src_line": 504
 	},
 	{
-		"module": "source/xmllint.c",
+		"module": "cjpeg.c",
 		"function": "main",
 		"variable": "argv",
-		"value": ["./cjpeg", "-outfile", "out", "/root/exploit"],
+		"value": "./cjpeg -outfile out /benchmarks/libjpeg/cve_2018_14498/exploit",
 		"type": "string-array",
 		"src_line": 504
 	}

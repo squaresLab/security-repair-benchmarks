@@ -1,6 +1,6 @@
 [
 	{
-		"module": "source/xmllint.c",
+		"module": "djpeg.c",
 		"function": "main",
 		"variable": "argc",
 		"value": "4",
@@ -8,7 +8,7 @@
 		"src_line": 507
 	},
 	{
-		"module": "source/xmllint.c",
+		"module": "djpeg.c",
 		"function": "main",
 		"variable": "argv",
 		"value": ["./djpeg", "-colors", "256", "-bmp", "/root/exploit"],

@@ -59,8 +59,8 @@
 		"module": "src/split.c",
 		"function": "main",
 		"variable": "argv",
-		"value": "3",
-		"type": "int",
+		"value": "./split -n7/75 /dev/null",
+		"type": "string-array",
 		"src_line": 1285
 	},
     {

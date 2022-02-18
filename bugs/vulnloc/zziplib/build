@@ -11,16 +11,13 @@ SUBJECT="$(jq -r ".binary" "${BUG_FILE}")"
 BUILD_DIR="${SOURCE_DIR}"
 
 PATH_LINUX_BUILD="$(find "${BUILD_DIR}" -name "Linux*.d" -type d)"
-PATH_STATIC_LIBS="${PATH_LINUX_BUILD}/zzip/.libs"
-PATH_BINS="${PATH_LINUX_BUILD}/bins/.libs"
+PATH_BINS="${PATH_LINUX_BUILD}/bins"
 PATH_IN_BINS_DIRECTORY="${PATH_BINS}/${SUBJECT}"
 
 pushd "${BUILD_DIR}"
 
-make
+make CFLAGS="-O0 -ggdb -static" CXXFLAGS="-O0 -ggdb -static"
 
 # copy the output binary to a fixed location
 cp "${PATH_IN_BINS_DIRECTORY}" "${BUILD_DIR}"
 
-# we also need to copy the static libraries to a fixed location
-cp "${PATH_STATIC_LIBS}/libzzipmmapped.a" "${BUILD_DIR}"

@@ -6,9 +6,12 @@
       "bug-type": "buffer_overflow",
       "binary": {
         "name": "swftophp",
-        "path": "util/.libs/swftophp"
+        "path": "util/swftophp"
       }
+    },
+     "hifix": {
+      "linker-options": "-lm -lz /benchmarks/libming/cve_2018_8964/source/util/.libs/libutil.a"
     }
   },
-  "binary": "util/.libs/swftophp"
+  "binary": "util/swftophp"
 }

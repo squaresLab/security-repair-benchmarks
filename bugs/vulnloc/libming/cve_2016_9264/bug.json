@@ -6,9 +6,9 @@
       "bug-type": "buffer_overflow",
       "binary": {
         "name": "listmp3",
-        "path": "util/.libs/listmp3"
+        "path": "util/listmp3"
       }
     }
   },
-  "binary": "util/.libs/listmp3"
+  "binary": "util/listmp3"
 }

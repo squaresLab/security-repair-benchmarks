@@ -6,7 +6,7 @@ SOURCE_DIR="${HERE_DIR}/source"
 BUILD_DIR="${SOURCE_DIR}/build"
 BUG_FILE="${HERE_DIR}/bug.json"
 
-BUILD_SYSTEM="$(jq -r ".options.build-system" "${BUG_FILE}")"
+BUILD_SYSTEM='$(jq -r ".options.build-system" "${BUG_FILE}")'
 
 if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   COMPILE_TYPE="$1"
@@ -20,8 +20,8 @@ pushd "${BUILD_DIR}"
 
 # prefer cmake if it's supported
 
-if [[ "${BUILD_SYSTEM}" == "cmake" ]]; then
-  cmake ..
+if [[ -e ../CMakeLists.txt ]]; then
+  cmake  -DCMAKE_C_FLAGS_RELEASE='-g -O0 -fPIC' -DREQUIRE_SIMD=0 -DWITH_SIMD=0 ..
 else
-  ../configure
+  ../configure CFLAGS="-g -O0 -static" --without-simd
 fi

@@ -14,5 +14,21 @@
 		"value": "7",
 		"type": "int",
 		"src_line": 1220
+	},
+	{
+		"module": "src/shred.c",
+		"function": "main",
+		"variable": "argv",
+		"value": "./shred -n4 -s7 abc",
+		"type": "string-array",
+		"src_line": 1217
+	},
+    {
+		"module": "src/shred.c",
+		"function": "main",
+		"variable": "argc",
+		"value": "5",
+		"type": "int",
+		"src_line": 1217
 	}
 ]

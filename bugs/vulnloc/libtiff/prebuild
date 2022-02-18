@@ -6,8 +6,7 @@ SOURCE_DIR="${HERE_DIR}/source"
 CONFIG_PATH="./configure"
 # NOTE ./configure complains that the following option doesn't exist
 # CONFIG_OPTIONS="--disable-nls"
-CONFIG_OPTIONS=""
-CONFIG_OPTIONS=""
+CONFIG_OPTIONS="--enable-static --disable-shared"
 
 pushd "${SOURCE_DIR}"
 
@@ -20,4 +19,4 @@ if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   pushd klee
 fi
 
-"${CONFIG_PATH}" "${CONFIG_OPTIONS}"
+${CONFIG_PATH} ${CONFIG_OPTIONS}

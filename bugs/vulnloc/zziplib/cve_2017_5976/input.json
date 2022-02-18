@@ -1,6 +1,6 @@
 [
 	{
-		"module": "source/bins/unzzipcat-mem.c",
+		"module": "../../bins/unzzipcat-mem.c",
 		"function": "main",
 		"variable": "argc",
 		"value": "2",
@@ -8,10 +8,10 @@
 		"src_line": 66
 	},
 	{
-		"module": "source/bins/unzzipcat-mem.c",
+		"module": "../../bins/unzzipcat-mem.c",
 		"function": "main",
 		"variable": "argv",
-		"value": ["/root/source/Linux_5.0.0-37-generic_x86_64.d/bins/unzzipcat-mem", "/root/exploit"],
+		"value": "./unzzipcat-mem /benchmarks/zziplib/cve_2017_5976/exploit",
 		"type": "string-array",
 		"src_line": 66
 	}

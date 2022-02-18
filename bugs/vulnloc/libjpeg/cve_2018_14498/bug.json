@@ -1,7 +1,7 @@
 {
   "subject": "libjpeg",
   "name": "cve_2018_14498",
-  "binary": "build/.libs/cjpeg",
+  "binary": "build/cjpeg",
   "options": {
     "build-system": "cmake",
     "extractfix": {
@@ -13,6 +13,10 @@
       "lowfat": {
         "CFLAGS": "-fsanitize=lowfat -mllvm -lowfat-debug -mllvm -lowfat-no-check-memset -mllvm -lowfat-no-check-memcpy -mllvm -lowfat-no-check-escapes -mllvm -lowfat-no-check-fields -mllvm -lowfat-symbolize -lstlimpl"
       }
+    },
+     "hifix": {
+      "linker-options": "/benchmarks/libjpeg/cve_2018_14498/source/build/libjpeg.a"
     }
+
   }
 }

@@ -1,18 +1,18 @@
 [
 	{
-		"module": "source/xmllint.c",
+		"module": "djpeg.c",
 		"function": "main",
 		"variable": "argc",
 		"value": "14",
 		"type": "int",
-		"src_line": 434
+		"src_line": 492
 	},
 	{
-		"module": "source/xmllint.c",
+		"module": "djpeg.c",
 		"function": "main",
 		"variable": "argv",
-		"value": ["./djpeg -crop", "1x1+16+16", "-onepass", "-dither", "ordered", "-dct", "float", "-colors", "8", "-targa", "-grayscale", "-outfile", "o", "/root/exploit"],
+		"value": "./djpeg -crop -crop \"1x1+16+16\" -onepass -dither ordered -dct float -colors 8 -targa -grayscale -outfile o  /benchmarks/libjpeg/cve_2017_15232/exploit",
 		"type": "string-array",
-		"src_line": 434
+		"src_line": 492
 	}
 ]

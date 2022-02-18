@@ -1,6 +1,6 @@
 [
 	{
-		"module": "source/util/listmp3.c",
+		"module": "util/listmp3.c",
 		"function": "main",
 		"variable": "argc",
 		"value": "2",
@@ -8,10 +8,10 @@
 		"src_line": 179
 	},
 	{
-		"module": "source/util/listmp3.c",
+		"module": "util/listmp3.c",
 		"function": "main",
 		"variable": "argv",
-		"value": ["/root/source/util/listmp3", "/root/exploit"],
+		"value": "./listmp3 /benchmarks/libming/cve_2016_9264/exploit",
 		"type": "string-array",
 		"src_line": 179
 	}
