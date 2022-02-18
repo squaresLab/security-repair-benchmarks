@@ -1,2 +1,17 @@
 *.DS_Store
 .idea
+bugs/vulnloc/binutils/asan_symbolize.py
+bugs/vulnloc/binutils/gen_llvm.py
+bugs/vulnloc/binutils/getSanitizerInfo.sh
+bugs/vulnloc/binutils/sanitizer_parser.py
+bugs/vulnloc/coreutils/asan_symbolize.py
+bugs/vulnloc/coreutils/gen_llvm.py
+bugs/vulnloc/coreutils/getSanitizerInfo.sh
+bugs/vulnloc/coreutils/sanitizer_parser.py
+bugs/vulnloc/libtiff/cve_2016_10094/patches/
+bugs/vulnloc/libtiff/gen_llvm.py
+bugs/vulnloc/libtiff/sanitizer_parser.py_OLD
+bugs/vulnloc/libxml2/asan_symbolize.py
+bugs/vulnloc/libxml2/gen_llvm.py
+bugs/vulnloc/libxml2/getSanitizerInfo.sh
+bugs/vulnloc/libxml2/sanitizer_parser.py
