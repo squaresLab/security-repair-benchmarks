@@ -16,6 +16,8 @@ if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   rm -rf klee
   mkdir klee
   pushd klee
+elif [[ "${REPAIR_TOOL}" == "hifix" ]]; then
+  CONFIG_OPTIONS="--enable-static --disable-shared --without-threads --without-lzma"
 fi
 
 "${CONFIG_PATH}" ${CONFIG_OPTIONS}
