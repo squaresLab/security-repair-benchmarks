@@ -10,7 +10,7 @@
       }
     },
      "hifix": {
-      "linker-options": "-lm -lz /benchmarks/libming/cve_2018_8964/source/util/.libs/libutil.a"
+      "linker-options": "-lm -lz"
     }
   },
   "binary": "util/swftophp"
