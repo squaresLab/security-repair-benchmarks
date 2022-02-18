@@ -3,7 +3,7 @@
 		"module": "tools/tiff2ps.c",
 		"function": "main",
 		"variable": "argv",
-		"value": ["./tiff2ps", "/root/exploit"],
+		"value": "./tiff2ps", "/root/exploit",
 		"type": "int",
 		"tools_line": 118
 	},
