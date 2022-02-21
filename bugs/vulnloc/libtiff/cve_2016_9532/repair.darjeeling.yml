@@ -39,7 +39,7 @@ program:
   source-directory: /workspace/source
   tests:
     tests:
-    - ./test-0
+    - ./test
     time-limit: 5
     type: shell
     workdir: /workspace

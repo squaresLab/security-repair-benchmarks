@@ -22,6 +22,6 @@
   },
   "binary": "dbuild/tools/.libs/tiffcrop",
   "test-suite": {
-    "tests":[ "./test-0" ]
+    "tests":[ "./test" ]
   }
 }
