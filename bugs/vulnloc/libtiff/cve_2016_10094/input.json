@@ -1,18 +1,18 @@
 [
     {
-		"module": "tools/tiff2pdf.c",
+		"module": "tiff2pdf.c",
 		"function": "main",
 		"variable": "argv",
 		"value": "./tiff2pdf /benchmarks/libtiff/cve_2016_10094/exploit -o foo",
 		"type": "string-array",
-		"src_line": 2178
+		"src_line": 599
 	},
   {
-		"module": "tools/tiff2pdf.c",
+		"module": "tiff2pdf.c",
 		"function": "main",
 		"variable": "argc",
 		"value": "4",
 		"type": "int",
-		"src_line": 2178
+		"src_line": 599
 	}
 ]

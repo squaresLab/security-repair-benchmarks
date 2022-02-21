@@ -1,18 +1,18 @@
 [
     {
-		"module": "tools/tiff2ps.c",
+		"module": "tiff2ps.c",
 		"function": "main",
 		"variable": "argv",
 		"value": "./tiff2ps /benchmarks/libtiff/bugzilla_2633/exploit",
 		"type": "int",
-		"src_line": 118
+		"src_line": 240
 	},
     {
-		"module": "tools/tiff2ps.c",
+		"module": "tiff2ps.c",
 		"function": "main",
 		"variable": "argc",
 		"value": "2",
 		"type": "int",
-		"src_line": 118
+		"src_line": 240
 	}
 ]
