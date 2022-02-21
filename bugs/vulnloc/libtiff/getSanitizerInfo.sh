@@ -23,6 +23,6 @@ CURRENT_BUG="$(basename "`pwd`")"
 ./clean
 CC=clang-11 REPAIR_TOOL=none CFLAGS="-fsanitize=undefined,address -g -fno-omit-frame-pointer" CXXFLAGS="-fsanitize=undefined,address" ./prebuild
 CC=clang-11 REPAIR_TOOL=none CFLAGS="-fsanitize=undefined,address -g -fno-omit-frame-pointer" CXXFLAGS="-fsanitize=undefined,address" bear ./build
-ASAN_OPTIONS=symbolize=0 ./test 2> "${STORAGE_FOLDER}/bothSan.txt"
+UBSAN_OPTIONS=print_stacktrace=1 ASAN_OPTIONS=symbolize=0 ./test 2> "${STORAGE_FOLDER}/bothSan.txt"
 
 exit 0

@@ -1,4 +1,4 @@
-#! /usr/bin/env3 python
+#! /usr/bin/env3 python3
 import subprocess
 import json
 def main():
@@ -31,10 +31,11 @@ def main():
                     compiled.add(cmd)
 
     if data['num_ubsan'] > 0:
-        for i in data['addsans']:
+        for i in data['ubsans']:
             l = i['loc']
             f_name=l[0]
-            f_path=l[1]
+            f_path=l[1] if isinstance(l[1],str) else l[1][0]
+            print(str(f_path)+" "+str(type(f_path)))
             cmd = get_llvm_cmd(d, f_name, f_path)
             print(cmd)
             if cmd not in compiled:
@@ -45,7 +46,10 @@ def get_llvm_cmd(d, f_name, f_path):
     llvm_cmd = "clang-11 -emit-llvm -S -g -O0 -c {} {}"
     path ="{}/{}".format(f_path,f_name)
     p = fix_path(path.split('/'))
-    cc = " " + compile_commands(d[p], p)
+    try:
+        cc = " " + compile_commands(d[p], p)
+    except Exception as e:
+        raise(e)
     return llvm_cmd.format(p, cc)
 
 def fix_path(p):
