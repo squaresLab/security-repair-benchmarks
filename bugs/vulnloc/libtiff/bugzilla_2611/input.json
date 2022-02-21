@@ -5,7 +5,7 @@
 		"variable": "argv",
 		"value": "./tiffmedian /benchmarks/libtiff/bugzilla_2611/exploit foo",
 		"type": "int",
-		"tools_line": 118
+		"src_line": 118
 	},
     {
 		"module": "tools/tiffmedian.c",
@@ -13,6 +13,6 @@
 		"variable": "argc",
 		"value": "3",
 		"type": "int",
-		"tools_line": 118
+		"src_line": 118
 	}
 ]

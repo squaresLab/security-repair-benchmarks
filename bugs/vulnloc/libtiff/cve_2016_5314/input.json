@@ -5,7 +5,7 @@
 		"variable": "argv",
 		"value": ["./rgb2ycbcr", "../../exploit", "tmpout.tif"],
 		"type": "int",
-		"tools_line": 71
+		"src_line": 71
 	},
     {
 		"module": "tools/rgb2ycbcr.c",
@@ -13,6 +13,6 @@
 		"variable": "argc",
 		"value": "3",
 		"type": "int",
-		"tools_line": 71
+		"src_line": 71
 	}
 ]

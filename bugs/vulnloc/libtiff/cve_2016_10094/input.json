@@ -3,7 +3,7 @@
 		"module": "tools/tiff2pdf.c",
 		"function": "main",
 		"variable": "argv",
-		"value": ["./tiff2pdf", "./exploit", "-o", "foo"],
+		"value": "./tiff2pdf /benchmarks/libtiff/cve_2016_10094/exploit -o foo",
 		"type": "string-array",
 		"src_line": 2178
 	},
