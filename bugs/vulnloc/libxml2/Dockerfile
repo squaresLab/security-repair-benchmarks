@@ -98,3 +98,4 @@ WORKDIR /benchmarks/SanitizerResults
 RUN python3 gen_llvm.py
 
 WORKDIR /workspace
+RUN ./clean &&  REPAIR_TOOL=none ./prebuild && REPAIR_TOOL=none ./build
