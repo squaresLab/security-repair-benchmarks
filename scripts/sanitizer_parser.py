@@ -34,7 +34,10 @@ Example json entry:
     "ubsans": [
         {
             "type": "division by zero",
-            "loc": ["tif_ojpeg.c", [list_of_possible_path_locations], 816, 8, null]
+            "loc": ["tif_ojpeg.c", "path to file", 816, 8, null],
+            "trace" : [ (same as for addsan)
+                ]
+            ]
         }
     ],
     "num_addsan": 2,
@@ -65,20 +68,33 @@ def parse_undefined_sanitizer(str_message, json_message):
     """
     # first, split the message into lines that contain " runtime error: "
     type_loc = " runtime error: "
-    ubsan_lines = [m for m in str_message.splitlines() if m.find(type_loc) != -1]
-    
-    # Add the number of ubsan to the json
-    json_message["num_ubsan"] = len(ubsan_lines)
+    in_error = False
+       # Add the number of ubsan to the json
     json_message["ubsans"] = []
-    
-    # Go through each ubsan, and add the details
-    for line in ubsan_lines:
-        ubsan_to_add = {"type": line[line.find(type_loc) + len(type_loc):]}
-        first_col = line.find(':') + 1
-        second_col = line[first_col:].find(':') + first_col + 1
-        third_col = line[second_col:].find(':') + second_col + 1
-        ubsan_to_add["loc"] = [line[:first_col - 1], None, int(line[first_col:second_col - 1]), int(line[second_col:third_col - 1]), None]
-        json_message["ubsans"].append(ubsan_to_add)
+    for line in str_message.splitlines():
+        if line.find(type_loc) != -1: # If the line has a runtime error on it
+            #Then deal with the line
+            ubsan_to_add = {"type": line[line.find(type_loc) + len(type_loc):]}
+            first_col = line.find(':') + 1
+            second_col = line[first_col:].find(':') + first_col + 1
+            third_col = line[second_col:].find(':') + second_col + 1
+            ubsan_to_add["loc"] = [line[:first_col - 1], None, int(line[first_col:second_col - 1]), int(line[second_col:third_col - 1]), None]
+            json_message["num_ubsan"] += 1
+            in_error = True
+        elif in_error and line.strip().startswith('#'): # If we are in the trace
+            if line.rfind(':') == -1 or line.find("??:0:0") != -1: continue # if not in the trace or not a resolved path
+            func_name = line[line.find('in') + 3: line.find('/') - 1]
+            path = os.path.split(line[line.find('/'): line.find(':')])
+            line_num = int(line[line.find(':') + 1: line.rfind(':')])
+            char_offset = int(line[line.rfind(':') + 1:])
+            if not "trace" in ubsan_to_add:
+                ubsan_to_add["trace"] = []
+            ubsan_to_add["trace"].append([path[1], path[0], line_num, char_offset, func_name])
+        elif in_error: # If we are in the error but the trace has ended
+            if "trace" in ubsan_to_add:
+                ubsan_to_add["loc"] = ubsan_to_add["trace"][0]
+            json_message["ubsans"].append(ubsan_to_add)
+            in_error = False
 
     return json_message
 
@@ -188,6 +204,7 @@ def parse_sanitizer_message(str_message, resolve_paths=False):
         # If we want to try and expand paths and there are paths to expand
         for i in range(json_message["num_ubsan"]):
             ubsan = json_message["ubsans"][i]
+            if ubsan['loc'][1] is not None: continue
 
             # Get the actual file name:
             old_path = ubsan['loc'][0]
@@ -205,10 +222,10 @@ def main():
     of.close()
     #call parse_sanitizer_message
     of = open("bothSan.json", 'w')
-    try:
-        of.write(parse_sanitizer_message(lns, True))
-    except: 
-        pass
+    #try:
+    of.write(parse_sanitizer_message(lns, True))
+    #except: 
+    #    pass
     of.close()
 
 if __name__ == "__main__":
