@@ -1,14 +1,14 @@
 [
     {
-		"module": "tools/tiffsplit.c",
+		"module": "tiffsplit.c",
 		"function": "main",
 		"variable": "argv",
-		"value": ["./tiffsplit", "/root/exploit"],
+		"value": "./tiffsplit /benchmarks/libtiff/cve_2016_9273/exploit",
 		"type": "string-array",
 		"src_line": 58
 	},
     {
-		"module": "tools/tiffsplit.c",
+		"module": "tiffsplit.c",
 		"function": "main",
 		"variable": "argc",
 		"value": "2",

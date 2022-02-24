@@ -1,14 +1,14 @@
 [
     {
-		"module": "tools/tiffcrop.c",
+		"module": "tiffcrop.c",
 		"function": "main",
 		"variable": "argv",
-		"value": ["./tiffcrop", "/root/exploit", "test"],
+		"value": "./tiffcrop /benchmarks/libtiff/cve_2016_9532/exploit test",
 		"type": "string-array",
 		"src_line": 2141
 	},
     {
-		"module": "tools/tiffcrop.c",
+		"module": "tiffcrop.c",
 		"function": "main",
 		"variable": "argc",
 		"value": "3",
