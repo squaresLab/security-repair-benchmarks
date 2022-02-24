@@ -1,14 +1,14 @@
 [
     {
-		"module": "tools/tiffcp.c",
+		"module": "tiffcp.c",
 		"function": "main",
 		"variable": "argv",
-		"value": ["./tiffcp", "-i", "/root/exploit", "foo"],
+		"value": "./tiffcp -i /benchmarks/libtiff/cve_2017_7601/exploit foo",
 		"type": "int",
 		"src_line": 157
 	},
     {
-		"module": "tools/tiffcp.c",
+		"module": "tiffcp.c",
 		"function": "main",
 		"variable": "argc",
 		"value": "4",
