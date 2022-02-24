@@ -1,14 +1,14 @@
 [
     {
-		"module": "tools/rgb2ycbcr.c",
+		"module": "rgb2ycbcr.c",
 		"function": "main",
 		"variable": "argv",
-		"value": ["./rgb2ycbcr", "../../exploit", "tmpout.tif"],
+		"value": "./rgb2ycbcr /benchmarks/libtiff/cve_2016_5314/exploit tmpout.tif",
 		"type": "int",
 		"src_line": 71
 	},
     {
-		"module": "tools/rgb2ycbcr.c",
+		"module": "rgb2ycbcr.c",
 		"function": "main",
 		"variable": "argc",
 		"value": "3",

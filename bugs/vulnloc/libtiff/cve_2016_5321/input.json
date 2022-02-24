@@ -1,14 +1,14 @@
 [
     {
-		"module": "tools/tiffcrop.c",
+		"module": "tiffcrop.c",
 		"function": "main",
 		"variable": "argv",
-		"value": ["./tiffcrop", "/root/exploit", "./tmpout.tif"],
+		"value": "./tiffcrop /benchmarks/libtiff/cve_2016_5321/exploit tmpout.tif",
 		"type": "int",
 		"src_line": 2111
 	},
     {
-		"module": "tools/tiffcrop.c",
+		"module": "tiffcrop.c",
 		"function": "main",
 		"variable": "argc",
 		"value": "3",

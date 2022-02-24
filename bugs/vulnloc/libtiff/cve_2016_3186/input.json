@@ -1,14 +1,14 @@
 [
     {
-		"module": "tools/gif2tiff.c",
+		"module": "gif2tiff.c",
 		"function": "main",
 		"variable": "argv",
-		"value": ["./gif2tiff", "../../exploit", "out.tif"],
+		"value": "./gif2tiff /benchmarks/libtiff/cve_2016_3186/exploit out.tif",
 		"type": "int",
 		"src_line": 138
 	},
     {
-		"module": "tools/gif2tiff.c",
+		"module": "gif2tiff.c",
 		"function": "main",
 		"variable": "argc",
 		"value": "4",
