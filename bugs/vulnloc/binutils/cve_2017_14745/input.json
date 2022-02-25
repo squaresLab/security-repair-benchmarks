@@ -1,10 +1,18 @@
 [
 	{
-		"module": "binutils/objdump.c",
+		"module": "objdump.c",
+		"function": "main",
+		"variable": "argc",
+		"value": 3,
+		"type": "int",
+		"src_line": 3730 
+	},
+	{
+		"module": "objdump.c",
 		"function": "main",
 		"variable": "argv",
-		"value": ["objdump","-D", "/root/exploit"],
+		"value": "./objdump -D /benchmarks/binutils/cve_2017_14745/exploit",
 		"type": "string-array",
-		"src_line": 3730 
+		"src_line": 3730
 	}
 ]

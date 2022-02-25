@@ -1,9 +1,17 @@
 [
 	{
-		"module": "./source/binutils/nm.c",
+		"module": "nm.c",
+		"function": "main",
+		"variable": "argc",
+		"value": 10,
+		"type": "int",
+		"src_line": 1624
+	},
+	{
+		"module": "nm.c",
 		"function": "main",
 		"variable": "argv",
-		"value": ["-A", "-a", "-l", "-S", "-s", "--special-syms", "--synthetic", "--with-symbol-expression", "../exploit"],
+		"value": "./nm-new -A -a -l -S -s --special-syms --synthetic --with-symbol-expression /benchmarks/binutils/cve_2017_15020/exploit",
 		"type": "string-array",
 		"src_line": 1624
 	}

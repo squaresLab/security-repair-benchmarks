@@ -1,9 +1,17 @@
 [
 	{
-		"module": "./source/binutils/readelf.c",
+		"module": "readelf.c",
+		"function": "main",
+		"variable": "argc",
+		"value": 3,
+		"type": "int",
+		"src_line": 17183
+	},
+	{
+		"module": "readelf.c",
 		"function": "main",
 		"variable": "argv",
-		"value": ["-w", "exploit"],
+		"value": "./nm-new -w /benchmarks/binutils/cve_2017_6965/exploit",
 		"type": "string-array",
 		"src_line": 17183
 	}
