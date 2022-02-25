@@ -3,7 +3,7 @@
 		"module": "nm.c",
 		"function": "main",
 		"variable": "argc",
-		"value": 10,
+		"value": "10",
 		"type": "int",
 		"src_line": 1624
 	},

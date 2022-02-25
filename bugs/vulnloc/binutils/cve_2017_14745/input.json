@@ -3,7 +3,7 @@
 		"module": "objdump.c",
 		"function": "main",
 		"variable": "argc",
-		"value": 3,
+		"value": "3",
 		"type": "int",
 		"src_line": 3730 
 	},
