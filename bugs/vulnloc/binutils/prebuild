@@ -3,10 +3,12 @@ set -eu
 
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SOURCE_DIR="${HERE_DIR}/source"
-
+CHECK_CACHE=$(find source -name "*.cache" | wc -l)
+if [[ $CHECK_CACHE -ne 0 ]]; then
+  find $SOURCE_DIR -name "*.cache"  | xargs rm
+fi
 CONFIG_PATH="./configure"
 CONFIG_OPTIONS="--disable-nls --disable-gdb --disable-readline"
-# CONFIG_OPTIONS="--disable-shared --disable-gdb --disable-libdecnumber --disable-readline --disable-sim LIBS='-ldl -lutil'"
 
 pushd "${SOURCE_DIR}"
 
@@ -22,6 +24,9 @@ fi
 if [[ "${REPAIR_TOOL}" == "extractfix" ]]; then
   CONFIG_PATH="../configure"
   pushd klee
+elif [[ "${REPAIR_TOOL}" == "hifix" ]]; then
+  CONFIG_OPTIONS="--disable-shared --disable-gdb --disable-libdecnumber --disable-readline --disable-sim"
+
 fi
 
 "${CONFIG_PATH}" ${CONFIG_OPTIONS}
