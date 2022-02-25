@@ -1,6 +1,6 @@
 [
 	{
-		"module": "source/xmllint.c",
+		"module": "xmllint.c",
 		"function": "main",
 		"variable": "argc",
 		"value": "2",
@@ -8,10 +8,10 @@
 		"src_line": 3102
 	},
 	{
-		"module": "source/xmllint.c",
+		"module": "xmllint.c",
 		"function": "main",
 		"variable": "argv",
-		"value": ["./xmllint", "/root/exploit"],
+		"value": "./xmllint /benchmarks/libxml2/cve_2012_5134/exploit",
 		"type": "string-array",
 		"src_line": 3102
 	}
