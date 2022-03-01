@@ -14,3 +14,6 @@
 [submodule "tools/llvm-pdg"]
 	path = tools/llvm-pdg
 	url = git@github.com:ChrisTimperley/program-dependence-graph
+[submodule "tools/docker-llvm"]
+	path = tools/docker-llvm
+	url = git@github.com:ChrisTimperley/docker-llvm
