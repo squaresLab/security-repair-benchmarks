@@ -11,3 +11,6 @@
 [submodule "tools/llvm-supermutate"]
 	path = tools/llvm-supermutate
 	url = git@github.com:squaresLab/llvm-supermutate
+[submodule "tools/llvm-pdg"]
+	path = tools/llvm-pdg
+	url = git@github.com:ChrisTimperley/program-dependence-graph
