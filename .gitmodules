@@ -8,3 +8,6 @@
 [submodule "tools/Kaskara"]
 	path = tools/Kaskara
 	url = git@github.com:squaresLab/Kaskara
+[submodule "tools/llvm-supermutate"]
+	path = tools/llvm-supermutate
+	url = git@github.com:squaresLab/llvm-supermutate
