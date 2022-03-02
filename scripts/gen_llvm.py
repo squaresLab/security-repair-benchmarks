@@ -57,6 +57,8 @@ def fix_path(p):
     for i in range(len(p)-1):
         if p[i] == '..':
             np.pop()
+        elif p[i] == '.':
+            continue
         else:
             np.append(p[i])
     np.append(p[len(p)-1])
