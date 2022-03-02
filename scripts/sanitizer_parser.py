@@ -217,7 +217,7 @@ def parse_sanitizer_message(str_message, resolve_paths=False):
 
 def main():
     #open file with sanitizer output
-    of = open("bothSan.output", 'r')
+    of = open("bothSan.output", 'r', errors='replace')
     lns = of.read()
     of.close()
     #call parse_sanitizer_message
