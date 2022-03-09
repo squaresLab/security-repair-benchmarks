@@ -1,0 +1,234 @@
+2022-03-07 15:11:33.842 | INFO     | darjeeling.cli:repair:245 - logging to file: /home/user/Projects/SingaporeGrant2021/security-repair-benchmarks/darjeeling.log.13
+2022-03-07 15:11:33.869 | INFO     | darjeeling.resources:from_dict:70 - parsing resource limits: {'candidates': 100}
+2022-03-07 15:11:33.869 | INFO     | darjeeling.cli:repair:262 - using configuration: Config(dir_patches='/home/user/Projects/SingaporeGrant2021/security-repair-benchmarks/bugs/vulnloc/libtiff/cve_2016_10092/patches', program=ProgramDescriptionConfig(image='libtiff-cve_2016_10092', language=<Language.C: 'c'>, build_instructions=BuildInstructions(steps=(BuildStep(command='REPAIR_TOOL=darjeeling ./prebuild', directory='/workspace'), BuildStep(command='REPAIR_TOOL=darjeeling ./build', directory='/workspace')), time_limit=30), build_instructions_for_coverage=BuildInstructions(steps=(BuildStep(command='REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./clean', directory='/workspace'), BuildStep(command='REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./prebuild', directory='/workspace'), BuildStep(command='REPAIR_TOOL=darjeeling CFLAGS=--coverage LDFLAGS=--coverage ./build', directory='/workspace')), time_limit=30), tests=ShellTestSuiteConfig(workdir='/workspace', test_commands=('./test',), time_limit_seconds=5), source_directory='/workspace/source', build_directory='/workspace/source/dbuild/tools', src_subdirectory='', snapshot=None), transformations=ProgramTransformationsConfig(schemas=(<darjeeling.transformation.classic.delete.DeleteStatementSchemaConfig object at 0x7ff36f704250>, ReplaceStatementSchemaConfig(preserve_indentation=True), AppendStatementSchemaConfig(preserve_indentation=True))), localization=LocalizationConfig(metric='genprog', exclude_files=[], exclude_lines=set(), restrict_to_files=None, restrict_to_lines=None), search=ExhaustiveSearcherConfig(), coverage=CoverageConfig(collector_config=PlusCollectorConfig(files_to_instrument=[FileToInstrument(filename='tools/tiffcrop.c', line=2177)]), restrict_to_files=frozenset({'tools/tiffcrop.c'}), restrict_to_lines=None, load_from_file=None), resource_limits=ResourceLimits(limits=[CandidateLimit(max_candidates=100)]), seed=0, optimizations=OptimizationsConfig(use_scope_checking=True, use_syntax_scope_checking=True, ignore_dead_code=True, ignore_equivalent_insertions=True, ignore_untyped_returns=True, ignore_string_equivalent_snippets=True, ignore_decls=True, only_insert_executed_code=True), terminate_early=False, plus=True, threads=8, run_redundant_tests=False)
+2022-03-07 15:11:33.876 | WARNING  | darjeeling.session:from_config:48 - clearing existing patch directory
+2022-03-07 15:11:33.877 | INFO     | darjeeling.session:from_config:55 - ensuring that kaskara installation is complete (this may take 20 minutes if Kaskara is not up-to-date)
+2022-03-07 15:11:33.877 | INFO     | kaskara.post_install:post_install:14 - performing post-installation of Kaskara
+2022-03-07 15:11:33.877 | INFO     | kaskara.clang.post_install:post_install:18 - installing C++ plugin backend
+2022-03-07 15:11:34.913 | INFO     | kaskara.clang.post_install:post_install:26 - built Docker image for C++ plugin: ['christimperley/kaskara:cpp']
+2022-03-07 15:11:34.915 | INFO     | kaskara.clang.post_install:post_install:27 - installed C++ plugin backend
+2022-03-07 15:11:34.915 | INFO     | kaskara.post_install:post_install:16 - completed post-installation of Kaskara
+2022-03-07 15:11:34.916 | INFO     | darjeeling.session:from_config:58 - ensured that kaskara installation is complete
+2022-03-07 15:11:34.916 | INFO     | darjeeling.session:from_config:64 - using 8 threads
+2022-03-07 15:11:34.917 | INFO     | darjeeling.session:from_config:65 - using language: c
+2022-03-07 15:11:34.918 | INFO     | darjeeling.session:from_config:66 - using optimizations: OptimizationsConfig(use_scope_checking=True, use_syntax_scope_checking=True, ignore_dead_code=True, ignore_equivalent_insertions=True, ignore_untyped_returns=True, ignore_string_equivalent_snippets=True, ignore_decls=True, only_insert_executed_code=True)
+2022-03-07 15:11:34.918 | INFO     | darjeeling.session:from_config:67 - using coverage config: CoverageConfig(collector_config=PlusCollectorConfig(files_to_instrument=[FileToInstrument(filename='tools/tiffcrop.c', line=2177)]), restrict_to_files=frozenset({'tools/tiffcrop.c'}), restrict_to_lines=None, load_from_file=None)
+2022-03-07 15:11:34.919 | INFO     | darjeeling.session:from_config:68 - running redundant tests? False
+2022-03-07 15:11:34.919 | INFO     | darjeeling.session:from_config:69 - using random number generator seed: 0
+2022-03-07 15:11:34.920 | INFO     | darjeeling.session:from_config:72 - search will continue after an acceptable patch has been discovered
+2022-03-07 15:11:34.920 | INFO     | darjeeling.session:from_config:78 - resource limits:
+* maximum number of candidate patch evaluations: 100
+2022-03-07 15:11:34.922 | INFO     | darjeeling.session:from_config:86 - computing coverage information...
+2022-03-07 15:11:38.219 | INFO     | darjeeling.coverage.plus:obtain_faults:241 - self._source_directory: /workspace/source
+2022-03-07 15:11:38.221 | INFO     | darjeeling.coverage.plus:obtain_faults:265 - filename: /workspace/source/libtiff/tif_unix.c => libtiff/tif_unix.c => 340
+2022-03-07 15:11:38.222 | INFO     | darjeeling.coverage.plus:obtain_faults:265 - filename: /workspace/source/libtiff/tif_dumpmode.c => libtiff/tif_dumpmode.c => 103
+2022-03-07 15:11:38.222 | INFO     | darjeeling.coverage.plus:obtain_faults:265 - filename: /workspace/source/libtiff/tif_read.c => libtiff/tif_read.c => 380
+2022-03-07 15:11:38.223 | INFO     | darjeeling.coverage.plus:obtain_faults:265 - filename: /workspace/source/tools/tiffcrop.c => tools/tiffcrop.c => 3689
+2022-03-07 15:11:38.224 | INFO     | darjeeling.coverage.plus:obtain_faults:265 - filename: /workspace/source/tools/tiffcrop.c => tools/tiffcrop.c => 6167
+2022-03-07 15:11:38.224 | INFO     | darjeeling.coverage.plus:obtain_faults:265 - filename: /workspace/source/tools/tiffcrop.c => tools/tiffcrop.c => 2345
+2022-03-07 15:11:38.690 | INFO     | darjeeling.session:from_config:88 - computed coverage information
+2022-03-07 15:11:38.692 | INFO     | darjeeling.session:from_config:92 - computing fault localization...
+2022-03-07 15:11:38.692 | INFO     | darjeeling.localization:from_config:138 - supported suspiciousness metrics: genprog, weighted, tarantula, ochiai, jaccard, ample
+2022-03-07 15:11:38.693 | INFO     | darjeeling.localization:from_config:144 - using suspiciousness metric: genprog
+2022-03-07 15:11:38.696 | INFO     | darjeeling.session:from_config:95 - computed fault localization:
+Localization(
+  tools/tiffcrop.c:2345: 1.00;
+  tools/tiffcrop.c:3689: 1.00;
+  tools/tiffcrop.c:6167: 1.00)
+2022-03-07 15:11:47.465 | INFO     | darjeeling.problem:build:92 - determined passing and failing tests
+2022-03-07 15:11:47.465 | INFO     | darjeeling.problem:build:93 - * passing tests: 
+2022-03-07 15:11:47.465 | INFO     | darjeeling.problem:build:95 - * failing tests: t0
+2022-03-07 15:11:47.465 | INFO     | darjeeling.problem:build:123 - ordering test cases
+2022-03-07 15:11:47.465 | INFO     | darjeeling.problem:build:126 - test order: t0
+2022-03-07 15:11:49.071 | INFO     | darjeeling.problem:validate:156 - implicated lines [3]:
+tools/tiffcrop.c: 2345; 3689; 6167
+2022-03-07 15:11:49.071 | INFO     | darjeeling.problem:validate:157 - implicated files [1]:
+* tools/tiffcrop.c
+2022-03-07 15:11:49.072 | INFO     | darjeeling.session:from_config:126 - constructing database of donor snippets...
+2022-03-07 15:11:49.110 | INFO     | darjeeling.session:from_config:132 - constructed database of donor snippets: 1967 snippets
+2022-03-07 15:11:49.111 | INFO     | darjeeling.transformation.transformations:build:47 - building transformation database
+2022-03-07 15:11:49.137 | INFO     | darjeeling.transformation.transformations:build:50 - built transformation database (took 0.026 seconds)
+2022-03-07 15:11:49.138 | INFO     | darjeeling.session:run:173 - beginning search process...
+2022-03-07 15:11:49.168 | INFO     | darjeeling.evaluator:_evaluate:174 - evaluating candidate: Candidate<#c5edcf22>
+--- tools/tiffcrop.c
++++ tools/tiffcrop.c
+@@ -2342,12 +2342,7 @@
+       if (dump.debug)
+          TIFFError("main", "Reading image %4d of %4d total pages.", dirnum + 1, total_pages);
+ 
+-      if (loadImage(in, &image, &dump, &read_buff))
+-        {
+-        TIFFError("main", "Unable to load source image");
+-        exit (-1);
+-        }
+-
++      
+       /* Correct the image orientation if it was not ORIENTATION_TOPLEFT.
+        */
+       if (image.adjustments != 0)
+
+
+2022-03-07 15:11:49.215 | INFO     | darjeeling.evaluator:_evaluate:174 - evaluating candidate: Candidate<#69b7dcbf>
+--- tools/tiffcrop.c
++++ tools/tiffcrop.c
+@@ -6164,12 +6164,7 @@
+     case STRIP:
+          if (planar == PLANARCONFIG_CONTIG)
+            {
+-	     if (!(readContigStripsIntoBuffer(in, read_buff)))
+-	     {
+-	     TIFFError("loadImage", "Unable to read contiguous strips into buffer");
+-	     return (-1);
+-             }
+-           }
++	                }
+          else
+            {
+ 	   if (!(readSeparateStripsIntoBuffer(in, read_buff, length, width, spp, dump)))
+
+
+2022-03-07 15:11:49.216 | INFO     | darjeeling.evaluator:_evaluate:174 - evaluating candidate: Candidate<#4f8cf141>
+--- tools/tiffcrop.c
++++ tools/tiffcrop.c
+@@ -3686,7 +3686,7 @@
+         }
+ 
+         for (strip = 0; strip < nstrips; strip++) {
+-                bytes_read = TIFFReadEncodedStrip (in, strip, bufp, -1);
++                
+                 rows = bytes_read / scanline_size;
+                 if ((strip < (nstrips - 1)) && (bytes_read != (int32)stripsize))
+                         TIFFError("", "Strip %d: read %lu bytes, strip size %lu",
+
+
+2022-03-07 15:11:49.233 | INFO     | darjeeling.evaluator:_evaluate:174 - evaluating candidate: Candidate<#62f75204>
+--- tools/tiffcrop.c
++++ tools/tiffcrop.c
+@@ -6164,11 +6164,10 @@
+     case STRIP:
+          if (planar == PLANARCONFIG_CONTIG)
+            {
+-	     if (!(readContigStripsIntoBuffer(in, read_buff)))
+-	     {
+-	     TIFFError("loadImage", "Unable to read contiguous strips into buffer");
+-	     return (-1);
+-             }
++	     if (loadImage(in, &image, &dump, &read_buff)) {
++	     TIFFError("main", "Unable to load source image");
++	     exit(-1);
++	     }
+            }
+          else
+            {
+
+
+2022-03-07 15:11:49.267 | INFO     | darjeeling.evaluator:_evaluate:174 - evaluating candidate: Candidate<#7ccdbad0>
+--- tools/tiffcrop.c
++++ tools/tiffcrop.c
+@@ -2347,7 +2347,11 @@
+         TIFFError("main", "Unable to load source image");
+         exit (-1);
+         }
+-
++if (!(readContigStripsIntoBuffer(in, read_buff))) {
++      TIFFError("loadImage", "Unable to read contiguous strips into buffer");
++      return (-1);}
++
++      
+       /* Correct the image orientation if it was not ORIENTATION_TOPLEFT.
+        */
+       if (image.adjustments != 0)
+
+
+2022-03-07 15:11:49.271 | INFO     | darjeeling.evaluator:_evaluate:174 - evaluating candidate: Candidate<#337074a5>
+--- tools/tiffcrop.c
++++ tools/tiffcrop.c
+@@ -2342,11 +2342,9 @@
+       if (dump.debug)
+          TIFFError("main", "Reading image %4d of %4d total pages.", dirnum + 1, total_pages);
+ 
+-      if (loadImage(in, &image, &dump, &read_buff))
+-        {
+-        TIFFError("main", "Unable to load source image");
+-        exit (-1);
+-        }
++      if (!(readContigStripsIntoBuffer(in, read_buff))) {
++      TIFFError("loadImage", "Unable to read contiguous strips into buffer");
++      return (-1);}
+ 
+       /* Correct the image orientation if it was not ORIENTATION_TOPLEFT.
+        */
+
+
+2022-03-07 15:11:49.296 | INFO     | darjeeling.evaluator:_evaluate:174 - evaluating candidate: Candidate<#29521ab2>
+--- tools/tiffcrop.c
++++ tools/tiffcrop.c
+@@ -2347,7 +2347,12 @@
+         TIFFError("main", "Unable to load source image");
+         exit (-1);
+         }
+-
++if (loadImage(in, &image, &dump, &read_buff)) {
++      TIFFError("main", "Unable to load source image");
++      exit(-1);
++      }
++
++      
+       /* Correct the image orientation if it was not ORIENTATION_TOPLEFT.
+        */
+       if (image.adjustments != 0)
+
+
+2022-03-07 15:11:49.329 | INFO     | darjeeling.evaluator:_evaluate:174 - evaluating candidate: Candidate<#20634ae7>
+--- tools/tiffcrop.c
++++ tools/tiffcrop.c
+@@ -6169,7 +6169,11 @@
+ 	     TIFFError("loadImage", "Unable to read contiguous strips into buffer");
+ 	     return (-1);
+              }
+-           }
++if (!(readContigStripsIntoBuffer(in, read_buff))) {
++	     TIFFError("loadImage", "Unable to read contiguous strips into buffer");
++	     return (-1);}
++
++	                }
+          else
+            {
+ 	   if (!(readSeparateStripsIntoBuffer(in, read_buff, length, width, spp, dump)))
+
+
+2022-03-07 15:12:05.114 | INFO     | darjeeling.evaluator:_evaluate:268 - evaluated candidate: Candidate<#c5edcf22>
+2022-03-07 15:12:05.165 | INFO     | darjeeling.evaluator:_evaluate:174 - evaluating candidate: Candidate<#5d1af66a>
+--- tools/tiffcrop.c
++++ tools/tiffcrop.c
+@@ -6169,7 +6169,12 @@
+ 	     TIFFError("loadImage", "Unable to read contiguous strips into buffer");
+ 	     return (-1);
+              }
+-           }
++if (loadImage(in, &image, &dump, &read_buff)) {
++	     TIFFError("main", "Unable to load source image");
++	     exit(-1);
++	     }
++
++	                }
+          else
+            {
+ 	   if (!(readSeparateStripsIntoBuffer(in, read_buff, length, width, spp, dump)))
+
+
+2022-03-07 15:12:05.769 | INFO     | darjeeling.evaluator:_evaluate:268 - evaluated candidate: Candidate<#69b7dcbf>
+2022-03-07 15:12:05.770 | INFO     | darjeeling.searcher.base:__iter__:161 - all candidate patches have been exhausted
+2022-03-07 15:12:06.058 | INFO     | darjeeling.evaluator:_evaluate:268 - evaluated candidate: Candidate<#4f8cf141>
+2022-03-07 15:12:06.208 | INFO     | darjeeling.evaluator:_evaluate:268 - evaluated candidate: Candidate<#337074a5>
+2022-03-07 15:12:06.340 | INFO     | darjeeling.evaluator:_evaluate:268 - evaluated candidate: Candidate<#7ccdbad0>
+2022-03-07 15:12:06.626 | INFO     | darjeeling.evaluator:_evaluate:268 - evaluated candidate: Candidate<#62f75204>
+2022-03-07 15:12:06.650 | INFO     | darjeeling.evaluator:_evaluate:268 - evaluated candidate: Candidate<#20634ae7>
+2022-03-07 15:12:06.738 | INFO     | darjeeling.evaluator:_evaluate:268 - evaluated candidate: Candidate<#29521ab2>
+2022-03-07 15:12:15.878 | INFO     | darjeeling.evaluator:_evaluate:268 - evaluated candidate: Candidate<#5d1af66a>
+2022-03-07 15:12:15.879 | INFO     | darjeeling.searcher.base:close:178 - waiting for pending evaluations to complete.
+2022-03-07 15:12:15.880 | INFO     | darjeeling.searcher.base:close:181 - finished waiting for pending evaluations to complete.
+2022-03-07 15:12:15.881 | INFO     | darjeeling.session:close:201 - found 2 plausible patches
+2022-03-07 15:12:15.881 | INFO     | darjeeling.session:close:202 - time taken: 0.45 minutes
+2022-03-07 15:12:15.881 | INFO     | darjeeling.session:close:203 - # test evaluations: 9
+2022-03-07 15:12:15.882 | INFO     | darjeeling.session:close:204 - # candidate evaluations: 9

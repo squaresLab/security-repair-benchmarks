@@ -24,5 +24,14 @@
     "hifix": {
       "linker-options": "/benchmarks/libtiff/cve_2016_10092/source/libtiff/.libs/libtiff.a -ljpeg -llzma -lm -ljbig -lz"
     }
-  }
+  },
+  "developer_fix":
+    [{"file": "tools/tiffcrop.c",
+    "functions": [{"name": "readContigStripsIntoBuffer", 
+                   "start_line": 3673, 
+                   "end_line": 3705,
+                   "lines_modified": [3701]}
+                  ]
+    }
+  ]
 }

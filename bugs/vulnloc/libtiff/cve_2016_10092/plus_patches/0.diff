@@ -1,0 +1,16 @@
+--- tools/tiffcrop.c
++++ tools/tiffcrop.c
+@@ -6164,12 +6164,7 @@
+     case STRIP:
+          if (planar == PLANARCONFIG_CONTIG)
+            {
+-	     if (!(readContigStripsIntoBuffer(in, read_buff)))
+-	     {
+-	     TIFFError("loadImage", "Unable to read contiguous strips into buffer");
+-	     return (-1);
+-             }
+-           }
++	                }
+          else
+            {
+ 	   if (!(readSeparateStripsIntoBuffer(in, read_buff, length, width, spp, dump)))
