@@ -6,5 +6,5 @@ SOURCE_DIR="${HERE_DIR}/source"
 
 pushd "${SOURCE_DIR}"
 
-make CFLAGS="-static -ggdb" CXXFLAGS="-static  -ggdb" -j32
+make CFLAGS="-static -ggdb" CXXFLAGS="-static  -ggdb"
 

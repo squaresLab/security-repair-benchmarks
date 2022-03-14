@@ -14,4 +14,4 @@ SOURCE_DIR="${HERE_DIR}/source"
 pushd "${SOURCE_DIR}"
 
 ./autogen.sh
-./configure CFLAGS="-g -O0 -static" CXXFLAGS="$CFLAGS"  --disable-shared --enable-static
+./configure CFLAGS="-g -O0 -static"  --disable-shared --enable-static
