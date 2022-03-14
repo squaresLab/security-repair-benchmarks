@@ -1,65 +1,10 @@
 [
-	{
-		"module": "src/split.c",
-		"function": "main",
-		"variable": "k_units",
-		"value": "7",
-		"type": "int",
-		"src_line": 1290
-	},
-    {
-		"module": "src/split.c",
-		"function": "main",
-		"variable": "n_units",
-		"value": "75",
-		"type": "int",
-		"src_line": 1291
-	},
-    {
-		"module": "src/split.c",
-		"function": "main",
-		"variable": "in_blk_size",
-		"value": "131072",
-		"type": "int",
-		"src_line": 1288
-	},
-    {
-		"module": "src/split.c",
-		"function": "main",
-		"variable": "initial_read",
-		"value": "0",
-		"type": "int",
-		"src_line": 1570
-	},
-    {
-		"module": "src/split.c",
-		"function": "main",
-		"variable": "file_size",
-		"value": "75",
-		"type": "int",
-		"src_line": 1288
-	},
-    {
-		"module": "src/split.c",
-		"function": "main",
-		"variable": "buf",
-		"value": "75",
-		"type": "int",
-		"src_line": 1288
-	},
-    {
-		"module": "src/split.c",
-		"function": "main",
-		"variable": "buf",
-		"value": "75",
-		"type": "int",
-		"src_line": 1288
-	},
-    {
+
+     {
 		"module": "src/split.c",
 		"function": "main",
 		"variable": "argv",
-		"value": "./split -n7/75 /dev/null",
+		"value": "/benchmarks/coreutils/gnubug_25003/source/src/split -n7/75 /dev/null",
 		"type": "string-array",
 		"src_line": 1285
 	},
@@ -70,13 +15,5 @@
 		"value": "3",
 		"type": "int",
 		"src_line": 1285
-	},
-	{
-		"module": "src/split.c",
-		"function": "main",
-		"variable": "c",
-		"value": "n",
-		"type": "char",
-		"src_line": 1294
 	}
 ]

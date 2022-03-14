@@ -1,25 +1,10 @@
 [
-	{
-		"module": "src/shred.c",
-		"function": "main",
-		"variable": "flags.n_iterations",
-		"value": "4",
-		"type": "int",
-		"src_line": 1220
-	},
-	{
-		"module": "src/shred.c",
-		"function": "main",
-		"variable": "flags.size",
-		"value": "7",
-		"type": "int",
-		"src_line": 1220
-	},
+
 	{
 		"module": "src/shred.c",
 		"function": "main",
 		"variable": "argv",
-		"value": "./shred -n4 -s7 abc",
+		"value": "/benchmarks/coreutils/gnubug_26545/source/src/shred -n4 -s7 abc",
 		"type": "string-array",
 		"src_line": 1217
 	},
@@ -27,7 +12,7 @@
 		"module": "src/shred.c",
 		"function": "main",
 		"variable": "argc",
-		"value": "5",
+		"value": "4",
 		"type": "int",
 		"src_line": 1217
 	}
