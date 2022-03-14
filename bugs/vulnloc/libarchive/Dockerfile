@@ -64,4 +64,7 @@ RUN unzip exploit.zip -d exploit \
  && rm exploit.zip
 RUN wget -nv https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 \
      && chmod u+x jq-linux64 \
-     && mv jq-linux64 /bin/jq
+     && mv jq-linux64 /bin/jq \
+
+RUN REPAIR_TOOL=none bear ./prebuild \
+ && REPAIR_TOOL=none bear ./build

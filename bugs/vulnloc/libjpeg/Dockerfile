@@ -51,12 +51,11 @@ RUN git -C "${SUT_SOURCE_PATH}" checkout "${SUT_VERSION}" \
  && [ "${SUT_USES_CMAKE}" = no ] && autoreconf -fiv || exit 0
 
 ARG BUG_DIR
-COPY "${BUG_DIR}/bug.json" bug.json
-COPY "${BUG_DIR}/exploit" exploit
-COPY "${BUG_DIR}/test" test
-COPY "${BUG_DIR}/config.ini" config.ini
-COPY "${BUG_DIR}/build-for-fuzzer" build-for-fuzzer
+COPY "${BUG_DIR}/" .
 
 RUN wget -nv https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 \
      && chmod u+x jq-linux64 \
      && mv jq-linux64 /bin/jq
+
+RUN REPAIR_TOOL=none bear ./prebuild \
+ && REPAIR_TOOL=none bear ./build

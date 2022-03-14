@@ -35,3 +35,6 @@ ARG BUG_DIR
 COPY "${BUG_DIR}/" .
 RUN unzip source.zip \
  && rm source.zip
+
+RUN REPAIR_TOOL=none bear ./prebuild \
+ && REPAIR_TOOL=none bear ./build

@@ -43,6 +43,7 @@ RUN git -C "${SUT_SOURCE_PATH}" checkout "${SUT_VERSION}"
 COPY zziplib-manpages.tar "${SUT_SOURCE_PATH}/docs"
 
 ARG BUG_DIR
-COPY "${BUG_DIR}/exploit" exploit
-COPY "${BUG_DIR}/test" test
-COPY "${BUG_DIR}/bug.json" bug.json
+COPY "${BUG_DIR}/" .
+
+RUN REPAIR_TOOL=none bear ./prebuild \
+ && REPAIR_TOOL=none bear ./build
