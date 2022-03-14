@@ -5,6 +5,7 @@ RUN apt-get update \
       autoconf \
       automake \
       autopoint \
+      bear \
       bison \
       build-essential \
       clang \
