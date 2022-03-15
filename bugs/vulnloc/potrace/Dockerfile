@@ -38,9 +38,9 @@ RUN unzip source.zip \
  && rm source.zip
 
 
-RUN sed -i '1137d' /benchmarks/potrace/cve_2013_7437/source/src/main.c
-RUN sed -i '1137i int main(int argc, char *argv[]) {\n' /benchmarks/potrace/cve_2013_7437/source/src/main.c
-RUN sed -i '1138i int ac=argc; char** av = argv;\n' /benchmarks/potrace/cve_2013_7437/source/src/main.c
+RUN sed -i '1137d' /workspace/source/src/main.c
+RUN sed -i '1137i int main(int argc, char *argv[]) {\n' /workspace/source/src/main.c
+RUN sed -i '1138i int ac=argc; char** av = argv;\n' /workspace/source/src/main.c
 
 RUN REPAIR_TOOL=none bear ./prebuild \
  && REPAIR_TOOL=none bear ./build
