@@ -1,26 +1,18 @@
 [
 	{
-		"module": "src/appl/imginfo.c",
+		"module": "imginfo.c",
 		"function": "main",
 		"variable": "argc",
 		"value": "3",
 		"type": "int",
-		"src_line": 116
+		"src_line": 123
 	},
 	{
-		"module": "src/appl/imginfo.c",
+		"module": "imginfo.c",
 		"function": "main",
 		"variable": "argv",
 		"value": "./imginfo -f /benchmarks/jasper/cve_2016_9557/exploit",
 		"type": "string-array",
-		"src_line": 116
-	},
-    {
-		"module": "src/appl/imginfo.c",
-		"function": "main",
-		"variable": "infile",
-		"value": "/benchmarks/jasper/cve_2016_9557/exploit",
-		"type": "char",
-		"src_line": 120
-    }
+		"src_line": 123
+	}
 ]
