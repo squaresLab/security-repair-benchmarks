@@ -6,4 +6,4 @@ SOURCE_DIR="${HERE_DIR}/source"
 
 pushd "${SOURCE_DIR}"
 
-./configure
+./configure --enable-static --disable-shared
