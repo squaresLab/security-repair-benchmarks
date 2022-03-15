@@ -53,3 +53,5 @@ RUN wget -nv https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 
 
 RUN REPAIR_TOOL=none bear ./prebuild \
  && REPAIR_TOOL=none bear ./build
+
+RUN cd source && make distclean
