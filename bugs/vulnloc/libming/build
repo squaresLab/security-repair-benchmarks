@@ -6,5 +6,10 @@ SOURCE_DIR="${HERE_DIR}/source"
 
 pushd "${SOURCE_DIR}"
 
-make CFLAGS="-static -ggdb" CXXFLAGS="-static  -ggdb"
+
+if [[ "${REPAIR_TOOL}" == "hifix" ]]; then
+  CC=wllvm CXX=wllvm++ make CFLAGS="-static -ggdb" CXXFLAGS="-static  -ggdb"
+else
+  make CFLAGS="-static -ggdb" CXXFLAGS="-static  -ggdb"
+fi
 
