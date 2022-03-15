@@ -4,7 +4,7 @@ set -eu
 HERE_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 SOURCE_DIR="${HERE_DIR}/source"
 CONFIG_PATH="./configure"
-CONFIG_OPTIONS="--without-openssl"
+CONFIG_OPTIONS="--without-openssl --enable-static --disable-shared"
 
 pushd "${SOURCE_DIR}"
 
