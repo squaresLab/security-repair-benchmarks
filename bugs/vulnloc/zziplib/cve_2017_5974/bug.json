@@ -10,7 +10,7 @@
       }
     },
     "hifix": {
-      "linker-options": "/benchmarks/zziplib/cve_2017_5974/source/libzzipmmapped.a -lz"
+      "linker-options": "-lz"
     }
   },
   "binary": "unzzipcat-mem"
