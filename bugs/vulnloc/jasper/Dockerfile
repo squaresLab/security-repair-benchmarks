@@ -45,3 +45,5 @@ RUN unzip source.zip \
 
 RUN REPAIR_TOOL=none bear ./prebuild \
  && REPAIR_TOOL=none bear ./build
+
+RUN cd source && make distclean
