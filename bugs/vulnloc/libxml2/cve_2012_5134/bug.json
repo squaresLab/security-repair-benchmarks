@@ -13,7 +13,7 @@
       }
     },
     "hifix": {
-      "linker-options": " -lz -lpthread -lm -llzma"
+      "linker-options": "-lm -lz"
     },
     "darjeeling": {
       "coverage-files": [
