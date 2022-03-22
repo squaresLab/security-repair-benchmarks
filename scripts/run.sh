@@ -21,4 +21,5 @@ docker run \
   -v "${LOG_DIR}:/logs" \
   --rm \
   -it \
-  "${BENCHMARK_IMAGE}"
+  "${BENCHMARK_IMAGE}" \
+  $@
